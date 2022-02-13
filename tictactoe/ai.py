@@ -101,7 +101,7 @@ def mcts(node, expanding=False):
             node.games += child.games
 
 
-def minimax_ab(board, player_id, depth, maximize, alpha=-inf, beta=-inf) -> (int, int):
+def minimax_ab(board, player_id, depth, maximize, alpha=-inf, beta=inf) -> (int, int):
     """
     # Minimax_ab
 
@@ -136,25 +136,28 @@ def minimax_ab(board, player_id, depth, maximize, alpha=-inf, beta=-inf) -> (int
             _, value = minimax_ab(board,
                                   'O' if player_id == 'X' else 'X',
                                   depth - 1,
-                                  False,
+                                  False if player_id == 'X' else True,
                                   alpha,
                                   beta)
             board[i] = ' '
             if (value is not None
                     and (value > alpha if maximize else value < beta)):
                 if maximize:
+                    print(f'max, {value}')
                     alpha = value
                 else:
                     beta = value
-                if (alpha != -inf and beta != inf
-                    and alpha >= beta if maximize else beta >= alpha):
-                    break
                 best_move = i
 
     if maximize:
-        return best_move, alpha
-
-    return best_move, beta
+        if alpha != -inf:
+            return best_move, alpha
+        else:
+            return None, None 
+    if beta != inf:
+        return best_move, beta
+    else:
+        return None, None   
 
 
 def ai_move(board, player_id, algorithm):
@@ -167,10 +170,13 @@ def ai_move(board, player_id, algorithm):
 
     if algorithm == "minimax":
 
-        move, _ = minimax_ab(board, player_id, 5, True)
+        move, score = minimax_ab(board, player_id, 5, True)
+
+        print(f"minimax move: {move}, score: {score}")
 
         if move is None:
-            move = randint(0, 24)
+            print(f"Random move")
+            move = random_move(board)
 
         board[move] = player_id
         print(f"Calls to minimax_ab: {boards}")
@@ -193,7 +199,17 @@ def ai_move(board, player_id, algorithm):
 
         if move == -1:
             print("Random move")
-            move = randint(0, 24)
-
+            move = random_move(board)
+        print(f"mcts move: {move}")
         board[move] = player_id
         print(f"Calls to mcts: {boards}")
+
+def random_move(board):
+    print(f'find random move')
+    move = randint(0, 24)
+    if 0 <= move <= 24 and board[move] not in ('X', 'O'):
+        return move
+    else:
+        print(f"illegal move!")
+        move = random_move(board)
+        return move
