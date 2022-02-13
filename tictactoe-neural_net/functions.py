@@ -237,10 +237,10 @@ def gameStats(games, player=1, save=False, filename=""):
 
     if save:
         f = open(filename, "w")
-        f.write("Results for player {0}".format(player))
-        f.write("Wins: {0} ({1}%)".format(stats["win"], winPct))
-        f.write("Loss: {0} ({1}%)".format(stats["loss"], lossPct))
-        f.write("Draw: {0} ({1}%)".format(stats["draw"], drawPct))
+        f.write("Results for player {0}\n".format(player))
+        f.write("Wins: {0} ({1}%)\n".format(stats["win"], winPct))
+        f.write("Loss: {0} ({1}%)\n".format(stats["loss"], lossPct))
+        f.write("Draw: {0} ({1}%)\n".format(stats["draw"], drawPct))
 
 def getModel():
     numCells = 9 # How many cells in a 3x3 tic-tac-toe board?
