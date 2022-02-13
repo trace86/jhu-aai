@@ -101,7 +101,7 @@ def mcts(node, expanding=False):
             node.games += child.games
 
 
-def minimax_ab(board, player_id, depth, maximize, alpha=-inf, beta=inf) -> (int, int):
+def minimax_ab(board, player_id, depth, maximize, comp_player_id='', alpha=-inf, beta=inf) -> (int, int):
     """
     # Minimax_ab
 
@@ -114,8 +114,11 @@ def minimax_ab(board, player_id, depth, maximize, alpha=-inf, beta=inf) -> (int,
 
     The board weights are determined by the fastest possible win states.
     """
+    if comp_player_id == '':
+        comp_player_id = player_id
+
     winner = game.check_win(board)
-    if winner == player_id:
+    if winner == comp_player_id:
         return None, 10 + depth
     if winner not in (' ', "draw"):
         return None, -10 - depth
@@ -127,7 +130,7 @@ def minimax_ab(board, player_id, depth, maximize, alpha=-inf, beta=inf) -> (int,
     global boards
     boards += 1
 
-    best_move = None
+    best_move_array = []
     value = None
 
     for i in range(25):
@@ -137,24 +140,26 @@ def minimax_ab(board, player_id, depth, maximize, alpha=-inf, beta=inf) -> (int,
                                   'O' if player_id == 'X' else 'X',
                                   depth - 1,
                                   False if player_id == 'X' else True,
+                                  comp_player_id,
                                   alpha,
                                   beta)
             board[i] = ' '
             if (value is not None
-                    and (value > alpha if maximize else value < beta)):
+                    and (value >= alpha if maximize else value <= beta)):
                 if maximize:
-                    print(f'max, {value}')
                     alpha = value
                 else:
                     beta = value
-                best_move = i
+                best_move_array.append(i)
 
     if maximize:
-        if alpha != -inf:
+        if alpha != -inf and len(best_move_array) > 0:
+            best_move = best_move_array[0 if len(best_move_array) == 1 else randint(0, len(best_move_array)-1)]
             return best_move, alpha
         else:
             return None, None 
-    if beta != inf:
+    if beta != inf and len(best_move_array) > 0:
+        best_move = best_move_array[0 if len(best_move_array) == 1 else randint(0, len(best_move_array)-1)]
         return best_move, beta
     else:
         return None, None   
