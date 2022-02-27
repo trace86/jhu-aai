@@ -10,3 +10,5 @@ The following files are in this directory:
 * AlphaToe3 and AlphaToe5 Keras Neural Network Models (sub-directories)
 * 3x3_play.py and 5x5_play.py which simulate a Tic Tac Toe game between two AIs
 * functions3.py and functions5.py which contain supporting functions for the AIs to play
+
+The source code upon which AlphaToe has been developed originates from Daniel Sauble - https://github.com/djsauble/tic-tac-toe-ai
