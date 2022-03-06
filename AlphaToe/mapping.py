@@ -6,6 +6,10 @@ import pandas as pd
 
 attacks = pd.read_csv("commands.csv")
 
+def show_intention(attack_id):
+    print("Using vulnerability/exploit: {0} (linked port {1})...".format(attacks.iloc[attack_id]["exploit_name"],
+                                                                         attacks.iloc[attack_id]["linked_port"]))
+
 def write_file(fname, command):
     with open(f"io/{fname}.txt", "w") as f:  # not appending on purpose
         f.write(command)
