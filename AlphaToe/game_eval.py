@@ -1,5 +1,9 @@
+import os
+import sys
+sys.path.insert(1, os.getcwd())
 from typing import List
 import mapping as mp
+
 from nmap_parser import parse_nmaprun_xml
 
 from dotenv import load_dotenv
@@ -8,9 +12,8 @@ import pandas as pd
 
 
 load_dotenv()
-xml_file = os.getenv("PORTSCAN_XML")
-commands_csv = os.getenv("COMMANDS_CSV")
-
+xml_file = f"{os.getenv('ROOT_PATH')}/{os.getenv('PORTSCAN_XML')}"
+commands_csv = f"{os.getenv('ROOT_PATH')}/{os.getenv('COMMANDS_CSV')}"
 attacks = pd.read_csv(commands_csv)
 
 metasploit = {
@@ -23,7 +26,7 @@ metasploit = {
     6: "nop_command",
 }
 
-def show_intention(attack_id, attacks):
+def show_intention(attack_id, attacks=pd.read_csv(commands_csv)):
     print(f"using vulnerability/exploit: {attacks.iloc[attack_id]['exploit_name']} "
           f"(linked port {attacks.iloc[attack_id]['linked_port']}")
 
@@ -61,7 +64,7 @@ def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attac
             command = mp.eval_defender_5x5(i, j, current_state, exploit_file_5x5, set_file_5x5, debug)
     else:
         raise ValueError(f"unexpected game value: ({i}, {j})")  # ruh roh
-    print(command)
+    # return command
     for c in command:
         print(c)
         print(metasploit[c])
@@ -69,7 +72,6 @@ def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attac
         if c == 0:
             ports = parse_nmaprun_xml(xml_file)
         attacks.iloc[attack_id][metasploit[c]]
-
     return [metasploit[c] for c in command]
 
 

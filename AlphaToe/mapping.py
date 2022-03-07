@@ -6,6 +6,8 @@
 
 from typing import List, Tuple
 import os
+from dotenv import load_dotenv
+import os
 
 # ## write_file
 #
@@ -17,10 +19,11 @@ import os
 # **returns**: None.
 
 # In[2]:
-
+load_dotenv()
+root_path = os.getenv("ROOT_PATH")
 
 def write_file(fname: str, command: str) -> None:
-    with open(f"io/{fname}.txt", "w") as f:  # not appending on purpose
+    with open(f"{root_path}/{fname}.txt", "w") as f:  # not appending on purpose
         f.write(command)
 
 
@@ -36,7 +39,9 @@ def write_file(fname: str, command: str) -> None:
 
 
 def read_file(fname: str) -> str:
-    with open(f"io/{fname}.txt") as f:
+    import os
+    print(os.listdir())
+    with open(f"{root_path}/{fname}.txt") as f:
         return f.read()
 
 
@@ -743,7 +748,7 @@ m = [
     [0, 0, 1, 0, 0],
     [0, 0, 1, 0, 0],
     [0, 0, 0, 0, 2]]
-assert eval_defender_5x5(i=4, j=4, matrix=m, exploit_file="exploit_5x5.txt", set_file="set_5x5.txt", debug=True) == [6]
+assert eval_defender_5x5(i=4, j=4, matrix=m, exploit_file="exploit_5x5", set_file="set_5x5", debug=True) == [6]
 
 
 # ## eval_attacker_5x5
@@ -770,6 +775,9 @@ assert eval_defender_5x5(i=4, j=4, matrix=m, exploit_file="exploit_5x5.txt", set
 
 def eval_attacker_5x5(i: int, j: int, matrix: List[List[int]], exploit_file: str, set_file: str, debug: bool) -> List[
     int]:
+    print(os.getcwd())
+    blah = read_file("exploit_5x5")
+    print(f"blah: [{blah}]")
     symbol = 1
     if is_first_move(i, j, matrix, symbol=symbol):
         # save scanned ports to a list
