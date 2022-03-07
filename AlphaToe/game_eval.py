@@ -71,7 +71,10 @@ def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attac
 
         if c == 0:
             ports = parse_nmaprun_xml(xml_file)
-        attacks.iloc[attack_id][metasploit[c]]
+        try:
+            attacks.iloc[attack_id][metasploit[c]]
+        except KeyError:
+            print(f"No command yet for: {metasploit[c]}")
     return [metasploit[c] for c in command]
 
 
