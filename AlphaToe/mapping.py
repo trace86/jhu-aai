@@ -775,9 +775,6 @@ assert eval_defender_5x5(i=4, j=4, matrix=m, exploit_file="exploit_5x5", set_fil
 
 def eval_attacker_5x5(i: int, j: int, matrix: List[List[int]], exploit_file: str, set_file: str, debug: bool) -> List[
     int]:
-    print(os.getcwd())
-    blah = read_file("exploit_5x5")
-    print(f"blah: [{blah}]")
     symbol = 1
     if is_first_move(i, j, matrix, symbol=symbol):
         # save scanned ports to a list
