@@ -39,7 +39,7 @@ def show_intention(attack_id, attacks):
 # In[22]:
 
 
-def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attack_id: str = 0000, debug: bool = False) -> List[str]:
+def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attack_id: int = 0000, debug: bool = False) -> List[str]:
     exploit_file_3x3 = "exploit_3x3"
     exploit_file_5x5 = "exploit_5x5"
     set_file_5x5 = "set_5x5"
