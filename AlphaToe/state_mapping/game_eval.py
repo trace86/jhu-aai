@@ -4,9 +4,14 @@ from nmap_parser import parse_nmaprun_xml
 
 from dotenv import load_dotenv
 import os #provides ways to access the Operating System and allows us to read the environment variables
+import pandas as pd
+
 
 load_dotenv()
 xml_file = os.getenv("PORTSCAN_XML")
+commands_csv = os.getenv("COMMANDS_CSV")
+
+attacks = pd.read_csv(commands_csv)
 
 metasploit = {
     0: "scan_command",
@@ -17,6 +22,10 @@ metasploit = {
     5: "kill_daemon_command",
     6: "nop_command",
 }
+
+def show_intention(attack_id, attacks):
+    print(f"using vulnerability/exploit: {attacks.iloc[attack_id]['exploit_name']} "
+          f"(linked port {attacks.iloc[attack_id]['linked_port']}")
 
 # ## eval_move
 #
@@ -30,7 +39,7 @@ metasploit = {
 # In[22]:
 
 
-def eval_move(prev_state: List[List[int]], current_state: List[List[int]], debug: bool = False) -> List[str]:
+def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attack_id: str = 0000, debug: bool = False) -> List[str]:
     exploit_file_3x3 = "exploit_3x3"
     exploit_file_5x5 = "exploit_5x5"
     set_file_5x5 = "set_5x5"
@@ -52,25 +61,31 @@ def eval_move(prev_state: List[List[int]], current_state: List[List[int]], debug
             command = mp.eval_defender_5x5(i, j, current_state, exploit_file_5x5, set_file_5x5, debug)
     else:
         raise ValueError(f"unexpected game value: ({i}, {j})")  # ruh roh
+    print(command)
     for c in command:
+        print(c)
+        print(metasploit[c])
+
         if c == 0:
             ports = parse_nmaprun_xml(xml_file)
+        attacks.iloc[attack_id][metasploit[c]]
+
     return [metasploit[c] for c in command]
 
 
 board_old = [
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0],
+    [0, 0, 1, 1, 0],
+    [0, 2, 2, 0, 0],
     [0, 0, 0, 0, 0]]
 board_new = [
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 2, 0, 0],
+    [0, 0, 1, 1, 1],
+    [0, 2, 2, 0, 0],
     [0, 0, 0, 0, 0]]
-assert eval_move(board_old, board_new) == ["nop_command"]
+assert eval_move(board_old, board_new, debug=False) == ["set_command"]
 
 # In[23]:
 
@@ -83,4 +98,4 @@ board_new = [
     [0, 0, 1],
     [0, 1, 0],
     [2, 0, 2]]
-assert eval_move(board_old, board_new) == ["kill_process_command"]
+# assert eval_move(board_old, board_new, debug=False) == ["kill_process_command"]

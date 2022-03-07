@@ -4,7 +4,7 @@ from pprint import pprint
 import os
 import pandas as pd
 
-attacks = pd.read_csv("../commands.csv")
+attacks = pd.read_csv("io/commands.csv")
 
 def show_intention(attack_id):
     print("Using vulnerability/exploit: {0} (linked port {1})...".format(attacks.iloc[attack_id]["exploit_name"],

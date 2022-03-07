@@ -6,13 +6,6 @@
 
 from typing import List, Tuple
 import os
-import pandas as pd
-
-
-def show_intention(attack_id, attacks):
-    print(f"using vulnerability/exploit: {attacks.iloc[attack_id]['exploit_name']} "
-          f"(linked port {attacks.iloc[attack_id]['linked_port']}")
-
 
 # ## write_file
 #
