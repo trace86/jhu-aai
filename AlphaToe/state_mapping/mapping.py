@@ -693,7 +693,7 @@ m = [
     [0, 0, 0],
     [1, 2, 1],
     [0, 0, 2]]
-assert eval_defender_3x3(1, 1, m, "exploit_3x3.txt", debug=True) == [4]
+assert eval_defender_3x3(1, 1, m, "exploit_3x3", debug=True) == [4]
 
 
 # ## eval_defender_5x5

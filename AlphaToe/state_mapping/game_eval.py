@@ -6,9 +6,8 @@ from dotenv import load_dotenv
 import os #provides ways to access the Operating System and allows us to read the environment variables
 
 load_dotenv()
+xml_file = os.getenv("PORTSCAN_XML")
 
-xml_file = os.getenv("ID")
-print(xml_file)
 metasploit = {
     0: "scan_command",
     1: "use_command",
@@ -55,7 +54,7 @@ def eval_move(prev_state: List[List[int]], current_state: List[List[int]], debug
         raise ValueError(f"unexpected game value: ({i}, {j})")  # ruh roh
     for c in command:
         if c == 0:
-            parse_nmaprun_xml(fname)
+            ports = parse_nmaprun_xml(xml_file)
     return [metasploit[c] for c in command]
 
 
