@@ -8,7 +8,7 @@ from keras.backend import reshape
 from keras.utils.np_utils import to_categorical
 import time
 import copy
-from mapping import *
+from state_mapping.game_eval import eval_move
 
 """
 This function initializes the empty board into a 3x3 list of lists of zeroes.
