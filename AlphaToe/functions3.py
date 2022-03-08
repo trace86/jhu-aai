@@ -6,6 +6,8 @@ from keras.layers import Dropout
 from keras.utils.np_utils import to_categorical
 import time
 import copy
+
+import helpers
 from game_eval import eval_move
 
 """
@@ -301,8 +303,16 @@ def ai_vs_ai(model, rnd1=0, rnd2=0, verbose=True, attack_id=0):
         board[move[0]][move[1]] = 1
         current_state = copy.deepcopy(board)
 
+
+
         #print(np.array(board))
-        print(eval_move(prev_state=previous_state, current_state=current_state, attack_id=attack_id))
+        move_eval = eval_move(prev_state=previous_state, current_state=current_state, attack_id=attack_id)
+        print(f"prev state: {previous_state}")
+        print(f"curr state: {current_state}")
+        print(f"move eval: {move_eval}")
+
+        helpers.write_csv(filename="rf_3x3.csv", row=[previous_state, current_state, "1", move_eval])
+
         #print()
 
         # print board to console if verbose = true
@@ -325,6 +335,12 @@ def ai_vs_ai(model, rnd1=0, rnd2=0, verbose=True, attack_id=0):
             #print(np.array(board))
             print(eval_move(prev_state=previous_state, current_state=current_state, attack_id=attack_id))
             #print()
+            print(f"prev state: {previous_state}")
+            print(f"curr state: {current_state}")
+            move_eval = eval_move(prev_state=previous_state, current_state=current_state, attack_id=attack_id)
+            print(f"move eval: {move_eval}")
+
+            helpers.write_csv(filename="rf_3x3.csv", row=[previous_state, current_state, "2", move_eval])
 
             # print board to console if verbose = true
             if verbose:

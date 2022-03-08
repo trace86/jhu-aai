@@ -40,7 +40,6 @@ def write_file(fname: str, command: str) -> None:
 
 def read_file(fname: str) -> str:
     import os
-    print(os.listdir())
     with open(f"{root_path}/{fname}.txt") as f:
         return f.read()
 
