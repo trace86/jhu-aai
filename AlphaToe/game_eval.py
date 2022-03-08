@@ -3,12 +3,11 @@ import sys
 sys.path.insert(1, os.getcwd())
 from typing import List
 import mapping as mp
-
 from nmap_parser import parse_nmaprun_xml
-
 from dotenv import load_dotenv
 import os
 import pandas as pd
+from pprint import pprint
 
 
 load_dotenv()
@@ -80,15 +79,16 @@ def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: Lis
 def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attack_id: int = 0000, debug: bool = False) -> List[str]:
     command = get_state_mapping_evaluation(prev_state, current_state, debug)
     for c in command:
-        print(f"tic-tac-toe move results in [{c}], which is {metasploit[c]}")
+        print(f"tic-tac-toe move results in metasploit command: {metasploit[c]}")
 
         if c == 0:
             ports = parse_nmaprun_xml(xml_file)
-            print(f"port scan results: {ports}")
+            pprint(f"port scan results: {ports}")
         try:
             attacks.iloc[attack_id][metasploit[c]]
         except KeyError:
-            print(f"No command yet for: {metasploit[c]}")
+            pass
+            # print(f"nawal to add command for: {metasploit[c]}")
     return [metasploit[c] for c in command]
 
 
