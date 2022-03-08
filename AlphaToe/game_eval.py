@@ -28,21 +28,18 @@ metasploit = {
 
 def show_intention(attack_id, attacks=pd.read_csv(commands_csv)):
     print(f"using vulnerability/exploit: {attacks.iloc[attack_id]['exploit_name']} "
-          f"(linked port {attacks.iloc[attack_id]['linked_port']}")
+          f"(linked port {attacks.iloc[attack_id]['linked_port']})")
 
-# ## eval_move
+# ## get_state_mapping_evaluation
 #
 # Main method for the graph traversal program. Takes in a previous and current state and returns the action performed in the cyber realm.
 # * **prev_state**: The previous state of the game board.
 # * **current_state**: The current state of the game board.
 # * **debug**: Bool flag to print debug statements.
 #
-# **returns**: str.
+# **returns**: List[int].
 
-# In[22]:
-
-
-def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attack_id: int = 0000, debug: bool = False) -> List[str]:
+def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: List[List[int]], debug: bool = False):
     exploit_file_3x3 = "exploit_3x3"
     exploit_file_5x5 = "exploit_5x5"
     set_file_5x5 = "set_5x5"
@@ -64,13 +61,30 @@ def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attac
             command = mp.eval_defender_5x5(i, j, current_state, exploit_file_5x5, set_file_5x5, debug)
     else:
         raise ValueError(f"unexpected game value: ({i}, {j})")  # ruh roh
-    # return command
+    return command
+
+
+
+
+# ## eval_move
+#
+# Method to transform for metasploit scripts.
+# * **prev_state**: The previous state of the game board.
+# * **current_state**: The current state of the game board.
+# * **debug**: Bool flag to print debug statements.
+#
+# **returns**: str.
+
+# In[22]:
+
+def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attack_id: int = 0000, debug: bool = False) -> List[str]:
+    command = get_state_mapping_evaluation(prev_state, current_state, debug)
     for c in command:
-        print(c)
-        print(metasploit[c])
+        print(f"command {c} is {metasploit[c]}")
 
         if c == 0:
             ports = parse_nmaprun_xml(xml_file)
+            print(f"port scan results: {ports}")
         try:
             attacks.iloc[attack_id][metasploit[c]]
         except KeyError:

@@ -5,7 +5,6 @@
 
 
 from typing import List, Tuple
-import os
 from dotenv import load_dotenv
 import os
 
@@ -40,7 +39,6 @@ def write_file(fname: str, command: str) -> None:
 
 def read_file(fname: str) -> str:
     import os
-    print(os.listdir())
     with open(f"{root_path}/{fname}.txt") as f:
         return f.read()
 
@@ -691,7 +689,7 @@ m = [
     [0, 0, 0],
     [1, 2, 1],
     [0, 0, 2]]
-assert eval_defender_3x3(1, 1, m, "exploit_3x3", debug=True) == [4]
+assert eval_defender_3x3(1, 1, m, "exploit_3x3", debug=False) == [4]
 
 
 # ## eval_defender_5x5
@@ -748,7 +746,7 @@ m = [
     [0, 0, 1, 0, 0],
     [0, 0, 1, 0, 0],
     [0, 0, 0, 0, 2]]
-assert eval_defender_5x5(i=4, j=4, matrix=m, exploit_file="exploit_5x5", set_file="set_5x5", debug=True) == [6]
+assert eval_defender_5x5(i=4, j=4, matrix=m, exploit_file="exploit_5x5", set_file="set_5x5", debug=False) == [6]
 
 
 # ## eval_attacker_5x5
