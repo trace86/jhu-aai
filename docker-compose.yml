@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  adversarial-ai:
+    build: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - "/Users/safr/School/AdversarialAI/jhu-aai:/opt/capstone"
