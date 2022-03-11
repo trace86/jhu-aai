@@ -375,7 +375,7 @@ def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True):
         # print board to console if verbose = true
         if verbose:
             printBoard(board)
-            print("\n==============\n")
+            print("\nplayer 1 move complete...\n")
 
         # check for winner
         winner = getWinner(board)
@@ -394,7 +394,7 @@ def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True):
             # print board to console if verbose = true
             if verbose:
                 printBoard(board)
-                print("\n==============\n")
+                print("\nplayer 2 move complete...\n")
 
             # check for winner
             winner = getWinner(board)
