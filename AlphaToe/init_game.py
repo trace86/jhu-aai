@@ -3,7 +3,6 @@ import sys
 import keras
 import game_play as gp
 import random
-from game_eval import show_intention
 from dotenv import load_dotenv
 
 sys.path.insert(1, os.getcwd())
@@ -17,6 +16,9 @@ set_5x5_file = f"{os.getenv('ROOT_PATH')}/{os.getenv('SET_5x5')}"
 state_mapping_files = [exploit_5x5_file, exploit_3x3_file, set_5x5_file]
 len_board = int(os.getenv("LENGTH_OF_BOARD"))
 num_games = int(os.getenv("NUMBER_OF_GAMES"))
+delay_output = True if int(os.getenv("OUTPUT_DELAY")) == 1 else False
+generate_date = True if int(os.getenv("GENERATE_DATA")) == 1 else False
+verbose_output = True if int(os.getenv("VERBOSE_OUTPUT")) == 1 else False
 
 
 def play_games(state_mapping_files, len_board=3, num_games=3):
@@ -36,14 +38,19 @@ def play_games(state_mapping_files, len_board=3, num_games=3):
         if len_board == 3:
             print("Running AI vs AI 3x3 game play")
             rnd1, rnd2 = random.uniform(0, 1), random.uniform(0, 1)
-            winner, board = gp.ai_vs_ai(model_3x3, len_board=len_board, rnd1=rnd1, rnd2=rnd2, verbose=True, delay=True)
+            winner, board = gp.ai_vs_ai(model_3x3, len_board=len_board, rnd1=rnd1, rnd2=rnd2, verbose=verbose_output,
+                                        delay=delay_output, generate_data=generate_date)
             gp.printWinner(winner)
 
-        if len_board == 5:
+        elif len_board == 5:
             print("Running AI vs AI 5x5 game play")
             rnd1, rnd2 = random.uniform(0, 1), random.uniform(0, 1)
-            winner, board = gp.ai_vs_ai(model_5x5, len_board=len_board, rnd1=rnd1, rnd2=rnd2, verbose=True, delay=True)
+            winner, board = gp.ai_vs_ai(model_5x5, len_board=len_board, rnd1=rnd1, rnd2=rnd2, verbose=verbose_output,
+                                        delay=delay_output, generate_data=generate_date)
             gp.printWinner(winner)
+
+        else:
+            raise ValueError(f"We can't run a {len_board}x{len_board} game")
 
 
 play_games(state_mapping_files, num_games=num_games, len_board=len_board)
