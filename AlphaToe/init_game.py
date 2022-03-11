@@ -20,6 +20,10 @@ num_games = int(os.getenv("NUMBER_OF_GAMES"))
 
 
 def play_games(state_mapping_files, len_board=3, num_games=3):
+    model_3x3 = keras.models.load_model("AlphaToe3")
+    model_5x5 = keras.models.load_model("AlphaToe5")
+    print("Loaded Keras models.")
+
     for i in range(1, num_games + 1):
         print(f"\nplaying game {i} of {num_games}...")
         # start with clean slate
@@ -30,17 +34,17 @@ def play_games(state_mapping_files, len_board=3, num_games=3):
                 print(f"File {f} does not exist.")
 
         if len_board == 3:
-            model = keras.models.load_model("AlphaToe3")
+            print("Running AI vs AI 3x3 game play")
             rnd1, rnd2 = random.uniform(0, 1), random.uniform(0, 1)
             attack_id = 2
             show_intention(attack_id)
-            winner, board = gp.ai_vs_ai(model, len_board=len_board, rnd1=rnd1, rnd2=rnd2, verbose=True, delay=True)
+            winner, board = gp.ai_vs_ai(model_3x3, len_board=len_board, rnd1=rnd1, rnd2=rnd2, verbose=True, delay=True)
             gp.printWinner(winner)
 
         if len_board == 5:
-            model = keras.models.load_model("AlphaToe5")
+            print("Running AI vs AI 5x5 game play")
             rnd1, rnd2 = random.uniform(0, 1), random.uniform(0, 1)
-            winner, board = gp.ai_vs_ai(model, len_board=len_board, rnd1=rnd1, rnd2=rnd2, verbose=True, delay=True)
+            winner, board = gp.ai_vs_ai(model_5x5, len_board=len_board, rnd1=rnd1, rnd2=rnd2, verbose=True, delay=True)
             gp.printWinner(winner)
 
 
