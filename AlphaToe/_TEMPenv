@@ -1,7 +1,8 @@
-PORTSCAN_XML="portscan_out.xml"
-COMMANDS_CSV="commands.csv"
+PORTSCAN_XML="nmap/portscan_out.xml"
+COMMANDS_CSV="vulnerability_execute/commands.csv"
 ROOT_PATH = "/opt/capstone/jhu-aai/AlphaToe/io"
-EXPLOIT_5x5 = "exploit_5x5.txt"
-EXPLOIT_3x3 = "exploit_3x3.txt"
-SET_5x5 = "set_5x5.txt"
-RF_3x3_CSV = "rf_3x3.csv"
+EXPLOIT_5x5 = "game_tracker/exploit_5x5.txt"
+EXPLOIT_3x3 = "game_tracker/exploit_3x3.txt"
+SET_5x5 = "game_tracker/set_5x5.txt"
+NUMBER_OF_GAMES=3
+LENGTH_OF_BOARD=3
