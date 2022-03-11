@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 
+
 def parse_nmaprun_xml(fname):
     xml_tree = ET.parse(fname)
     root = xml_tree.getroot()

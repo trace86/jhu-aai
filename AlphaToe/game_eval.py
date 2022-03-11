@@ -1,6 +1,5 @@
 import os
 import sys
-sys.path.insert(1, os.getcwd())
 from typing import List
 import mapping as mp
 from nmap_parser import parse_nmaprun_xml
@@ -8,7 +7,9 @@ from dotenv import load_dotenv
 import os
 import pandas as pd
 from pprint import pprint
+import helpers
 
+sys.path.insert(1, os.getcwd())
 
 load_dotenv()
 xml_file = f"{os.getenv('ROOT_PATH')}/{os.getenv('PORTSCAN_XML')}"
@@ -25,9 +26,11 @@ metasploit = {
     6: "nop_command",
 }
 
+
 def show_intention(attack_id, attacks=pd.read_csv(commands_csv)):
     print(f"using vulnerability/exploit: {attacks.iloc[attack_id]['exploit_name']} "
           f"(linked port {attacks.iloc[attack_id]['linked_port']})")
+
 
 # ## get_state_mapping_evaluation
 #
@@ -39,10 +42,13 @@ def show_intention(attack_id, attacks=pd.read_csv(commands_csv)):
 # **returns**: List[int].
 
 def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: List[List[int]], debug: bool = False):
-    exploit_file_3x3 = "exploit_3x3"
-    exploit_file_5x5 = "exploit_5x5"
-    set_file_5x5 = "set_5x5"
-    mp.write_logging_files(exploit_file_3x3, exploit_file_5x5, set_file_5x5)
+    # exploit_file_3x3 = "exploit_3x3"
+    # exploit_file_5x5 = "exploit_5x5"
+    # set_file_5x5 = "set_5x5"
+    exploit_file_3x3 = os.getenv('EXPLOIT_3x3')
+    exploit_file_5x5 = os.getenv('EXPLOIT_5x5')
+    set_file_5x5 = os.getenv('SET_5x5')
+    helpers.write_logging_files(exploit_file_3x3, exploit_file_5x5, set_file_5x5)
     move = mp.get_latest_move(prev_state, current_state)
     i = move[0]
     j = move[1]
@@ -63,8 +69,6 @@ def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: Lis
     return command
 
 
-
-
 # ## eval_move
 #
 # Method to transform for metasploit scripts.
@@ -76,7 +80,8 @@ def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: Lis
 
 # In[22]:
 
-def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attack_id: int = 0000, debug: bool = False) -> List[str]:
+def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attack_id: int = 0000,
+              debug: bool = False) -> List[str]:
     command = get_state_mapping_evaluation(prev_state, current_state, debug)
     for c in command:
         print(f"tic-tac-toe move results in metasploit command: {metasploit[c]}")
