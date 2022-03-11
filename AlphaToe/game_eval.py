@@ -1,6 +1,5 @@
 import os
 import sys
-sys.path.insert(1, os.getcwd())
 from typing import List
 import mapping as mp
 from nmap_parser import parse_nmaprun_xml
@@ -10,12 +9,12 @@ import pandas as pd
 from pprint import pprint
 import helpers
 
+sys.path.insert(1, os.getcwd())
 
 load_dotenv()
 xml_file = f"{os.getenv('ROOT_PATH')}/{os.getenv('PORTSCAN_XML')}"
 commands_csv = f"{os.getenv('ROOT_PATH')}/{os.getenv('COMMANDS_CSV')}"
 attacks = pd.read_csv(commands_csv)
-
 
 metasploit = {
     0: "scan_command",
@@ -27,9 +26,11 @@ metasploit = {
     6: "nop_command",
 }
 
+
 def show_intention(attack_id, attacks=pd.read_csv(commands_csv)):
     print(f"using vulnerability/exploit: {attacks.iloc[attack_id]['exploit_name']} "
           f"(linked port {attacks.iloc[attack_id]['linked_port']})")
+
 
 # ## get_state_mapping_evaluation
 #
@@ -68,8 +69,6 @@ def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: Lis
     return command
 
 
-
-
 # ## eval_move
 #
 # Method to transform for metasploit scripts.
@@ -81,7 +80,8 @@ def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: Lis
 
 # In[22]:
 
-def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attack_id: int = 0000, debug: bool = False) -> List[str]:
+def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attack_id: int = 0000,
+              debug: bool = False) -> List[str]:
     command = get_state_mapping_evaluation(prev_state, current_state, debug)
     for c in command:
         print(f"tic-tac-toe move results in metasploit command: {metasploit[c]}")

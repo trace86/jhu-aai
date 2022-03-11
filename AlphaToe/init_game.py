@@ -1,11 +1,13 @@
 import os
 import sys
 import keras
-sys.path.insert(1, os.getcwd())
 import game_play as gp
 import random
 from game_eval import show_intention
 from dotenv import load_dotenv
+
+sys.path.insert(1, os.getcwd())
+
 
 load_dotenv()
 # load vales from .env
@@ -15,6 +17,7 @@ set_5x5_file = f"{os.getenv('ROOT_PATH')}/{os.getenv('SET_5x5')}"
 state_mapping_files = [exploit_5x5_file, exploit_3x3_file, set_5x5_file]
 len_board = int(os.getenv("LENGTH_OF_BOARD"))
 num_games = int(os.getenv("NUMBER_OF_GAMES"))
+
 
 def play_games(state_mapping_files, len_board=3, num_games=3):
     for i in range(1, num_games + 1):

@@ -13,8 +13,33 @@ The following files are in this directory:
 
 The source code upon which AlphaToe has been developed originates from Daniel Sauble - https://github.com/djsauble/tic-tac-toe-ai
 
-## Using AlphaToe
+## Running AlphaToe
+To run game simulations:
+* Clone this repo
+* In `AlphaToe` directory, create a `.env` file populated as below
+```.env
+PORTSCAN_XML="nmap/portscan_out.xml"
+COMMANDS_CSV="vulnerability_execute/commands.csv"
+ROOT_PATH = "/opt/capstone/jhu-aai/AlphaToe/io"
+EXPLOIT_5x5 = "game_tracker/exploit_5x5.txt"
+EXPLOIT_3x3 = "game_tracker/exploit_3x3.txt"
+SET_5x5 = "game_tracker/set_5x5.txt"
+NUMBER_OF_GAMES=3
+LENGTH_OF_BOARD=3
+```
+* Update `NUMBER_OF_GAMES` and `LENGTH_OF_BOARD` variables as necessary
+* Run `init_game.py`
 
+## Running with Docker
+To run code in Docker
+* Clone this repo
+* Add `.env` file to `AlphaToe` directory, see above for content
+* Update volume path to your local machine in `docker-compose.yml`
+* Run `docker-compose up`
+* Run `docker exec -it $container_name` and `cd` to `/opt/capstone/jhu-aai/AlphaToe` directory and run `python init_game.py`
+
+## Changelog
+3/11/2022: SK refactored code to run everything with `init_game`
 3/6/2022: added Samra's mapping into the 3x3 tic tac toe.
 
 1) All the files herein should be in the same directory.

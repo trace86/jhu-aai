@@ -1,5 +1,6 @@
-from dotenv import load_dotenv
 import os
+
+from dotenv import load_dotenv
 
 # ## write_file
 #
@@ -13,6 +14,7 @@ import os
 # In[2]:
 load_dotenv()
 root_path = os.getenv("ROOT_PATH")
+
 
 def write_file(fname: str, command: str) -> None:
     with open(f"{root_path}/{fname}.txt", "w") as f:  # not appending on purpose
@@ -28,7 +30,6 @@ def write_file(fname: str, command: str) -> None:
 # **returns**: Contents of the file.
 
 def read_file(fname: str) -> str:
-    import os
     with open(f"{root_path}/{fname}.txt") as f:
         return f.read()
 
@@ -42,7 +43,6 @@ def read_file(fname: str) -> str:
 # * **set_file_5x5**: String representing a filename.
 #
 # **returns**: None
-
 
 
 def write_logging_files(exploit_file_3x3: str, exploit_file_5x5: str, set_file_5x5: str) -> None:

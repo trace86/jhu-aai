@@ -1,11 +1,13 @@
+import copy
 import random
+import time
+
 import numpy as np
-from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import Dropout
+from keras.models import Sequential
 from keras.utils.np_utils import to_categorical
-import time
-import copy
+
 from game_eval import eval_move
 
 """
@@ -16,6 +18,7 @@ Inputs: None
 Outputs: board - initialized board (list of lists)
 
 """
+
 
 def initBoard(len_board):
     if len_board == 3:
@@ -35,12 +38,14 @@ def initBoard(len_board):
         ]
         return board_5x5
 
+
 """
 This function prints the board (list of lists) into an ASCII representation of a nxn tic tac toe board to the console.
 
 Inputs: board - current board state (list of lists)
 Outputs: ASCII tic tac toe board to console
 """
+
 
 def printBoard(board):
     for i in range(len(board)):
@@ -60,12 +65,14 @@ def printBoard(board):
             else:
                 print("----------")
 
+
 """
 This function searches the board for valid moves remaining on the board. Indices are in [row][column] format.
 
 Inputs: board - current board state (list of lists)
 Outputs: moves - list of valid moves remaining on board. moves are tuples of indices i [row] and j [column]
 """
+
 
 def getMoves(board):
     moves = []
@@ -78,6 +85,7 @@ def getMoves(board):
                 moves.append((i, j))
     return moves
 
+
 """
 This function checks a passed numpy array for homogeneity.
 
@@ -86,6 +94,8 @@ Output: 1 - player 1 has won in a r/c/d
         2 - player 2 has won in a r/c/d
         False - no winners yet
 """
+
+
 def check_win(arr, len_board):
     if len_board == 3:
         if arr[0] == arr[1] == arr[2] == 1:
@@ -114,12 +124,15 @@ def check_win(arr, len_board):
             else:
                 return False
 
+
 """
 This function checks the board state to find a winner and works with the check_win function in sync.
 
 Inputs: board - current board state (list of lists)
 Outputs: 
 """
+
+
 def getWinner(board):
     # represent the board as an array for easier manipulation
     board_array = np.array(board)
@@ -174,7 +187,7 @@ def bestMove(board, model, player, rnd=0):
     for i in range(len(moves)):
         future = np.array(board)
         future[moves[i][0]][moves[i][1]] = player
-        prediction = model.predict(future.reshape((-1, len(board)**2)))[0]
+        prediction = model.predict(future.reshape((-1, len(board) ** 2)))[0]
         if player == 1:
             winPrediction = prediction[1]
             lossPrediction = prediction[2]
@@ -226,6 +239,7 @@ def simulateGame(p1=None, p2=None, rnd=0):
 
     return history
 
+
 # Reconstruct the board from the move list
 def movesToBoard(moves):
     board = initBoard()
@@ -244,6 +258,8 @@ Input: games - list of simulated game results
 Output: print to console of W/L/D statistics
 
 """
+
+
 def gameStats(games, player=1):
     # initialize dictionary
     stats = {"win": 0, "loss": 0, "draw": 0}
@@ -273,21 +289,24 @@ def gameStats(games, player=1):
     print("Loss: %d (%.1f%%)" % (stats["loss"], lossPct))
     print("Draw: %d (%.1f%%)" % (stats["draw"], drawPct))
 
+
 """
 This function creates initializes a neural network to train.
 
 Inputs: none
 Outputs: keras neural network model
 """
+
+
 def getModel(len_board):
-    numCells = len_board**2  # total number of cells in a nxn board
+    numCells = len_board ** 2  # total number of cells in a nxn board
     outcomes = 3  # total possible outcomes (W/L/D)
 
     # model from daniel sauble
     # information on dropout in neural networks - https://medium.com/@amarbudhiraja/https-medium-com-amarbudhiraja-learning-less-to-learn-better-dropout-in-deep-machine-learning-74334da4bfc5
     if len_board == 3:
         model = Sequential()
-        model.add(Dense(200, activation='relu', input_shape=(numCells, )))
+        model.add(Dense(200, activation='relu', input_shape=(numCells,)))
         model.add(Dropout(0.2))
         model.add(Dense(125, activation='relu'))
         model.add(Dense(75, activation='relu'))
@@ -319,12 +338,13 @@ def gamesToWinLossData(games, len_board):
             X.append(movesToBoard(game[:(move + 1)]))
             y.append(winner)
 
-    X = np.array(X).reshape((-1, len_board**2))
+    X = np.array(X).reshape((-1, len_board ** 2))
     y = to_categorical(y)
 
     # Return an appropriate train/test split
     trainNum = int(len(X) * 0.8)
     return (X[:trainNum], X[trainNum:], y[:trainNum], y[trainNum:])
+
 
 """
 This function simulates a game between two AIs.
@@ -335,6 +355,8 @@ Inputs: model - keras model (neural network) for both AIs (common model)
 Outputs: winner - integer to indicate the winner (1 or 2) or a tie (0)
          board - a 2d numpy array of the final board state upon a win or a tie
 """
+
+
 def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True):
     # initialize board, winner variable, and numpy array of board
     board = initBoard(len_board)
@@ -385,6 +407,7 @@ def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True):
     # return data
     return winner, np.array(board)
 
+
 def ai_vs_ai_statistics(games):
     # stats for player 1 only
     stats = {"win": 0, "loss": 0, "draw": 0}
@@ -402,14 +425,16 @@ def ai_vs_ai_statistics(games):
     lossPct = stats["loss"] / len(games) * 100
     drawPct = stats["draw"] / len(games) * 100
 
-    print("Results for player 1:" )
+    print("Results for player 1:")
     print("Total Games: ", len(games))
     print("Wins: %d (%.1f%%)" % (stats["win"], winPct))
     print("Loss: %d (%.1f%%)" % (stats["loss"], lossPct))
     print("Draw: %d (%.1f%%)" % (stats["draw"], drawPct))
 
+
 def current_milli_time():
     return round(time.time() * 1000)
+
 
 def printWinner(winner):
     if winner > 0:
