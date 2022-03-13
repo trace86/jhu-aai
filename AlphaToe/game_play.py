@@ -10,7 +10,7 @@ from keras.models import Sequential
 from keras.utils.np_utils import to_categorical
 
 from game_eval import eval_move
-from docker_move import run_command
+from docker_move import run_command, run_command_to_self
 
 attack = os.getenv('ATTACK')
 defense = os.getenv('DEFENSE')
@@ -401,7 +401,8 @@ def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True):
             current_state = copy.deepcopy(board)
 
             print(eval_move(prev_state=previous_state, current_state=current_state))
-            run_command(defense, attack, "ping -c 5")
+            run_command_to_self(defense, attack, "ping -c 5")
+            run_command_to_self(defense, "netstat > logs.txt")
 
             # print board to console if verbose = true
             if verbose:

@@ -19,11 +19,15 @@ defense = os.getenv('DEFENSE')
 # In[1]:
 
 
-def run_command(source: str, target: str, command: str):
-    print(attack, defense)
+def run_command_to_target(source: str, target: str, command: str):
+    print(source, target)
     result = os.system(f"docker exec -ti {source} {command} {target}")
-    print("command ran to target with result ", result)
-
+    print("command ran to target complete ", result)
 
 # %%
-run_command(attack, defense, "ping")
+
+
+def run_command_to_self(source: str, command: str):
+    print(source)
+    result = os.system(f"docker exec -ti {source} {command}")
+    print("command ran to self with result ", result)
