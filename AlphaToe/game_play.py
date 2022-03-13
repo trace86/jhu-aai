@@ -408,7 +408,7 @@ def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True, docker=
             # running command to docker image
             if docker == 1:
                 run_command_to_target(defense, attack, "ping -c 5")
-                run_command_to_self(defense, "netstat > logs.txt")
+                run_command_to_self(defense, "netstat >> logs.txt")
 
             # print board to console if verbose = true
             if verbose:
