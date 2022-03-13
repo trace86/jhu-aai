@@ -12,17 +12,18 @@ from dotenv import load_dotenv
 #
 # **returns**: None.
 
-attack = "kali-everything"
-defense = "metasploitable2"
+load_dotenv()
+attack = os.getenv('ATTACK')
+defense = os.getenv('DEFENSE')
 
 # In[1]:
 
 
 def run_command(source: str, target: str, command: str):
+    print(attack, defense)
     result = os.system(f"docker exec -ti {source} {command} {target}")
     print("command ran to target with result ", result)
 
 
-# assert
 # %%
 run_command(attack, defense, "ping")
