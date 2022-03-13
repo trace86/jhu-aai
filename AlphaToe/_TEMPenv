@@ -6,3 +6,6 @@ EXPLOIT_3x3 = "game_tracker/exploit_3x3.txt"
 SET_5x5 = "game_tracker/set_5x5.txt"
 NUMBER_OF_GAMES=3
 LENGTH_OF_BOARD=3
+ATTACK="kali-everything"
+DEFENSE="metasploitable2"
+DOCKER=1
