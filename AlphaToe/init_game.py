@@ -2,8 +2,10 @@ import os
 import sys
 import keras
 import game_play as gp
-import random
 from dotenv import load_dotenv
+from random import seed
+import random
+from datetime import datetime
 
 sys.path.insert(1, os.getcwd())
 
@@ -36,7 +38,9 @@ def play_games(state_mapping_files, len_board=3, num_games=3):
                 os.remove(f)
             else:
                 print(f"File {f} does not exist.")
-        rnd1, rnd2 = random.uniform(0, 1), random.uniform(0, 1)
+        seed(datetime.now())
+        # rnd1, rnd2 = uniform(0, 1), random.uniform(0, 1)
+        rnd1, rnd2 = random.random(), random.random()
         if len_board == 3:
             if human:
                 print("Running AI vs Human 3x3 game play")
