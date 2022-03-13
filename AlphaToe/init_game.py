@@ -40,7 +40,7 @@ def play_games(state_mapping_files, len_board=3, num_games=3, docker=0):
             attack_id = 2
             show_intention(attack_id)
             winner, board = gp.ai_vs_ai(
-                model_3x3, len_board=len_board, rnd1=rnd1, rnd2=rnd2, verbose=True, delay=True)
+                model_3x3, len_board=len_board, rnd1=rnd1, rnd2=rnd2, verbose=True, delay=True, docker=docker)
             gp.printWinner(winner)
 
         if len_board == 5:

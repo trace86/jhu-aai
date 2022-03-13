@@ -366,7 +366,7 @@ Outputs: winner - integer to indicate the winner (1 or 2) or a tie (0)
 """
 
 
-def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True, docker=False):
+def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True, docker=0):
     # initialize board, winner variable, and numpy array of board
     board = initBoard(len_board)
     winner = getWinner(board)
