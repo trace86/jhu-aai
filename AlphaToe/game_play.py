@@ -1,6 +1,7 @@
 import copy
 import random
 import time
+import os
 
 import numpy as np
 from keras.layers import Dense
@@ -9,6 +10,10 @@ from keras.models import Sequential
 from keras.utils.np_utils import to_categorical
 
 from game_eval import eval_move
+from docker_move import run_command
+
+attack = os.getenv('ATTACK')
+defense = os.getenv('DEFENSE')
 
 """
 This function initializes the empty board into a nxn list of lists of zeroes.
@@ -152,8 +157,10 @@ def getWinner(board):
 
     # get diagonals of board
     # note: this approach identifies ALL diagonals in the board (not only those of length 3), handled later
-    diags = [board_array[::-1, :].diagonal(i) for i in range(-board_array.shape[0] + 1, board_array.shape[1])]
-    diags.extend(board_array.diagonal(i) for i in range(board_array.shape[1] - 1, -board_array.shape[0], -1))
+    diags = [board_array[::-1, :].diagonal(i)
+             for i in range(-board_array.shape[0] + 1, board_array.shape[1])]
+    diags.extend(board_array.diagonal(i) for i in range(
+        board_array.shape[1] - 1, -board_array.shape[0], -1))
 
     # only the main diagonal and anti diagonal can be used for a win, so check for win only in those
     for each in diags:
@@ -313,7 +320,8 @@ def getModel(len_board):
         model.add(Dropout(0.1))
         model.add(Dense(25, activation='relu'))
         model.add(Dense(outcomes, activation='softmax'))
-        model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['acc'])
+        model.compile(loss='categorical_crossentropy',
+                      optimizer='rmsprop', metrics=['acc'])
         return model
     if len_board == 5:
         model = Sequential()
@@ -324,7 +332,8 @@ def getModel(len_board):
         model.add(Dropout(0.25))
         model.add(Dense(25, activation='relu'))
         model.add(Dense(outcomes, activation='softmax'))
-        model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['acc'])
+        model.compile(loss='categorical_crossentropy',
+                      optimizer='rmsprop', metrics=['acc'])
         return model
 
 
@@ -371,6 +380,7 @@ def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True):
         current_state = copy.deepcopy(board)
 
         print(eval_move(prev_state=previous_state, current_state=current_state))
+        run_command(attack, defense, "ping -c 5")
 
         # print board to console if verbose = true
         if verbose:
@@ -380,7 +390,8 @@ def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True):
         # check for winner
         winner = getWinner(board)
 
-        if delay: time.sleep(3)
+        if delay:
+            time.sleep(3)
         # if no winner or tie, player 2's turn
         if winner == -1:
             # player 2 makes a move
@@ -390,6 +401,7 @@ def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True):
             current_state = copy.deepcopy(board)
 
             print(eval_move(prev_state=previous_state, current_state=current_state))
+            run_command(defense, attack, "ping -c 5")
 
             # print board to console if verbose = true
             if verbose:
@@ -398,7 +410,8 @@ def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True):
 
             # check for winner
             winner = getWinner(board)
-            if delay: time.sleep(3)
+            if delay:
+                time.sleep(3)
         else:
             # if there is a winner or player 1 has tied the game, return data
             return winner, np.array(board)

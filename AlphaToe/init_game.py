@@ -41,7 +41,6 @@ def play_games(state_mapping_files, len_board=3, num_games=3):
             rnd1, rnd2 = random.uniform(0, 1), random.uniform(0, 1)
             attack_id = 2
             show_intention(attack_id)
-            run_command(attack, defense, "ping -c 5")
             winner, board = gp.ai_vs_ai(
                 model_3x3, len_board=len_board, rnd1=rnd1, rnd2=rnd2, verbose=True, delay=True)
             gp.printWinner(winner)
