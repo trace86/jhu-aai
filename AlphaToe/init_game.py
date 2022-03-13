@@ -5,7 +5,6 @@ import game_play as gp
 import random
 from game_eval import show_intention
 from dotenv import load_dotenv
-from docker_move import run_command
 
 sys.path.insert(1, os.getcwd())
 
@@ -18,11 +17,10 @@ set_5x5_file = f"{os.getenv('ROOT_PATH')}/{os.getenv('SET_5x5')}"
 state_mapping_files = [exploit_5x5_file, exploit_3x3_file, set_5x5_file]
 len_board = int(os.getenv("LENGTH_OF_BOARD"))
 num_games = int(os.getenv("NUMBER_OF_GAMES"))
-attack = os.getenv('ATTACK')
-defense = os.getenv('DEFENSE')
+docker = int(os.getenv("DOCKER"))
 
 
-def play_games(state_mapping_files, len_board=3, num_games=3):
+def play_games(state_mapping_files, len_board=3, num_games=3, docker=0):
     model_3x3 = keras.models.load_model("AlphaToe3")
     model_5x5 = keras.models.load_model("AlphaToe5")
     print("Loaded Keras models.")
@@ -53,4 +51,5 @@ def play_games(state_mapping_files, len_board=3, num_games=3):
             gp.printWinner(winner)
 
 
-play_games(state_mapping_files, num_games=num_games, len_board=len_board)
+play_games(state_mapping_files, num_games=num_games,
+           len_board=len_board, docker=docker)
