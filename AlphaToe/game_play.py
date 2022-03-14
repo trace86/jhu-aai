@@ -1,19 +1,24 @@
 import copy
+import os
 import random
 import time
 import os
 
 import numpy as np
+from dotenv import load_dotenv
 from keras.layers import Dense
 from keras.layers import Dropout
 from keras.models import Sequential
 from keras.utils.np_utils import to_categorical
 
+import helpers
 from game_eval import eval_move
 from docker_move import run_command_to_target, run_command_to_self
 
 attack = os.getenv('ATTACK')
 defense = os.getenv('DEFENSE')
+
+load_dotenv()
 
 """
 This function initializes the empty board into a nxn list of lists of zeroes.
@@ -186,7 +191,7 @@ def getWinner(board):
 
 
 # Get best next move for the given player at the given board position
-def bestMove(board, model, player, rnd=0):
+def bestMove(board, model, player, rnd):
     scores = []
     moves = getMoves(board)
 
@@ -214,37 +219,8 @@ def bestMove(board, model, player, rnd=0):
             return moves[bestMoves[i]]
 
     # Choose a move completely at random
+    print(f"LEN OF MOVES: {moves}")
     return moves[random.randint(0, len(moves) - 1)]
-
-
-# Simulate a game
-def simulateGame(p1=None, p2=None, rnd=0):
-    history = []
-    board = initBoard()
-    playerToMove = 1
-
-    while getWinner(board) == -1:
-
-        # Chose a move (random or use a player model if provided)
-        move = None
-        if playerToMove == 1 and p1 != None:
-            move = bestMove(board, p1, playerToMove, rnd)
-        elif playerToMove == 2 and p2 != None:
-            move = bestMove(board, p2, playerToMove, rnd)
-        else:
-            moves = getMoves(board)
-            move = moves[random.randint(0, len(moves) - 1)]
-
-        # Make the move
-        board[move[0]][move[1]] = playerToMove
-
-        # Add the move to the history
-        history.append((playerToMove, move))
-
-        # Switch the active player
-        playerToMove = 1 if playerToMove == 2 else 2
-
-    return history
 
 
 # Reconstruct the board from the move list
@@ -355,6 +331,49 @@ def gamesToWinLossData(games, len_board):
     return (X[:trainNum], X[trainNum:], y[:trainNum], y[trainNum:])
 
 
+def get_human_player_move(player, len_board):
+    print(f"human player {player}, make your move...")
+    i = int(input("input i: "))
+    j = int(input("input j: "))
+    if not (0 <= i < len_board and 0 <= j < len_board):
+        print(f"error: enter i and j values between 0 and {len_board}")
+        return get_human_player_move(player, len_board)
+    else:
+        return i, j
+
+
+
+def get_player_move(model, rnd, board, len_board, player, verbose, generate_data, human, docker):
+
+    previous_state = copy.deepcopy(board)
+    if human:
+        move = get_human_player_move(player, len_board)
+        print(f"Human player {player}'s move: {move}")
+    else:
+        move = bestMove(board=board, model=model, player=player, rnd=rnd)
+        print(f"AI player {player}'s move: {move}")
+
+    board[move[0]][move[1]] = int(player)
+    current_state = copy.deepcopy(board)
+
+    move_outcome = eval_move(prev_state=previous_state, current_state=current_state)
+
+    # running command in docker image
+    if docker == 1:
+        run_command_to_target(attack, defense, "ping -c 5")
+
+    if generate_data:
+        fname = os.getenv("RANDOM_FOREST_3x3") if len_board == 3 else os.getenv("RANDOM_FOREST_5x5")
+        helpers.write_csv(filename=fname, row=[previous_state, current_state, player, move_outcome])
+
+    # print board to console if verbose = true
+    if verbose:
+        printBoard(board)
+        print(f"\nplayer {player} move complete...\n")
+
+    winner = getWinner(board)
+    return winner, board
+
 """
 This function simulates a game between two AIs.
 
@@ -365,65 +384,48 @@ Outputs: winner - integer to indicate the winner (1 or 2) or a tie (0)
          board - a 2d numpy array of the final board state upon a win or a tie
 """
 
-
-def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True, docker=0):
+def ai_vs_ai(model, rnd1, rnd2, len_board, verbose=True, delay=True, generate_data=False, docker=0):
     # initialize board, winner variable, and numpy array of board
     board = initBoard(len_board)
     winner = getWinner(board)
 
     # while there are still more moves to make and no winner has been determined:
     while winner == -1:
-        # player 1 makes a move
-        previous_state = copy.deepcopy(board)
-        move = bestMove(board=board, model=model, player=1, rnd=rnd1)
-        board[move[0]][move[1]] = 1
-        current_state = copy.deepcopy(board)
-
-        print(eval_move(prev_state=previous_state, current_state=current_state))
-
-        # running command in docker image
-        if docker == 1:
-            run_command_to_target(attack, defense, "ping -c 5")
-
-        # print board to console if verbose = true
-        if verbose:
-            printBoard(board)
-            print("\nplayer 1 move complete...\n")
-
-        # check for winner
-        winner = getWinner(board)
-
-        if delay:
-            time.sleep(3)
+        winner, board = get_player_move(model, rnd1, board=board, len_board=len_board, player=1, verbose=verbose,
+                                        generate_data=generate_data, human=False, docker=docker)
+        if delay: time.sleep(3)
         # if no winner or tie, player 2's turn
         if winner == -1:
-            # player 2 makes a move
-            previous_state = copy.deepcopy(board)
-            move = bestMove(board=board, model=model, player=2, rnd=rnd2)
-            board[move[0]][move[1]] = 2
-            current_state = copy.deepcopy(board)
-
-            print(eval_move(prev_state=previous_state, current_state=current_state))
-
-            # running command to docker image
-            if docker == 1:
-                run_command_to_target(defense, attack, "ping -c 5")
-                run_command_to_self(defense, "netstat >> logs.txt")
-
-            # print board to console if verbose = true
-            if verbose:
-                printBoard(board)
-                print("\nplayer 2 move complete...\n")
-
-            # check for winner
-            winner = getWinner(board)
-            if delay:
-                time.sleep(3)
+            winner, board = get_player_move(model, rnd2, board=board, len_board=len_board, player=2, verbose=verbose,
+                                            generate_data=generate_data, human=False, docker=docker)
+            if delay: time.sleep(3)
         else:
             # if there is a winner or player 1 has tied the game, return data
             return winner, np.array(board)
-            break
+    return winner, np.array(board)
 
+
+def ai_vs_human(model, rnd1, rnd2, len_board, verbose=True, delay=True, generate_data=False, human_plays=2, docker=0):
+    # initialize board, winner variable, and numpy array of board
+    board = initBoard(len_board)
+    winner = getWinner(board)
+
+    # while there are still more moves to make and no winner has been determined:
+    while winner == -1:
+        winner, board = get_player_move(model, rnd1, board=board, len_board=len_board, player=1, verbose=verbose,
+                                        generate_data=generate_data, human=True if human_plays == 1 else False,
+                                        docker=docker)
+
+        if delay: time.sleep(3)
+        # if no winner or tie, player 2's turn
+        if winner == -1:
+            winner, board = get_player_move(model, rnd2, board=board, len_board=len_board, player=2,
+                                            verbose=verbose, generate_data=generate_data,
+                                            human=True if human_plays == 2 else False, docker=docker)
+            if delay: time.sleep(3)
+        else:
+            # if there is a winner or player 1 has tied the game, return data
+            return winner, np.array(board)
     # return data
     return winner, np.array(board)
 

@@ -9,61 +9,6 @@ from typing import List, Tuple
 from helpers import read_file, write_file
 
 
-#
-# # ## write_file
-# #
-# # Writes a file to the `io` directory.
-# #
-# # * **fname**: The file name as string.
-# # * **command**: The type of command issued as a string.
-# #
-# # **returns**: None.
-#
-# # In[2]:
-# load_dotenv()
-# root_path = os.getenv("ROOT_PATH")
-#
-# def write_file(fname: str, command: str) -> None:
-#     with open(f"{root_path}/{fname}.txt", "w") as f:  # not appending on purpose
-#         f.write(command)
-#
-#
-# # ## read_file
-# #
-# # Read a file from the `io` directory and return the file contents.
-# #
-# # * **fname**: The file name as string.
-# #
-# # **returns**: Contents of the file.
-#
-# # In[3]:
-#
-#
-# def read_file(fname: str) -> str:
-#     import os
-#     with open(f"{root_path}/{fname}.txt") as f:
-#         return f.read()
-#
-#
-# # ## write_logging_files
-# #
-# # Takes in file names and checks if the files exist in the `io` directory. If files don't exist, files are created.
-# #
-# # * **exploit_file_3x3**: String representing a filename.
-# # * **exploit_file_3x3**: String representing a filename.
-# # * **set_file_5x5**: String representing a filename.
-# #
-# # **returns**: None
-#
-# # In[4]:
-#
-#
-# def write_logging_files(exploit_file_3x3: str, exploit_file_5x5: str, set_file_5x5: str) -> None:
-#     files = [exploit_file_3x3, exploit_file_5x5, set_file_5x5]
-#     for f in files:
-#         if not os.path.isfile(f"io/{f}.txt"):
-#             write_file(f, "")
-
 
 # ## get_latest_move
 #
@@ -673,25 +618,16 @@ def eval_defender_3x3(i: int, j: int, matrix: List[List[int]], exploit_file: str
                 eval_player_move(i, j, matrix, num_neighbors=1, symbol=1)]):
         if debug: print("NOP")
         return [6]
-    if eval_player_move(i, j, matrix, num_neighbors=2, symbol=2) or check_move_made_inbetween_two_moves(i, j, matrix,
-                                                                                                        symbol=2):
+    if eval_player_move(i, j, matrix, num_neighbors=2, symbol=2) or check_move_made_inbetween_two_moves(i, j, matrix, symbol=2):
         write_file(exploit_file, "")
         if debug: print("kill daemon -- defender wins!")
         return [5]
-    if eval_player_move(i, j, matrix, num_neighbors=2, symbol=1) or check_move_made_inbetween_two_moves(i, j, matrix,
-                                                                                                        symbol=1):
+    if eval_player_move(i, j, matrix, num_neighbors=2, symbol=1) or check_move_made_inbetween_two_moves(i, j, matrix, symbol=1):
         write_file(exploit_file, "")
         if debug: print("defender blocks attacker -- kill process")
         return [4]
     if debug: print("NOP")
     return [6]
-
-
-m = [
-    [0, 0, 0],
-    [1, 2, 1],
-    [0, 0, 2]]
-assert eval_defender_3x3(1, 1, m, "exploit_3x3", debug=False) == [4]
 
 
 # ## eval_defender_5x5
@@ -720,36 +656,24 @@ def eval_defender_5x5(i: int, j: int, matrix: List[List[int]], exploit_file: str
                 eval_player_move(i, j, matrix, num_neighbors=1, symbol=1)]):
         if debug: print("NOP")
         return [6]
-    if eval_player_move(i, j, matrix, num_neighbors=3, symbol=2) or check_move_made_inbetween_three_moves(i, j, matrix,
-                                                                                                          symbol=2):
+    if eval_player_move(i, j, matrix, num_neighbors=3, symbol=2) or check_move_made_inbetween_three_moves(i, j, matrix, symbol=2):
         write_file(exploit_file, "")
         write_file(set_file, "")
-        print("kill daemon -- defender wins!")
-        if debug: return [5]
+        if debug: print("kill daemon -- defender wins!")
+        return [5]
     if eval_player_move(i, j, matrix, num_neighbors=3, symbol=1) or check_move_made_inbetween_three_moves(i, j, matrix,
                                                                                                           symbol=1):
         write_file(exploit_file, "")
         write_file(set_file, "")
-        print("defender blocks move -- kill process")
-        if debug: return [4]
-    if eval_player_move(i, j, matrix, num_neighbors=2, symbol=1) or check_move_made_inbetween_two_moves(i, j, matrix,
-                                                                                                        symbol=1):
+        if debug: print("defender blocks move -- kill process")
+        return [4]
+    if eval_player_move(i, j, matrix, num_neighbors=2, symbol=1) or check_move_made_inbetween_two_moves(i, j, matrix, symbol=1):
         write_file(exploit_file, "")
         write_file(set_file, "")
-        print("defender blocks attacker -- kill process")
-        if debug: return [4]
+        if debug: print("defender blocks attacker -- kill process")
+        return [4]
     if debug: print("NOP")
     return [6]
-
-
-m = [
-    [0, 0, 1, 0, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 2]]
-assert eval_defender_5x5(i=4, j=4, matrix=m, exploit_file="exploit_5x5", set_file="set_5x5", debug=False) == [6]
-
 
 # ## eval_attacker_5x5
 #
