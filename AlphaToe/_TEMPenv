@@ -11,7 +11,7 @@ RANDOM_FOREST_3x3 = "random_forest/rf_3x3.csv"
 OUTPUT_DELAY=1  # python-dotenv does not parse boolean, so 1 == True and 0 == False
 GENERATE_DATA=0 # python-dotenv does not parse boolean, so 1 == True and 0 == False
 VERBOSE_OUTPUT=1 # python-dotenv does not parse boolean, so 1 == True and 0 == False
-AI_VS_HUMAN=0 # python-dotenv does not parse boolean, so 1 == True and 0 == False
+AI_VS_HUMAN=1 # python-dotenv does not parse boolean, so 1 == True and 0 == False
 HUMAN_PLAYS=2 # 1 == ATTACK(X), 2 == DEFENSE(O)
 NUMBER_OF_GAMES=3
 LENGTH_OF_BOARD=3
