@@ -2,6 +2,7 @@ import copy
 import os
 import random
 import time
+import os
 
 import numpy as np
 from dotenv import load_dotenv
@@ -12,6 +13,10 @@ from keras.utils.np_utils import to_categorical
 
 import helpers
 from game_eval import eval_move
+from docker_move import run_command_to_target, run_command_to_self
+
+attack = os.getenv('ATTACK')
+defense = os.getenv('DEFENSE')
 
 load_dotenv()
 
@@ -157,8 +162,10 @@ def getWinner(board):
 
     # get diagonals of board
     # note: this approach identifies ALL diagonals in the board (not only those of length 3), handled later
-    diags = [board_array[::-1, :].diagonal(i) for i in range(-board_array.shape[0] + 1, board_array.shape[1])]
-    diags.extend(board_array.diagonal(i) for i in range(board_array.shape[1] - 1, -board_array.shape[0], -1))
+    diags = [board_array[::-1, :].diagonal(i)
+             for i in range(-board_array.shape[0] + 1, board_array.shape[1])]
+    diags.extend(board_array.diagonal(i) for i in range(
+        board_array.shape[1] - 1, -board_array.shape[0], -1))
 
     # only the main diagonal and anti diagonal can be used for a win, so check for win only in those
     for each in diags:
@@ -289,7 +296,8 @@ def getModel(len_board):
         model.add(Dropout(0.1))
         model.add(Dense(25, activation='relu'))
         model.add(Dense(outcomes, activation='softmax'))
-        model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['acc'])
+        model.compile(loss='categorical_crossentropy',
+                      optimizer='rmsprop', metrics=['acc'])
         return model
     if len_board == 5:
         model = Sequential()
@@ -300,7 +308,8 @@ def getModel(len_board):
         model.add(Dropout(0.25))
         model.add(Dense(25, activation='relu'))
         model.add(Dense(outcomes, activation='softmax'))
-        model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['acc'])
+        model.compile(loss='categorical_crossentropy',
+                      optimizer='rmsprop', metrics=['acc'])
         return model
 
 
@@ -334,7 +343,7 @@ def get_human_player_move(player, len_board):
 
 
 
-def get_player_move(model, rnd, board, len_board, player, verbose, generate_data, human):
+def get_player_move(model, rnd, board, len_board, player, verbose, generate_data, human, docker):
 
     previous_state = copy.deepcopy(board)
     if human:
@@ -348,6 +357,10 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
     current_state = copy.deepcopy(board)
 
     move_outcome = eval_move(prev_state=previous_state, current_state=current_state)
+
+    # running command in docker image
+    if docker == 1:
+        run_command_to_target(attack, defense, "ping -c 5")
 
     if generate_data:
         fname = os.getenv("RANDOM_FOREST_3x3") if len_board == 3 else os.getenv("RANDOM_FOREST_5x5")
@@ -371,26 +384,7 @@ Outputs: winner - integer to indicate the winner (1 or 2) or a tie (0)
          board - a 2d numpy array of the final board state upon a win or a tie
 """
 
-def ai_vs_ai(model, rnd1, rnd2, len_board, verbose=True, delay=True, generate_data=False):
-    # initialize board, winner variable, and numpy array of board
-    board = initBoard(len_board)
-    winner = getWinner(board)
-
-    # while there are still more moves to make and no winner has been determined:
-    while winner == -1:
-        winner, board = get_player_move(model, rnd1, board=board, len_board=len_board, player=1, verbose=verbose, generate_data=generate_data, human=False)
-        if delay: time.sleep(3)
-        # if no winner or tie, player 2's turn
-        if winner == -1:
-            winner, board = get_player_move(model, rnd2, board=board, len_board=len_board, player=2, verbose=verbose, generate_data=generate_data, human=False)
-            if delay: time.sleep(3)
-        else:
-            # if there is a winner or player 1 has tied the game, return data
-            return winner, np.array(board)
-    return winner, np.array(board)
-
-
-def ai_vs_human(model, rnd1, rnd2, len_board, verbose=True, delay=True, generate_data=False, human_plays=2):
+def ai_vs_ai(model, rnd1, rnd2, len_board, verbose=True, delay=True, generate_data=False, docker=0):
     # initialize board, winner variable, and numpy array of board
     board = initBoard(len_board)
     winner = getWinner(board)
@@ -398,13 +392,36 @@ def ai_vs_human(model, rnd1, rnd2, len_board, verbose=True, delay=True, generate
     # while there are still more moves to make and no winner has been determined:
     while winner == -1:
         winner, board = get_player_move(model, rnd1, board=board, len_board=len_board, player=1, verbose=verbose,
-                                 generate_data=generate_data, human=True if human_plays == 1 else False)
+                                        generate_data=generate_data, human=False, docker=docker)
+        if delay: time.sleep(3)
+        # if no winner or tie, player 2's turn
+        if winner == -1:
+            winner, board = get_player_move(model, rnd2, board=board, len_board=len_board, player=2, verbose=verbose,
+                                            generate_data=generate_data, human=False, docker=docker)
+            if delay: time.sleep(3)
+        else:
+            # if there is a winner or player 1 has tied the game, return data
+            return winner, np.array(board)
+    return winner, np.array(board)
+
+
+def ai_vs_human(model, rnd1, rnd2, len_board, verbose=True, delay=True, generate_data=False, human_plays=2, docker=0):
+    # initialize board, winner variable, and numpy array of board
+    board = initBoard(len_board)
+    winner = getWinner(board)
+
+    # while there are still more moves to make and no winner has been determined:
+    while winner == -1:
+        winner, board = get_player_move(model, rnd1, board=board, len_board=len_board, player=1, verbose=verbose,
+                                        generate_data=generate_data, human=True if human_plays == 1 else False,
+                                        docker=docker)
 
         if delay: time.sleep(3)
         # if no winner or tie, player 2's turn
         if winner == -1:
             winner, board = get_player_move(model, rnd2, board=board, len_board=len_board, player=2,
-                                     verbose=verbose, generate_data=generate_data, human=True if human_plays == 2 else False)
+                                            verbose=verbose, generate_data=generate_data,
+                                            human=True if human_plays == 2 else False, docker=docker)
             if delay: time.sleep(3)
         else:
             # if there is a winner or player 1 has tied the game, return data

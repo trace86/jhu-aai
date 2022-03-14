@@ -15,3 +15,7 @@ AI_VS_HUMAN=1 # python-dotenv does not parse boolean, so 1 == True and 0 == Fals
 HUMAN_PLAYS=2 # 1 == ATTACK(X), 2 == DEFENSE(O)
 NUMBER_OF_GAMES=3
 LENGTH_OF_BOARD=3
+ATTACK="kali-everything"
+DEFENSE="metasploitable2"
+DOCKER=1
+
