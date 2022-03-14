@@ -1,5 +1,5 @@
 import os
-
+import csv
 from dotenv import load_dotenv
 
 # ## write_file
@@ -17,7 +17,7 @@ root_path = os.getenv("ROOT_PATH")
 
 
 def write_file(fname: str, command: str) -> None:
-    with open(f"{root_path}/{fname}.txt", "w") as f:  # not appending on purpose
+    with open(f"{root_path}/{fname}", "w") as f:  # not appending on purpose
         f.write(command)
 
 
@@ -30,7 +30,7 @@ def write_file(fname: str, command: str) -> None:
 # **returns**: Contents of the file.
 
 def read_file(fname: str) -> str:
-    with open(f"{root_path}/{fname}.txt") as f:
+    with open(f"{root_path}/{fname}") as f:
         return f.read()
 
 
@@ -44,9 +44,14 @@ def read_file(fname: str) -> str:
 #
 # **returns**: None
 
-
 def write_logging_files(exploit_file_3x3: str, exploit_file_5x5: str, set_file_5x5: str) -> None:
     files = [exploit_file_3x3, exploit_file_5x5, set_file_5x5]
     for f in files:
-        if not os.path.isfile(f"io/{f}.txt"):
+        if not os.path.isfile(f"{root_path}/{f}"):
             write_file(f, "")
+
+
+def write_csv(filename, row):
+    # writing to csv file
+    with open(f"{root_path}/{filename}", 'a') as csvfile:
+        csv.writer(csvfile).writerow(row)

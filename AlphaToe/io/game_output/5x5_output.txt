@@ -1,0 +1,3503 @@
+Loaded Keras models.
+
+playing game 1 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ |X|X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks move -- kill process
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ |X|X|X|O
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ |X|X|X|O
+----------
+ | |O|X| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+O| | | | 
+----------
+ | | |O| 
+----------
+ |X|X|X|O
+----------
+ | |O|X| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+O| | | | 
+----------
+ |X| |O| 
+----------
+ |X|X|X|O
+----------
+ | |O|X| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+O| | | | 
+----------
+ |X| |O| 
+----------
+ |X|X|X|O
+----------
+ |O|O|X| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+O| | | | 
+----------
+ |X| |O| 
+----------
+ |X|X|X|O
+----------
+ |O|O|X| 
+----------
+ | | | |X
+
+player 1 move complete...
+
+Player 1 Wins!
+
+playing game 2 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | |X| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | |O|O| 
+----------
+ | |X| | 
+----------
+ | |X| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ |X|O|O| 
+----------
+ | |X| | 
+----------
+ | |X| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |X|O|O| 
+----------
+ | |X|O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |X|O|O| 
+----------
+ | |X|O| 
+----------
+ |X|X| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |X|O|O| 
+----------
+ | |X|O| 
+----------
+ |X|X|O| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ |X|O|O| 
+----------
+ |X|X|O| 
+----------
+ |X|X|O| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+kill daemon -- defender wins!
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |X|O|O| 
+----------
+ |X|X|O| 
+----------
+ |X|X|O| 
+----------
+ | | |O| 
+
+player 2 move complete...
+
+Player 2 Wins!
+
+playing game 3 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | |O| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | |X|O| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | |O| | 
+----------
+ | |X| | 
+----------
+ | |X|O| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | |O|X| 
+----------
+ | |X| | 
+----------
+ | |X|O| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | |O|X| 
+----------
+ | |X| | 
+----------
+ |O|X|O| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | |O|X| 
+----------
+ | |X|X| 
+----------
+ |O|X|O| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | |O|X| 
+----------
+ |O|X|X| 
+----------
+ |O|X|O| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ |X|O|X| 
+----------
+ |O|X|X| 
+----------
+ |O|X|O| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |X|O|X|O
+----------
+ |O|X|X| 
+----------
+ |O|X|O| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ |X|O|X|O
+----------
+ |O|X|X| 
+----------
+ |O|X|O| 
+----------
+ | | |X| 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | |O| | 
+----------
+ |X|O|X|O
+----------
+ |O|X|X| 
+----------
+ |O|X|O| 
+----------
+ | | |X| 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | |O| | 
+----------
+ |X|O|X|O
+----------
+ |O|X|X| 
+----------
+X|O|X|O| 
+----------
+ | | |X| 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | |O| | 
+----------
+ |X|O|X|O
+----------
+ |O|X|X| 
+----------
+X|O|X|O| 
+----------
+ | | |X|O
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | |O| | 
+----------
+ |X|O|X|O
+----------
+ |O|X|X| 
+----------
+X|O|X|O|X
+----------
+ | | |X|O
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | |O|O| 
+----------
+ |X|O|X|O
+----------
+ |O|X|X| 
+----------
+X|O|X|O|X
+----------
+ | | |X|O
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | |O|O| 
+----------
+X|X|O|X|O
+----------
+ |O|X|X| 
+----------
+X|O|X|O|X
+----------
+ | | |X|O
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | |O|O| 
+----------
+X|X|O|X|O
+----------
+ |O|X|X| 
+----------
+X|O|X|O|X
+----------
+ | |O|X|O
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | |O|O| 
+----------
+X|X|O|X|O
+----------
+ |O|X|X|X
+----------
+X|O|X|O|X
+----------
+ | |O|X|O
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+O| |O|O| 
+----------
+X|X|O|X|O
+----------
+ |O|X|X|X
+----------
+X|O|X|O|X
+----------
+ | |O|X|O
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+O|X|O|O| 
+----------
+X|X|O|X|O
+----------
+ |O|X|X|X
+----------
+X|O|X|O|X
+----------
+ | |O|X|O
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+O|X|O|O| 
+----------
+X|X|O|X|O
+----------
+ |O|X|X|X
+----------
+X|O|X|O|X
+----------
+ |O|O|X|O
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+O|X|O|O| 
+----------
+X|X|O|X|O
+----------
+ |O|X|X|X
+----------
+X|O|X|O|X
+----------
+X|O|O|X|O
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+O|X|O|O|O
+----------
+X|X|O|X|O
+----------
+ |O|X|X|X
+----------
+X|O|X|O|X
+----------
+X|O|O|X|O
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+O|X|O|O|O
+----------
+X|X|O|X|O
+----------
+X|O|X|X|X
+----------
+X|O|X|O|X
+----------
+X|O|O|X|O
+
+player 1 move complete...
+
+Player 1 Wins!
+
+playing game 4 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | |O| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | |X|O| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | |O| | 
+----------
+ | |X| | 
+----------
+ | |X|O| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | |O|X| 
+----------
+ | |X| | 
+----------
+ | |X|O| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | |O|X| 
+----------
+ | |X| | 
+----------
+ | |X|O| 
+----------
+O| | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | |O|X| 
+----------
+ |X|X| | 
+----------
+ | |X|O| 
+----------
+O| | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | |O
+----------
+ | |O|X| 
+----------
+ |X|X| | 
+----------
+ | |X|O| 
+----------
+O| | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | |O
+----------
+ | |O|X| 
+----------
+ |X|X|X| 
+----------
+ | |X|O| 
+----------
+O| | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | |O
+----------
+ | |O|X| 
+----------
+ |X|X|X| 
+----------
+ | |X|O| 
+----------
+O| | | |O
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | |O
+----------
+ | |O|X| 
+----------
+ |X|X|X| 
+----------
+ | |X|O|X
+----------
+O| | | |O
+
+player 1 move complete...
+
+defender blocks move -- kill process
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | |O
+----------
+ | |O|X| 
+----------
+ |X|X|X|O
+----------
+ | |X|O|X
+----------
+O| | | |O
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | |O
+----------
+ | |O|X| 
+----------
+ |X|X|X|O
+----------
+ | |X|O|X
+----------
+O|X| | |O
+
+player 1 move complete...
+
+defender blocks move -- kill process
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | |O
+----------
+ | |O|X| 
+----------
+O|X|X|X|O
+----------
+ | |X|O|X
+----------
+O|X| | |O
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | |O
+----------
+ | |O|X| 
+----------
+O|X|X|X|O
+----------
+ | |X|O|X
+----------
+O|X|X| |O
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | |O
+----------
+O| |O|X| 
+----------
+O|X|X|X|O
+----------
+ | |X|O|X
+----------
+O|X|X| |O
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ |X| | |O
+----------
+O| |O|X| 
+----------
+O|X|X|X|O
+----------
+ | |X|O|X
+----------
+O|X|X| |O
+
+player 1 move complete...
+
+kill daemon -- defender wins!
+tic-tac-toe move results in metasploit command: nop_command
+ |X| | |O
+----------
+O| |O|X| 
+----------
+O|X|X|X|O
+----------
+O| |X|O|X
+----------
+O|X|X| |O
+
+player 2 move complete...
+
+Player 2 Wins!
+
+playing game 5 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O| |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X|X
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 1 move complete...
+
+Player 1 Wins!
+
+playing game 6 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O| |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X|X
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 1 move complete...
+
+Player 1 Wins!
+
+playing game 7 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O| |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O|O| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+ | |X| | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O|O| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | |X| | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O|O|O
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+ | |X| | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X|X
+----------
+ | |O|O|O
+----------
+ | | | | 
+
+player 1 move complete...
+
+Player 1 Wins!
+
+playing game 8 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O| |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X|X
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 1 move complete...
+
+Player 1 Wins!
+
+playing game 9 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O| |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X|X
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 1 move complete...
+
+Player 1 Wins!
+
+playing game 10 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | |X| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | |O|O| 
+----------
+ | |X| | 
+----------
+ | |X| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | |O|O| 
+----------
+ | |X|X| 
+----------
+ | |X| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | |O|O| 
+----------
+ |O|X|X| 
+----------
+ | |X| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ | |O|O| 
+----------
+ |O|X|X| 
+----------
+ | |X| | 
+----------
+ |X| | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|O|O| 
+----------
+ |O|X|X| 
+----------
+ | |X| | 
+----------
+ |X| | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|O|O| 
+----------
+ |O|X|X| 
+----------
+X| |X| | 
+----------
+ |X| | | 
+
+player 1 move complete...
+
+kill daemon -- defender wins!
+defender blocks move -- kill process
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|O|O|O
+----------
+ |O|X|X| 
+----------
+X| |X| | 
+----------
+ |X| | | 
+
+player 2 move complete...
+
+Player 2 Wins!
+
+playing game 11 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O| |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X|X
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 1 move complete...
+
+Player 1 Wins!
+
+playing game 12 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O| |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X|X
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 1 move complete...
+
+Player 1 Wins!
+
+playing game 13 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O| |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X|X
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 1 move complete...
+
+Player 1 Wins!
+
+playing game 14 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O| |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X|X
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 1 move complete...
+
+Player 1 Wins!
+
+playing game 15 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O| |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |O|X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |O|X|X| 
+----------
+ | |X| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |O|X|X|O
+----------
+ | |X| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+ | |X| | 
+----------
+ |O|X|O| 
+----------
+ |O|X|X|O
+----------
+ | |X| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+Player 1 Wins!
+
+playing game 16 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O| |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X|X
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 1 move complete...
+
+Player 1 Wins!
+
+playing game 17 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O| |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X|X
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 1 move complete...
+
+Player 1 Wins!
+
+playing game 18 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ |X| |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |X| |O| 
+----------
+ | |X| | 
+----------
+ | | |O| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ |X| |O| 
+----------
+ | |X|X| 
+----------
+ | | |O| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |X| |O| 
+----------
+ | |X|X| 
+----------
+ | |O|O| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ |X| |O| 
+----------
+ |X|X|X| 
+----------
+ | |O|O| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ |O| | | 
+----------
+ |X| |O| 
+----------
+ |X|X|X| 
+----------
+ | |O|O| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ |O| | | 
+----------
+ |X| |O| 
+----------
+ |X|X|X| 
+----------
+ |X|O|O| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+O|O| | | 
+----------
+ |X| |O| 
+----------
+ |X|X|X| 
+----------
+ |X|O|O| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+O|O| | | 
+----------
+ |X| |O|X
+----------
+ |X|X|X| 
+----------
+ |X|O|O| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+O|O| | | 
+----------
+ |X| |O|X
+----------
+ |X|X|X| 
+----------
+O|X|O|O| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+O|O| | | 
+----------
+ |X| |O|X
+----------
+ |X|X|X|X
+----------
+O|X|O|O| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+Player 1 Wins!
+
+playing game 19 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | |X|O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | |X|O| 
+----------
+ | |X| | 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | |X|O| 
+----------
+ | |X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | |X|O| 
+----------
+ |O|X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | |X|O| 
+----------
+ |O|X|X| 
+----------
+ | |O|X| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |O|X|X| 
+----------
+ | |O|X| 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | |X| | 
+----------
+ |O|X|O| 
+----------
+ |O|X|X| 
+----------
+ | |O|X| 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | |X| | 
+----------
+ |O|X|O| 
+----------
+ |O|X|X| 
+----------
+ | |O|X|O
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | |X| | 
+----------
+ |O|X|O| 
+----------
+ |O|X|X|X
+----------
+ | |O|X|O
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | |X| | 
+----------
+ |O|X|O| 
+----------
+ |O|X|X|X
+----------
+ |O|O|X|O
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | |X| | 
+----------
+ |O|X|O| 
+----------
+ |O|X|X|X
+----------
+X|O|O|X|O
+----------
+ | | | | 
+
+player 1 move complete...
+
+kill daemon -- defender wins!
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ |O|X| | 
+----------
+ |O|X|O| 
+----------
+ |O|X|X|X
+----------
+X|O|O|X|O
+----------
+ | | | | 
+
+player 2 move complete...
+
+Player 2 Wins!
+
+playing game 20 of 20...
+Running AI vs AI 5x5 game play
+tic-tac-toe move results in metasploit command: scan_command
+("port scan results: [{'port_id': '21', 'protocol': 'tcp', 'service_name': "
+ "'ftp'}, {'port_id': '22', 'protocol': 'tcp', 'service_name': 'ssh'}, "
+ "{'port_id': '23', 'protocol': 'tcp', 'service_name': 'telnet'}, {'port_id': "
+ "'25', 'protocol': 'tcp', 'service_name': 'smtp'}, {'port_id': '53', "
+ "'protocol': 'tcp', 'service_name': 'domain'}, {'port_id': '80', 'protocol': "
+ "'tcp', 'service_name': 'http'}, {'port_id': '111', 'protocol': 'tcp', "
+ "'service_name': 'rpcbind'}, {'port_id': '139', 'protocol': 'tcp', "
+ "'service_name': 'netbios-ssn'}, {'port_id': '445', 'protocol': 'tcp', "
+ "'service_name': 'microsoft-ds'}, {'port_id': '512', 'protocol': 'tcp', "
+ "'service_name': 'exec'}, {'port_id': '513', 'protocol': 'tcp', "
+ "'service_name': 'login'}, {'port_id': '514', 'protocol': 'tcp', "
+ "'service_name': 'shell'}, {'port_id': '1099', 'protocol': 'tcp', "
+ "'service_name': 'rmiregistry'}, {'port_id': '1524', 'protocol': 'tcp', "
+ "'service_name': 'ingreslock'}, {'port_id': '2049', 'protocol': 'tcp', "
+ "'service_name': 'nfs'}, {'port_id': '2121', 'protocol': 'tcp', "
+ "'service_name': 'ccproxy-ftp'}, {'port_id': '3306', 'protocol': 'tcp', "
+ "'service_name': 'mysql'}, {'port_id': '5432', 'protocol': 'tcp', "
+ "'service_name': 'postgresql'}, {'port_id': '5900', 'protocol': 'tcp', "
+ "'service_name': 'vnc'}, {'port_id': '6000', 'protocol': 'tcp', "
+ "'service_name': 'X11'}, {'port_id': '6667', 'protocol': 'tcp', "
+ "'service_name': 'irc'}, {'port_id': '8009', 'protocol': 'tcp', "
+ "'service_name': 'ajp13'}, {'port_id': '8180', 'protocol': 'tcp', "
+ "'service_name': 'unknown'}]")
+ | | | | 
+----------
+ | | | | 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X| | 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+ | | | | 
+----------
+ | | |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O| |O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | | | | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ | |X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: use_command
+tic-tac-toe move results in metasploit command: set_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| | 
+----------
+ | | | | 
+
+player 1 move complete...
+
+defender blocks attacker -- kill process
+tic-tac-toe move results in metasploit command: nop_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X| 
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 2 move complete...
+
+tic-tac-toe move results in metasploit command: set_command
+tic-tac-toe move results in metasploit command: exploit_command
+ | | | | 
+----------
+ |O|X|O| 
+----------
+ |X|X|X|X
+----------
+ | |O| |O
+----------
+ | | | | 
+
+player 1 move complete...
+
+Player 1 Wins!

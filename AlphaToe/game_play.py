@@ -1,14 +1,19 @@
 import copy
+import os
 import random
 import time
 
 import numpy as np
+from dotenv import load_dotenv
 from keras.layers import Dense
 from keras.layers import Dropout
 from keras.models import Sequential
 from keras.utils.np_utils import to_categorical
 
+import helpers
 from game_eval import eval_move
+
+load_dotenv()
 
 """
 This function initializes the empty board into a nxn list of lists of zeroes.
@@ -357,7 +362,7 @@ Outputs: winner - integer to indicate the winner (1 or 2) or a tie (0)
 """
 
 
-def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True):
+def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True, generate_data=False):
     # initialize board, winner variable, and numpy array of board
     board = initBoard(len_board)
     winner = getWinner(board)
@@ -370,7 +375,11 @@ def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True):
         board[move[0]][move[1]] = 1
         current_state = copy.deepcopy(board)
 
-        print(eval_move(prev_state=previous_state, current_state=current_state))
+        move_outcome = eval_move(prev_state=previous_state, current_state=current_state)
+
+        if generate_data:
+            fname = os.getenv("RANDOM_FOREST_3x3") if len_board == 3 else os.getenv("RANDOM_FOREST_5x5")
+            helpers.write_csv(filename=fname, row=[previous_state, current_state, "1", move_outcome])
 
         # print board to console if verbose = true
         if verbose:
@@ -389,7 +398,11 @@ def ai_vs_ai(model, len_board, rnd1=0, rnd2=0, verbose=True, delay=True):
             board[move[0]][move[1]] = 2
             current_state = copy.deepcopy(board)
 
-            print(eval_move(prev_state=previous_state, current_state=current_state))
+            move_outcome = eval_move(prev_state=previous_state, current_state=current_state)
+            if generate_data:
+                fname = os.getenv("RANDOM_FOREST_3x3") if len_board == 3 else os.getenv("RANDOM_FOREST_5x5")
+                helpers.write_csv(filename=fname, row=[previous_state, current_state,
+                                                       "2", move_outcome])
 
             # print board to console if verbose = true
             if verbose:
