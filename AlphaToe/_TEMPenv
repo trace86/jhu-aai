@@ -8,8 +8,10 @@ SET_5x5 = "game_tracker/set_5x5.txt"
 RANDOM_FOREST_5x5 = "random_forest/rf_5x5.csv"
 RANDOM_FOREST_3x3 = "random_forest/rf_3x3.csv"
 # Game Parameters
-OUTPUT_DELAY=0 # python-dotenv does not parse boolean, so 1 == True and 0 == False
+OUTPUT_DELAY=0  # python-dotenv does not parse boolean, so 1 == True and 0 == False
 GENERATE_DATA=1 # python-dotenv does not parse boolean, so 1 == True and 0 == False
 VERBOSE_OUTPUT=1 # python-dotenv does not parse boolean, so 1 == True and 0 == False
-NUMBER_OF_GAMES=1000
+AI_VS_HUMAN=0 # python-dotenv does not parse boolean, so 1 == True and 0 == False
+HUMAN_PLAYS=2 # 1 == ATTACK(X), 2 == DEFENSE(O)
+NUMBER_OF_GAMES=10
 LENGTH_OF_BOARD=5
