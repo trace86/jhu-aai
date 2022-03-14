@@ -1,0 +1,14 @@
+attack_id,exploit_name,linked_port
+0000,vsftpd 2.3.4 Smiley Face Backdoor,21
+0001,SlowLoris DOS Attack,80
+0002,PostgreSQL Brute Force Login,5432
+0003,PostgreSQL Get Database Names,5432
+0004,PostgreSQL Get Username and Password,5432
+0005,PostgreSQL Get Username and Password,5432
+0006,PostgreSQL Get Username and Password,5432
+0007,Sending Payload and Launching Meterpreter,5432
+0008,Import File on PostgreSQL Server,5432
+0009,PHP Attack Launch Meterpreter,80
+0010,TWiki Exploit,80
+0011,DistCC Daemon Command Execution,3632
+0012,Root Access on Target,139
