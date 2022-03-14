@@ -618,13 +618,11 @@ def eval_defender_3x3(i: int, j: int, matrix: List[List[int]], exploit_file: str
                 eval_player_move(i, j, matrix, num_neighbors=1, symbol=1)]):
         if debug: print("NOP")
         return [6]
-    if eval_player_move(i, j, matrix, num_neighbors=2, symbol=2) or check_move_made_inbetween_two_moves(i, j, matrix,
-                                                                                                        symbol=2):
+    if eval_player_move(i, j, matrix, num_neighbors=2, symbol=2) or check_move_made_inbetween_two_moves(i, j, matrix, symbol=2):
         write_file(exploit_file, "")
         if debug: print("kill daemon -- defender wins!")
         return [5]
-    if eval_player_move(i, j, matrix, num_neighbors=2, symbol=1) or check_move_made_inbetween_two_moves(i, j, matrix,
-                                                                                                        symbol=1):
+    if eval_player_move(i, j, matrix, num_neighbors=2, symbol=1) or check_move_made_inbetween_two_moves(i, j, matrix, symbol=1):
         write_file(exploit_file, "")
         if debug: print("defender blocks attacker -- kill process")
         return [4]
@@ -658,24 +656,22 @@ def eval_defender_5x5(i: int, j: int, matrix: List[List[int]], exploit_file: str
                 eval_player_move(i, j, matrix, num_neighbors=1, symbol=1)]):
         if debug: print("NOP")
         return [6]
-    if eval_player_move(i, j, matrix, num_neighbors=3, symbol=2) or check_move_made_inbetween_three_moves(i, j, matrix,
-                                                                                                          symbol=2):
+    if eval_player_move(i, j, matrix, num_neighbors=3, symbol=2) or check_move_made_inbetween_three_moves(i, j, matrix, symbol=2):
         write_file(exploit_file, "")
         write_file(set_file, "")
-        print("kill daemon -- defender wins!")
-        if debug: return [5]
+        if debug: print("kill daemon -- defender wins!")
+        return [5]
     if eval_player_move(i, j, matrix, num_neighbors=3, symbol=1) or check_move_made_inbetween_three_moves(i, j, matrix,
                                                                                                           symbol=1):
         write_file(exploit_file, "")
         write_file(set_file, "")
-        print("defender blocks move -- kill process")
-        if debug: return [4]
-    if eval_player_move(i, j, matrix, num_neighbors=2, symbol=1) or check_move_made_inbetween_two_moves(i, j, matrix,
-                                                                                                        symbol=1):
+        if debug: print("defender blocks move -- kill process")
+        return [4]
+    if eval_player_move(i, j, matrix, num_neighbors=2, symbol=1) or check_move_made_inbetween_two_moves(i, j, matrix, symbol=1):
         write_file(exploit_file, "")
         write_file(set_file, "")
-        print("defender blocks attacker -- kill process")
-        if debug: return [4]
+        if debug: print("defender blocks attacker -- kill process")
+        return [4]
     if debug: print("NOP")
     return [6]
 
