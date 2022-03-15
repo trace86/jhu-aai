@@ -14,7 +14,7 @@ load_dotenv()
 # load vales from .env
 len_board = int(os.getenv("LENGTH_OF_BOARD"))
 num_games = int(os.getenv("NUMBER_OF_GAMES"))
-launcher = int(os.getenv("DOCKER"))
+docker = int(os.getenv("DOCKER"))
 delay_output = True if int(os.getenv("OUTPUT_DELAY")) == 1 else False
 generate_date = True if int(os.getenv("GENERATE_DATA")) == 1 else False
 verbose_output = True if int(os.getenv("VERBOSE_OUTPUT")) == 1 else False
@@ -44,12 +44,12 @@ def play_games(len_board=3, num_games=3):
                 winner, board = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
                                                verbose=verbose_output, delay=delay_output, generate_data=generate_date,
                                                human_plays=human_player, exploit_tracker=exploit_tracker,
-                                               launcher=launcher)
+                                               launcher=launcher, docker=docker)
             else:
                 print("Running AI vs AI 3x3 game play")
                 winner, board = gp.ai_vs_ai(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
                                             delay=delay_output, generate_data=generate_date,
-                                            exploit_tracker=exploit_tracker, launcher=launcher)
+                                            exploit_tracker=exploit_tracker, launcher=launcher, docker=docker)
 
             gp.printWinner(winner)
 
@@ -59,12 +59,12 @@ def play_games(len_board=3, num_games=3):
                 winner, board = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
                                                verbose=verbose_output, delay=delay_output, generate_data=generate_date,
                                                human_plays=human_player, exploit_tracker=exploit_tracker,
-                                               launcher=launcher)
+                                               launcher=launcher, docker=docker)
             else:
                 print("Running AI vs AI 5x5 game play")
                 winner, board = gp.ai_vs_ai(model_5x5, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
                                             delay=delay_output, generate_data=generate_date,
-                                            exploit_tracker=exploit_tracker, launcher=launcher)
+                                            exploit_tracker=exploit_tracker, launcher=launcher, docker=docker)
                 
             gp.printWinner(winner)
 
