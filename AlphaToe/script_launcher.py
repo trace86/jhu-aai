@@ -127,7 +127,7 @@ class ScriptLauncher:
                 print("Kill daemon")
 
     def launch_script(self, command):
-
+        print("\nLaunch script process commenced:")
         # scan command
         if command == 0:
 
