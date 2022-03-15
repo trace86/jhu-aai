@@ -11,10 +11,6 @@ sys.path.insert(1, os.getcwd())
 
 load_dotenv()
 # load vales from .env
-exploit_3x3_file = f"{os.getenv('ROOT_PATH')}/{os.getenv('EXPLOIT_3x3')}"
-exploit_5x5_file = f"{os.getenv('ROOT_PATH')}/{os.getenv('EXPLOIT_5x5')}"
-set_5x5_file = f"{os.getenv('ROOT_PATH')}/{os.getenv('SET_5x5')}"
-state_mapping_files = [exploit_5x5_file, exploit_3x3_file, set_5x5_file]
 len_board = int(os.getenv("LENGTH_OF_BOARD"))
 num_games = int(os.getenv("NUMBER_OF_GAMES"))
 delay_output = True if int(os.getenv("OUTPUT_DELAY")) == 1 else False
@@ -24,7 +20,7 @@ human = True if int(os.getenv("AI_VS_HUMAN")) == 1 else False
 human_player = int(os.getenv("HUMAN_PLAYS"))
 
 
-def play_games(state_mapping_files, len_board=3, num_games=3):
+def play_games(len_board=3, num_games=3):
     model_3x3 = keras.models.load_model("AlphaToe3")
     model_5x5 = keras.models.load_model("AlphaToe5")
     print("Loaded Keras models.")
@@ -69,4 +65,4 @@ def play_games(state_mapping_files, len_board=3, num_games=3):
             raise ValueError(f"We can't run a {len_board}x{len_board} game")
 
 
-play_games(state_mapping_files, num_games=num_games, len_board=len_board)
+play_games(num_games=num_games, len_board=len_board)
