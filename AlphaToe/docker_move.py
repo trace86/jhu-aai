@@ -1,5 +1,7 @@
 import os
 import subprocess
+import docker
+from time import sleep 
 
 from dotenv import load_dotenv
 
@@ -17,11 +19,32 @@ load_dotenv()
 attack = os.getenv('ATTACK')
 defense = os.getenv('DEFENSE')
 network_name = "adversarial"
+client = docker.from_env()
+
+
 # In[1]:
+
+def wait_for_container_to_start(container):
+    
+    timeout = 120
+    stop_time = 3
+    elapsed_time = 0
+
+    while container.status != 'running' and elapsed_time < timeout:
+        print(container.status)
+        sleep(stop_time)
+        elapsed_time += stop_time
+        print("waiting...", container.name)
+        continue
+    
+    if elapsed_time >= timeout:
+        return False
+    
+    return True
 
 
 def run_command_to_target(source: str, target: str, command: str):
-    result = subprocess.check_output(f"docker exec -ti {source} {command} {target}", shell=True)
+    result = source.exec_run( f"ls")
     return result
     
 
@@ -30,12 +53,12 @@ def run_command_to_target(source: str, target: str, command: str):
 
 def run_command_to_self(source: str, command: str):
     print(source)
-    result = subprocess.check_output(f"docker exec -ti {source} {command}", shell=True)
+    result = source.exec_run( f"ls")
     return result
 
 
 # %%
-def cyber_move(player, command, verbose):
+def cyber_move(player, command, attack, defense, verbose):
     if player == 1:
         result = run_command_to_target(attack, defense, command)
         if verbose:
@@ -47,14 +70,21 @@ def cyber_move(player, command, verbose):
 
 # %%
 def start_game_docker():
-    check_process = subprocess.check_output("docker ps -a", shell=True)
-    print(check_process)
-    print(type(check_process))
-    print(type(attack))
-    if attack in check_process and defense in check_process:
-        print("stopping all running containers")
-        # stop_process = subprocess.check_output("docker ps -q | xargs docker stop", shell=True)
-        # remove_network_process = subprocess.check_output(f"docker network rm {network_name}")
+    print("stopping existing containers...")
+    for container in client.containers.list():
+        container.stop()
+    client.containers.prune()
+    client.networks.prune()
     print("start process...")
-    # start_process = subprocess.check_output(f"docker start {attack} {defense}", shell=True)
-    # network_process = subprocess.check_output(f"docker network create {network_name}")
+    docker_network = client.networks.create(network_name)
+    attack_container = client.containers.run(attack, detach=True, auto_remove=True, network=docker_network.id, stdin_open=True)
+    defense_container = client.containers.run(defense, detach=True, auto_remove=True, network=docker_network.id, stdin_open=True)
+    print("setup done")
+
+    return attack_container, defense_container
+ 
+# %%
+def end_game_docker():
+    client.containers.prune()
+
+# %%
