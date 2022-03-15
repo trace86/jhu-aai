@@ -14,6 +14,7 @@ load_dotenv()
 # load vales from .env
 len_board = int(os.getenv("LENGTH_OF_BOARD"))
 num_games = int(os.getenv("NUMBER_OF_GAMES"))
+docker = int(os.getenv("DOCKER"))
 delay_output = True if int(os.getenv("OUTPUT_DELAY")) == 1 else False
 generate_date = True if int(os.getenv("GENERATE_DATA")) == 1 else False
 verbose_output = True if int(os.getenv("VERBOSE_OUTPUT")) == 1 else False
@@ -36,6 +37,7 @@ def play_games(len_board=3, num_games=3):
             "set_initiated": False
         }
         launcher = ScriptLauncher()
+        
         if len_board == 3:
             if human:
                 print("Running AI vs Human 3x3 game play")
@@ -48,10 +50,10 @@ def play_games(len_board=3, num_games=3):
                 winner, board = gp.ai_vs_ai(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
                                             delay=delay_output, generate_data=generate_date,
                                             exploit_tracker=exploit_tracker, launcher=launcher)
+
             gp.printWinner(winner)
 
         elif len_board == 5:
-
             if human:
                 print("Running AI vs Human 5x5 game play")
                 winner, board = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
@@ -63,6 +65,7 @@ def play_games(len_board=3, num_games=3):
                 winner, board = gp.ai_vs_ai(model_5x5, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
                                             delay=delay_output, generate_data=generate_date,
                                             exploit_tracker=exploit_tracker, launcher=launcher)
+                
             gp.printWinner(winner)
 
         else:
