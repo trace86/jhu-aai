@@ -3,7 +3,6 @@ import sys
 import keras
 import game_play as gp
 from dotenv import load_dotenv
-from random import seed
 import random
 from datetime import datetime
 
@@ -33,35 +32,37 @@ def play_games(state_mapping_files, len_board=3, num_games=3):
     for i in range(1, num_games + 1):
         print(f"\nplaying game {i} of {num_games}...")
         # start with clean slate
-        for f in state_mapping_files:
-            if os.path.exists(f):
-                os.remove(f)
-            else:
-                print(f"File {f} does not exist.")
-        seed(datetime.now())
-        # rnd1, rnd2 = uniform(0, 1), random.uniform(0, 1)
-        rnd1, rnd2 = random.random(), random.random()
+        random.seed(datetime.now())
+        rnd1, rnd2 = random.uniform(0, 1), random.uniform(0, 1)
+        exploit_tracker = {
+            "exploit_initiated": False,
+            "set_initiated": False
+        }
         if len_board == 3:
             if human:
                 print("Running AI vs Human 3x3 game play")
-                winner, board = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
-                                        delay=delay_output, generate_data=generate_date, human_plays=human_player)
+                winner, board = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
+                                               verbose=verbose_output, delay=delay_output, generate_data=generate_date,
+                                               human_plays=human_player, exploit_tracker=exploit_tracker)
             else:
                 print("Running AI vs AI 3x3 game play")
                 winner, board = gp.ai_vs_ai(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
-                                            delay=delay_output, generate_data=generate_date)
+                                            delay=delay_output, generate_data=generate_date,
+                                            exploit_tracker=exploit_tracker)
             gp.printWinner(winner)
 
         elif len_board == 5:
 
             if human:
                 print("Running AI vs Human 5x5 game play")
-                winner, board = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,  verbose=verbose_output,
-                                        delay=delay_output, generate_data=generate_date, human_plays=human_player)
+                winner, board = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
+                                               verbose=verbose_output, delay=delay_output, generate_data=generate_date,
+                                               human_plays=human_player, exploit_tracker=exploit_tracker)
             else:
                 print("Running AI vs AI 5x5 game play")
                 winner, board = gp.ai_vs_ai(model_5x5, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
-                                            delay=delay_output, generate_data=generate_date)
+                                            delay=delay_output, generate_data=generate_date,
+                                            exploit_tracker=exploit_tracker)
             gp.printWinner(winner)
 
         else:

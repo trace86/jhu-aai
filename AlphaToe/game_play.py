@@ -332,9 +332,7 @@ def get_human_player_move(player, len_board):
         return i, j
 
 
-
-def get_player_move(model, rnd, board, len_board, player, verbose, generate_data, human):
-
+def get_player_move(model, rnd, board, len_board, player, verbose, generate_data, human, exploit_tracker):
     previous_state = copy.deepcopy(board)
     if human:
         move = get_human_player_move(player, len_board)
@@ -346,7 +344,8 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
     board[move[0]][move[1]] = int(player)
     current_state = copy.deepcopy(board)
 
-    move_outcome = eval_move(prev_state=previous_state, current_state=current_state)
+    move_outcome = eval_move(prev_state=previous_state, current_state=current_state, exploit_tracker=exploit_tracker,
+                             debug=verbose)
 
     if generate_data:
         fname = os.getenv("RANDOM_FOREST_3x3") if len_board == 3 else os.getenv("RANDOM_FOREST_5x5")
@@ -373,26 +372,7 @@ Outputs: winner - integer to indicate the winner (1 or 2) or a tie (0)
          board - a 2d numpy array of the final board state upon a win or a tie
 """
 
-def ai_vs_ai(model, rnd1, rnd2, len_board, verbose=True, delay=True, generate_data=False):
-    # initialize board, winner variable, and numpy array of board
-    board = initBoard(len_board)
-    winner = getWinner(board)
-
-    # while there are still more moves to make and no winner has been determined:
-    while winner == -1:
-        winner, board = get_player_move(model, rnd1, board=board, len_board=len_board, player=1, verbose=verbose, generate_data=generate_data, human=False)
-        if delay: time.sleep(3)
-        # if no winner or tie, player 2's turn
-        if winner == -1:
-            winner, board = get_player_move(model, rnd2, board=board, len_board=len_board, player=2, verbose=verbose, generate_data=generate_data, human=False)
-            if delay: time.sleep(3)
-        else:
-            # if there is a winner or player 1 has tied the game, return data
-            return winner, np.array(board)
-    return winner, np.array(board)
-
-
-def ai_vs_human(model, rnd1, rnd2, len_board, verbose=True, delay=True, generate_data=False, human_plays=2):
+def ai_vs_ai(model, rnd1, rnd2, len_board, verbose, delay, generate_data, exploit_tracker):
     # initialize board, winner variable, and numpy array of board
     board = initBoard(len_board)
     winner = getWinner(board)
@@ -400,13 +380,36 @@ def ai_vs_human(model, rnd1, rnd2, len_board, verbose=True, delay=True, generate
     # while there are still more moves to make and no winner has been determined:
     while winner == -1:
         winner, board = get_player_move(model, rnd1, board=board, len_board=len_board, player=1, verbose=verbose,
-                                 generate_data=generate_data, human=True if human_plays == 1 else False)
+                                        generate_data=generate_data, human=False, exploit_tracker=exploit_tracker)
+        if delay: time.sleep(3)
+        # if no winner or tie, player 2's turn
+        if winner == -1:
+            winner, board = get_player_move(model, rnd2, board=board, len_board=len_board, player=2, verbose=verbose,
+                                            generate_data=generate_data, human=False, exploit_tracker=exploit_tracker)
+            if delay: time.sleep(3)
+        else:
+            # if there is a winner or player 1 has tied the game, return data
+            return winner, np.array(board)
+    return winner, np.array(board)
+
+
+def ai_vs_human(model, rnd1, rnd2, len_board, verbose, delay, generate_data, human_plays, exploit_tracker):
+    # initialize board, winner variable, and numpy array of board
+    board = initBoard(len_board)
+    winner = getWinner(board)
+
+    # while there are still more moves to make and no winner has been determined:
+    while winner == -1:
+        winner, board = get_player_move(model, rnd1, board=board, len_board=len_board, player=1, verbose=verbose,
+                                        generate_data=generate_data, human=True if human_plays == 1 else False,
+                                        exploit_tracker=exploit_tracker)
 
         if delay: time.sleep(3)
         # if no winner or tie, player 2's turn
         if winner == -1:
             winner, board = get_player_move(model, rnd2, board=board, len_board=len_board, player=2,
-                                     verbose=verbose, generate_data=generate_data, human=True if human_plays == 2 else False)
+                                            verbose=verbose, generate_data=generate_data,
+                                            human=True if human_plays == 2 else False, exploit_tracker=exploit_tracker)
             if delay: time.sleep(3)
         else:
             # if there is a winner or player 1 has tied the game, return data

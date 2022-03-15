@@ -21,21 +21,20 @@ To run game simulations:
 # Key Files
 PORTSCAN_XML="nmap/portscan_out.xml"
 COMMANDS_CSV="vulnerability_execute/commands.csv"
-ROOT_PATH = "/Users/safr/School/AdversarialAI/jhu-aai/jhu-aai/AlphaToe/io"
-#ROOT_PATH = "/opt/capstone/jhu-aai/AlphaToe/io"
-EXPLOIT_5x5 = "game_tracker/exploit_5x5.txt"
-EXPLOIT_3x3 = "game_tracker/exploit_3x3.txt"
-SET_5x5 = "game_tracker/set_5x5.txt"
+ROOT_PATH = "/opt/capstone/jhu-aai/AlphaToe/io"
 RANDOM_FOREST_5x5 = "random_forest/rf_5x5.csv"
 RANDOM_FOREST_3x3 = "random_forest/rf_3x3.csv"
 # Game Parameters
 OUTPUT_DELAY=1  # python-dotenv does not parse boolean, so 1 == True and 0 == False
 GENERATE_DATA=0 # python-dotenv does not parse boolean, so 1 == True and 0 == False
 VERBOSE_OUTPUT=1 # python-dotenv does not parse boolean, so 1 == True and 0 == False
-AI_VS_HUMAN=1 # python-dotenv does not parse boolean, so 1 == True and 0 == False
+AI_VS_HUMAN=0 # python-dotenv does not parse boolean, so 1 == True and 0 == False
 HUMAN_PLAYS=2 # 1 == ATTACK(X), 2 == DEFENSE(O)
-NUMBER_OF_GAMES=3
-LENGTH_OF_BOARD=3
+NUMBER_OF_GAMES=10
+LENGTH_OF_BOARD=5
+ATTACK="kali-everything"
+DEFENSE="metasploitable2"
+DOCKER=1
 ```
 * Update `NUMBER_OF_GAMES` and `LENGTH_OF_BOARD` variables as necessary
 * Run `init_game.py`
