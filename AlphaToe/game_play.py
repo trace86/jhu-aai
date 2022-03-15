@@ -212,7 +212,6 @@ def bestMove(board, model, player, rnd):
             return moves[bestMoves[i]]
 
     # Choose a move completely at random
-    print(f"LEN OF MOVES: {moves}")
     return moves[random.randint(0, len(moves) - 1)]
 
 
@@ -365,7 +364,10 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
 This function simulates a game between two AIs.
 
 Inputs: model - keras model (neural network) for both AIs (common model)
-        rnd1, rnd2 = a float number to add some randomness to the AIs moves
+        rnd1, rnd2 = a float number to add some randomness to
+
+
+ the AIs moves
         verbose = boolean to print board and AI moves to the console (default = True)
 Outputs: winner - integer to indicate the winner (1 or 2) or a tie (0)
          board - a 2d numpy array of the final board state upon a win or a tie

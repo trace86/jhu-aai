@@ -705,7 +705,7 @@ def eval_attacker_5x5(i: int, j: int, matrix: List[List[int]], exploit_file: str
         if debug: print("port scan")
         return [0]
     if not eval_player_move(i, j, matrix, num_neighbors=1, symbol=symbol):
-        if debug: print("NOP")
+        if debug: print("NOP--no other moves around this move")
         return [6]
     if eval_player_move(i, j, matrix, num_neighbors=3, symbol=symbol) or check_move_made_inbetween_three_moves(i, j,
                                                                                                                matrix,

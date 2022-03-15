@@ -27,11 +27,6 @@ metasploit = {
 }
 
 
-def show_intention(attack_id, attacks=pd.read_csv(commands_csv)):
-    print(f"using vulnerability/exploit: {attacks.iloc[attack_id]['exploit_name']} "
-          f"(linked port {attacks.iloc[attack_id]['linked_port']})")
-
-
 # ## get_state_mapping_evaluation
 #
 # Main method for the graph traversal program. Takes in a previous and current state and returns the action performed in the cyber realm.
@@ -42,9 +37,6 @@ def show_intention(attack_id, attacks=pd.read_csv(commands_csv)):
 # **returns**: List[int].
 
 def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: List[List[int]], debug: bool = False):
-    # exploit_file_3x3 = "exploit_3x3"
-    # exploit_file_5x5 = "exploit_5x5"
-    # set_file_5x5 = "set_5x5"
     exploit_file_3x3 = os.getenv('EXPLOIT_3x3')
     exploit_file_5x5 = os.getenv('EXPLOIT_5x5')
     set_file_5x5 = os.getenv('SET_5x5')
@@ -80,7 +72,7 @@ def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: Lis
 
 # In[22]:
 
-def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attack_id: int = 0000,
+def eval_move(prev_state: List[List[int]], current_state: List[List[int]],
               debug: bool = False) -> List[str]:
     command = get_state_mapping_evaluation(prev_state, current_state, debug)
     for c in command:
