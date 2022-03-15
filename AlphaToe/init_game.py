@@ -14,7 +14,7 @@ load_dotenv()
 # load vales from .env
 len_board = int(os.getenv("LENGTH_OF_BOARD"))
 num_games = int(os.getenv("NUMBER_OF_GAMES"))
-docker = int(os.getenv("DOCKER"))
+launcher = int(os.getenv("DOCKER"))
 delay_output = True if int(os.getenv("OUTPUT_DELAY")) == 1 else False
 generate_date = True if int(os.getenv("GENERATE_DATA")) == 1 else False
 verbose_output = True if int(os.getenv("VERBOSE_OUTPUT")) == 1 else False
