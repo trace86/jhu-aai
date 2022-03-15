@@ -48,6 +48,9 @@ def cyber_move(player, command, verbose):
 # %%
 def start_game_docker():
     check_process = subprocess.check_output("docker ps -a", shell=True)
+    print(check_process)
+    print(type(check_process))
+    print(type(attack))
     if attack in check_process and defense in check_process:
         print("stopping all running containers")
         # stop_process = subprocess.check_output("docker ps -q | xargs docker stop", shell=True)
