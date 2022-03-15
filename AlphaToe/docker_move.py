@@ -44,7 +44,9 @@ def wait_for_container_to_start(container):
 
 
 def run_command_to_target(source: str, target: str, command: str):
-    result = source.exec_run( f"ls")
+    print(source.name)
+    result = source.exec_run( f"/0000.sh", stdin=True)
+    result = source.exec_run( f"cat /log.txt", stdin=True)
     return result
     
 
@@ -52,8 +54,8 @@ def run_command_to_target(source: str, target: str, command: str):
 
 
 def run_command_to_self(source: str, command: str):
-    print(source)
-    result = source.exec_run( f"ls")
+    print(source.name)
+    result = source.exec_run( f"ps -ef", stdin=True)
     return result
 
 
@@ -77,8 +79,8 @@ def start_game_docker():
     client.networks.prune()
     print("start process...")
     docker_network = client.networks.create(network_name)
-    attack_container = client.containers.run(attack, detach=True, auto_remove=True, network=docker_network.id, stdin_open=True)
-    defense_container = client.containers.run(defense, detach=True, auto_remove=True, network=docker_network.id, stdin_open=True)
+    attack_container = client.containers.run(attack, detach=True, auto_remove=True, network=docker_network.id, stdin_open=True, name=attack)
+    defense_container = client.containers.run(defense, detach=True, auto_remove=True, network=docker_network.id, stdin_open=True, name=defense)
     print("setup done")
 
     return attack_container, defense_container

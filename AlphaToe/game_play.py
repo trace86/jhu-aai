@@ -358,10 +358,6 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
     move_outcome = eval_move(prev_state=previous_state, current_state=current_state, exploit_tracker=exploit_tracker,
                              launcher=launcher, debug=verbose)
 
-    # running command in docker image
-    if docker == 1:
-        cyber_move(player, move_outcome, attack, defense, verbose)
-
     if generate_data:
         fname = os.getenv("RANDOM_FOREST_3x3") if len_board == 3 else os.getenv("RANDOM_FOREST_5x5")
         helpers.write_csv(filename=fname, row=[previous_state, current_state, player, move_outcome])
@@ -370,6 +366,10 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
     if verbose:
         printBoard(board)
         print(f"\nplayer {player} move complete...\n")
+
+    # running command in docker image
+    if docker == 1:
+        cyber_move(player, move_outcome, attack, defense, verbose)
 
     winner = getWinner(board)
     return winner, board
