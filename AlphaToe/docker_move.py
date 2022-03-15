@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 from dotenv import load_dotenv
 
@@ -15,12 +16,12 @@ from dotenv import load_dotenv
 load_dotenv()
 attack = os.getenv('ATTACK')
 defense = os.getenv('DEFENSE')
-
+network_name = "adversarial"
 # In[1]:
 
 
 def run_command_to_target(source: str, target: str, command: str):
-    result = os.system(f"docker exec -ti {source} {command} {target}")
+    result = subprocess.check_output(f"docker exec -ti {source} {command} {target}", shell=True)
     return result
     
 
@@ -29,7 +30,7 @@ def run_command_to_target(source: str, target: str, command: str):
 
 def run_command_to_self(source: str, command: str):
     print(source)
-    result = os.system(f"docker exec -ti {source} {command}")
+    result = subprocess.check_output(f"docker exec -ti {source} {command}", shell=True)
     return result
 
 
@@ -46,9 +47,11 @@ def cyber_move(player, command, verbose):
 
 # %%
 def start_game_docker():
-    check_process = os.system("docker ps -a")
+    check_process = subprocess.check_output("docker ps -a", shell=True)
     if attack in check_process and defense in check_process:
         print("stopping all running containers")
-        # stop_process = os.system("docker ps -q | xargs docker stop")
+        # stop_process = subprocess.check_output("docker ps -q | xargs docker stop", shell=True)
+        # remove_network_process = subprocess.check_output(f"docker network rm {network_name}")
     print("start process...")
-    # start_process = os.system(f"docker start {attack} {defense}")
+    # start_process = subprocess.check_output(f"docker start {attack} {defense}", shell=True)
+    # network_process = subprocess.check_output(f"docker network create {network_name}")
