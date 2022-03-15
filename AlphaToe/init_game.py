@@ -5,6 +5,7 @@ import game_play as gp
 from dotenv import load_dotenv
 import random
 from datetime import datetime
+from script_launcher import ScriptLauncher
 
 sys.path.insert(1, os.getcwd())
 
@@ -34,17 +35,19 @@ def play_games(len_board=3, num_games=3):
             "exploit_initiated": False,
             "set_initiated": False
         }
+        launcher = ScriptLauncher()
         if len_board == 3:
             if human:
                 print("Running AI vs Human 3x3 game play")
                 winner, board = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
                                                verbose=verbose_output, delay=delay_output, generate_data=generate_date,
-                                               human_plays=human_player, exploit_tracker=exploit_tracker)
+                                               human_plays=human_player, exploit_tracker=exploit_tracker,
+                                               launcher=launcher)
             else:
                 print("Running AI vs AI 3x3 game play")
                 winner, board = gp.ai_vs_ai(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
                                             delay=delay_output, generate_data=generate_date,
-                                            exploit_tracker=exploit_tracker)
+                                            exploit_tracker=exploit_tracker, launcher=launcher)
             gp.printWinner(winner)
 
         elif len_board == 5:
@@ -53,12 +56,13 @@ def play_games(len_board=3, num_games=3):
                 print("Running AI vs Human 5x5 game play")
                 winner, board = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
                                                verbose=verbose_output, delay=delay_output, generate_data=generate_date,
-                                               human_plays=human_player, exploit_tracker=exploit_tracker)
+                                               human_plays=human_player, exploit_tracker=exploit_tracker,
+                                               launcher=launcher)
             else:
                 print("Running AI vs AI 5x5 game play")
                 winner, board = gp.ai_vs_ai(model_5x5, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
                                             delay=delay_output, generate_data=generate_date,
-                                            exploit_tracker=exploit_tracker)
+                                            exploit_tracker=exploit_tracker, launcher=launcher)
             gp.printWinner(winner)
 
         else:

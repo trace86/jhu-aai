@@ -1,12 +1,11 @@
 import sys
 from typing import List, Dict
 import mapping as mp
-from nmap_parser import parse_nmaprun_xml
 from dotenv import load_dotenv
 import os
 import pandas as pd
 from pprint import pprint
-import helpers
+from script_launcher import ScriptLauncher
 
 sys.path.insert(1, os.getcwd())
 
@@ -69,20 +68,10 @@ def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: Lis
 # In[22]:
 
 def eval_move(prev_state: List[List[int]], current_state: List[List[int]],
-              exploit_tracker: Dict[str, bool], debug: bool = False) -> List[str]:
+              exploit_tracker: Dict[str, bool], launcher: ScriptLauncher, debug: bool = False)-> List[str]:
     command = get_state_mapping_evaluation(prev_state, current_state, exploit_tracker, debug)
     for c in command:
-        print(f"tic-tac-toe move results in metasploit command: {metasploit[c]}")
-
-        if c == 0:
-            ports = parse_nmaprun_xml(xml_file)
-            pprint(f"port scan results: {ports}")
-        try:
-            # TODO: merge with Nawal's code
-            pass
-        except KeyError:
-            pass
-            # print(f"nawal to add command for: {metasploit[c]}")
+        launcher.launch_script(command=c)
     return [metasploit[c] for c in command]
 
 
