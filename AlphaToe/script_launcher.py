@@ -6,7 +6,11 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-
+root_path = os.getenv("ROOT_PATH")
+commands_file = os.getenv("COMMANDS_CSV")
+vulnerability_scripts_dir = os.getenv("VULNERABILITY_SCRIPTS_DIR")
+portscan_xml_file = os.getenv("PORTSCAN_XML")
+attack_ports_pk = os.getenv("ATTACK_PORTS_PK")
 
 port_mapping = {21: "ftp",
                 22: "ssh",
@@ -73,7 +77,7 @@ class ScriptLauncher:
         return outports
 
     def common(self, open_ports):
-        commands = pd.read_csv("./io/commands2.csv")
+        commands = pd.read_csv(f"{root_path}/{commands_file}")
         command_ports = commands["linked_port"].tolist()
         command_ports = sorted(list(set(command_ports)))
 
@@ -83,7 +87,7 @@ class ScriptLauncher:
 
     # currently prints the file contents, can be repurposed to run them through msfconsole
     def get_rc(self, c, script_id, step):
-        file = open("./io/vulnerability_scripts/{0}/{0}_{1}.rc".format(script_id, step), "r")
+        file = open(f"{root_path}/{vulnerability_scripts_dir}/{script_id}/{script_id}_{step}.rc", "r")
         print(file.read().splitlines())
 
     def get_command(self, c):
@@ -130,7 +134,7 @@ class ScriptLauncher:
             self.get_command(command)
 
             # parse nmap xml output
-            parsed = self.parse_nmaprun_xml("./io/nmap/portscan_out.xml")
+            parsed = self.parse_nmaprun_xml(f"{root_path}/{portscan_xml_file}")
             ports = []
 
             # get all open ports
@@ -145,24 +149,24 @@ class ScriptLauncher:
             random.shuffle(common_ports)
 
             # write open common ports to pickle file
-            with open("./io/attack_ports.pickle", "wb") as f:
+            with open(f"{root_path}/{attack_ports_pk}", "wb") as f:
                 pickle.dump(common_ports, f)
 
         # use command
         elif command == 1:
             # load open, common ports to attack
-            with open("./io/attack_ports.pickle", "rb") as f:
+            with open(f"{root_path}/{attack_ports_pk}", "rb") as f:
                 common_ports = pickle.load(f)
 
             # pick first port from list
             self.attack_port = common_ports.pop(0)
 
             # save list of ports again, without the current attack port
-            with open("./io/attack_ports.pickle", "wb") as f:
+            with open(f"{root_path}/{attack_ports_pk}", "wb") as f:
                 pickle.dump(common_ports, f)
 
             # get services to attack from commands db, find available attacks for port intended to attack
-            valid_attacks = pd.read_csv("./io/commands2.csv")
+            valid_attacks = pd.read_csv(f"{root_path}/{commands_file}")
             attacks_for_current_port = valid_attacks[valid_attacks["linked_port"] == self.attack_port]
 
             # of the possible attacks to mount given the current port, pick 1 at random and get corresponding process on port
