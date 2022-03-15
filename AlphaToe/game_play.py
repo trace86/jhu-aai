@@ -359,7 +359,7 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
                              launcher=launcher, debug=verbose)
 
     # running command in docker image
-    if docker == 1:
+    if launcher == 1:
         run_command_to_target(attack, defense, "ping -c 5")
 
     if generate_data:
