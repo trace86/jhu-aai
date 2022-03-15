@@ -48,6 +48,11 @@ id_port_mapping = {0: 21,
 
 
 class ScriptLauncher:
+    def __init__(self):
+        self.current_attack_id = 0
+        self.attack_port = ""
+        self.attacked_process = ""
+
     def parse_nmaprun_xml(self, fname):
         xml_tree = ET.parse(fname)
         root = xml_tree.getroot()
