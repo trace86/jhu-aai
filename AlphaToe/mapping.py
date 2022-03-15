@@ -4,7 +4,7 @@
 # In[1]:
 
 
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 
 from helpers import read_file, write_file
 
@@ -566,10 +566,9 @@ assert is_first_move(i=1, j=0, matrix=board3_2, symbol=1) == False
 # In[18]:
 
 
-def eval_attacker_3x3(i: int, j: int, matrix: List[List[int]], exploit_file: str, debug: bool) -> List[int]:
+def eval_attacker_3x3(i: int, j: int, matrix: List[List[int]], exploit_tracker: Dict[str, bool], debug: bool) -> List[int]:
     symbol = 1
     if is_first_move(i, j, matrix, symbol=symbol):
-        # save scanned ports to a list
         if debug: print("port scan")
         return [0]
     if not eval_player_move(i, j, matrix, num_neighbors=1, symbol=symbol):
@@ -578,17 +577,16 @@ def eval_attacker_3x3(i: int, j: int, matrix: List[List[int]], exploit_file: str
     if eval_player_move(i, j, matrix, num_neighbors=2, symbol=symbol) or check_move_made_inbetween_two_moves(i, j,
                                                                                                              matrix,
                                                                                                              symbol):
-        if read_file(exploit_file) == "exploit initiated":
+        if exploit_tracker["exploit_initiated"]:
             print("run exploit -- game over, attacker wins!")
             return [3]
         if debug: print("exploit initiated and parameters set, run exploit -- game over, attacker wins!")
         return [1, 2, 3]
     if eval_player_move(i, j, matrix, num_neighbors=1, symbol=symbol):
-        if read_file(exploit_file) == "exploit initiated":
+        if exploit_tracker["exploit_initiated"]:
             if debug: print("NOP -- exploit already in progress")
             return [6]
-        write_file(exploit_file, "exploit initiated")
-        # retrieve command based on port from a list of ports and command from db of commands
+        exploit_tracker["exploit_initiated"] = True
         if debug: print("exploit initiated and parameters set")
         return [1, 2]
     if debug: print("NOP")
@@ -613,17 +611,17 @@ def eval_attacker_3x3(i: int, j: int, matrix: List[List[int]], exploit_file: str
 # In[19]:
 
 
-def eval_defender_3x3(i: int, j: int, matrix: List[List[int]], exploit_file: str, debug: bool) -> List[int]:
+def eval_defender_3x3(i: int, j: int, matrix: List[List[int]], exploit_tracker: Dict[str, bool], debug: bool) -> List[int]:
     if not any([eval_player_move(i, j, matrix, num_neighbors=1, symbol=2),
                 eval_player_move(i, j, matrix, num_neighbors=1, symbol=1)]):
         if debug: print("NOP")
         return [6]
     if eval_player_move(i, j, matrix, num_neighbors=2, symbol=2) or check_move_made_inbetween_two_moves(i, j, matrix, symbol=2):
-        write_file(exploit_file, "")
+        exploit_tracker["exploit_initiated"] = False
         if debug: print("kill daemon -- defender wins!")
         return [5]
     if eval_player_move(i, j, matrix, num_neighbors=2, symbol=1) or check_move_made_inbetween_two_moves(i, j, matrix, symbol=1):
-        write_file(exploit_file, "")
+        exploit_tracker["exploit_initiated"] = False
         if debug: print("defender blocks attacker -- kill process")
         return [4]
     if debug: print("NOP")
@@ -650,26 +648,26 @@ def eval_defender_3x3(i: int, j: int, matrix: List[List[int]], exploit_file: str
 # In[20]:
 
 
-def eval_defender_5x5(i: int, j: int, matrix: List[List[int]], exploit_file: str, set_file: str, debug: bool) -> List[
+def eval_defender_5x5(i: int, j: int, matrix: List[List[int]], exploit_tracker: Dict[str, bool], debug: bool) -> List[
     int]:
     if not any([eval_player_move(i, j, matrix, num_neighbors=1, symbol=2),
                 eval_player_move(i, j, matrix, num_neighbors=1, symbol=1)]):
-        if debug: print("NOP")
+        if debug: print("NOP -- no moves near current move")
         return [6]
     if eval_player_move(i, j, matrix, num_neighbors=3, symbol=2) or check_move_made_inbetween_three_moves(i, j, matrix, symbol=2):
-        write_file(exploit_file, "")
-        write_file(set_file, "")
+        exploit_tracker["exploit_initiated"] = False
+        exploit_tracker["set_initiated"] = False
         if debug: print("kill daemon -- defender wins!")
         return [5]
     if eval_player_move(i, j, matrix, num_neighbors=3, symbol=1) or check_move_made_inbetween_three_moves(i, j, matrix,
                                                                                                           symbol=1):
-        write_file(exploit_file, "")
-        write_file(set_file, "")
+        exploit_tracker["exploit_initiated"] = False
+        exploit_tracker["set_initiated"] = False
         if debug: print("defender blocks move -- kill process")
         return [4]
     if eval_player_move(i, j, matrix, num_neighbors=2, symbol=1) or check_move_made_inbetween_two_moves(i, j, matrix, symbol=1):
-        write_file(exploit_file, "")
-        write_file(set_file, "")
+        exploit_tracker["exploit_initiated"] = False
+        exploit_tracker["set_initiated"] = False
         if debug: print("defender blocks attacker -- kill process")
         return [4]
     if debug: print("NOP")
@@ -697,20 +695,19 @@ def eval_defender_5x5(i: int, j: int, matrix: List[List[int]], exploit_file: str
 # In[21]:
 
 
-def eval_attacker_5x5(i: int, j: int, matrix: List[List[int]], exploit_file: str, set_file: str, debug: bool) -> List[
+def eval_attacker_5x5(i: int, j: int, matrix: List[List[int]], exploit_tracker: Dict[str, bool], debug: bool) -> List[
     int]:
     symbol = 1
     if is_first_move(i, j, matrix, symbol=symbol):
-        # save scanned ports to a list
         if debug: print("port scan")
         return [0]
     if not eval_player_move(i, j, matrix, num_neighbors=1, symbol=symbol):
-        if debug: print("NOP")
+        if debug: print("NOP -- no other moves around this move")
         return [6]
     if eval_player_move(i, j, matrix, num_neighbors=3, symbol=symbol) or check_move_made_inbetween_three_moves(i, j,
                                                                                                                matrix,
                                                                                                                symbol):
-        if read_file(set_file) == "parameters set":
+        if exploit_tracker["set_initiated"]:
             if debug: print("run exploit -- game over, attacker wins!")
             return [3]
         if debug: print("set parameters, run exploit -- game over, attacker wins!")
@@ -718,22 +715,22 @@ def eval_attacker_5x5(i: int, j: int, matrix: List[List[int]], exploit_file: str
     if eval_player_move(i, j, matrix, num_neighbors=2, symbol=symbol) or check_move_made_inbetween_two_moves(i, j,
                                                                                                              matrix,
                                                                                                              symbol):
-        if read_file(exploit_file) == "exploit initiated":
-            if read_file(set_file) == "parameter set":
+        if exploit_tracker["exploit_initiated"]:
+            if exploit_tracker["set_initiated"]:
                 if debug: print("NOP -- parameters already set")
                 return [6]
-            write_file(set_file, "parameters set")
+            exploit_tracker["set_initiated"] = True
             if debug: print("parameters set")
             return [2]
-        write_file(exploit_file, "exploit initiated")
-        write_file(set_file, "parameters set")
+        exploit_tracker["exploit_initiated"] = True
+        exploit_tracker["set_initiated"] = True
         if debug: print("init exploit, parameters set")
         return [1, 2]
     if eval_player_move(i, j, matrix, num_neighbors=1, symbol=symbol):
-        if read_file(exploit_file) == "exploit initiated":
+        if exploit_tracker["exploit_initiated"]:
             if debug: print("NOP -- exploit already in progress")
             return [6]
-        write_file(exploit_file, "exploit initiated")
+        exploit_tracker["exploit_initiated"] = True
         if debug: print("exploit initiated")
         return [1]
     if debug: print("NOP")

@@ -1,13 +1,11 @@
-import os
 import sys
-from typing import List
+from typing import List, Dict
 import mapping as mp
-from nmap_parser import parse_nmaprun_xml
 from dotenv import load_dotenv
 import os
 import pandas as pd
 from pprint import pprint
-import helpers
+from script_launcher import ScriptLauncher
 
 sys.path.insert(1, os.getcwd())
 
@@ -27,11 +25,6 @@ metasploit = {
 }
 
 
-def show_intention(attack_id, attacks=pd.read_csv(commands_csv)):
-    print(f"using vulnerability/exploit: {attacks.iloc[attack_id]['exploit_name']} "
-          f"(linked port {attacks.iloc[attack_id]['linked_port']})")
-
-
 # ## get_state_mapping_evaluation
 #
 # Main method for the graph traversal program. Takes in a previous and current state and returns the action performed in the cyber realm.
@@ -41,29 +34,23 @@ def show_intention(attack_id, attacks=pd.read_csv(commands_csv)):
 #
 # **returns**: List[int].
 
-def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: List[List[int]], debug: bool = False):
-    # exploit_file_3x3 = "exploit_3x3"
-    # exploit_file_5x5 = "exploit_5x5"
-    # set_file_5x5 = "set_5x5"
-    exploit_file_3x3 = os.getenv('EXPLOIT_3x3')
-    exploit_file_5x5 = os.getenv('EXPLOIT_5x5')
-    set_file_5x5 = os.getenv('SET_5x5')
-    helpers.write_logging_files(exploit_file_3x3, exploit_file_5x5, set_file_5x5)
+def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: List[List[int]],
+                                 exploit_tracker: Dict[str, bool], debug: bool = False):
     move = mp.get_latest_move(prev_state, current_state)
     i = move[0]
     j = move[1]
     if current_state[i][j] == 1:  # attacker
         if debug: print("attacker move")
         if len(current_state) == 3:
-            command = mp.eval_attacker_3x3(i, j, current_state, exploit_file_3x3, debug)
+            command = mp.eval_attacker_3x3(i, j, current_state, exploit_tracker, debug)
         if len(current_state) == 5:
-            command = mp.eval_attacker_5x5(i, j, current_state, exploit_file_5x5, set_file_5x5, debug)
+            command = mp.eval_attacker_5x5(i, j, current_state, exploit_tracker, debug)
     elif current_state[i][j] == 2:  # defender
         if debug: print("defender move")
         if len(current_state) == 3:
-            command = mp.eval_defender_3x3(i, j, current_state, exploit_file_5x5, debug)
+            command = mp.eval_defender_3x3(i, j, current_state, exploit_tracker, debug)
         if len(current_state) == 5:
-            command = mp.eval_defender_5x5(i, j, current_state, exploit_file_5x5, set_file_5x5, debug)
+            command = mp.eval_defender_5x5(i, j, current_state, exploit_tracker, debug)
     else:
         raise ValueError(f"unexpected game value: ({i}, {j})")  # ruh roh
     return command
@@ -80,20 +67,11 @@ def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: Lis
 
 # In[22]:
 
-def eval_move(prev_state: List[List[int]], current_state: List[List[int]], attack_id: int = 0000,
-              debug: bool = False) -> List[str]:
-    command = get_state_mapping_evaluation(prev_state, current_state, debug)
+def eval_move(prev_state: List[List[int]], current_state: List[List[int]],
+              exploit_tracker: Dict[str, bool], launcher: ScriptLauncher, debug: bool = False)-> List[str]:
+    command = get_state_mapping_evaluation(prev_state, current_state, exploit_tracker, debug)
     for c in command:
-        print(f"tic-tac-toe move results in metasploit command: {metasploit[c]}")
-
-        if c == 0:
-            ports = parse_nmaprun_xml(xml_file)
-            pprint(f"port scan results: {ports}")
-        try:
-            attacks.iloc[attack_id][metasploit[c]]
-        except KeyError:
-            pass
-            # print(f"nawal to add command for: {metasploit[c]}")
+        launcher.launch_script(command=c)
     return [metasploit[c] for c in command]
 
 
