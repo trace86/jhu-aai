@@ -31,3 +31,10 @@ def run_command_to_self(source: str, command: str):
     print(source)
     result = os.system(f"docker exec -ti {source} {command}")
     print("command ran to self with result ", result)
+
+# %%
+def cyber_move(player, command):
+    if player == 1:
+        run_command_to_target(attack, defense, command)
+    elif player == 2:
+        run_command_to_self(attack, command)

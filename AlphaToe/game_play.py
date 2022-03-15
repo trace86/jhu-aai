@@ -13,7 +13,7 @@ from keras.utils.np_utils import to_categorical
 
 import helpers
 from game_eval import eval_move
-from docker_move import run_command_to_target, run_command_to_self
+from docker_move import cyber_move
 
 attack = os.getenv('ATTACK')
 defense = os.getenv('DEFENSE')
@@ -360,7 +360,7 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
 
     # running command in docker image
     if docker == 1:
-        run_command_to_target(attack, defense, "ping -c 5")
+        cyber_move(player, move_outcome)
 
     if generate_data:
         fname = os.getenv("RANDOM_FOREST_3x3") if len_board == 3 else os.getenv("RANDOM_FOREST_5x5")
