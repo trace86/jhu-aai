@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 import random
 from datetime import datetime
 from script_launcher import ScriptLauncher
+from docker_move import start_game_docker
 
 sys.path.insert(1, os.getcwd())
 
@@ -26,6 +27,8 @@ def play_games(len_board=3, num_games=3):
     model_3x3 = keras.models.load_model("AlphaToe3")
     model_5x5 = keras.models.load_model("AlphaToe5")
     print("Loaded Keras models.")
+
+    start_game_docker()
 
     for i in range(1, num_games + 1):
         print(f"\nplaying game {i} of {num_games}...")

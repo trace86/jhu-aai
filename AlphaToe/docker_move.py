@@ -20,9 +20,9 @@ defense = os.getenv('DEFENSE')
 
 
 def run_command_to_target(source: str, target: str, command: str):
-    print(source, target)
     result = os.system(f"docker exec -ti {source} {command} {target}")
-    print("command ran to target complete ", result)
+    return result
+    
 
 # %%
 
@@ -30,11 +30,25 @@ def run_command_to_target(source: str, target: str, command: str):
 def run_command_to_self(source: str, command: str):
     print(source)
     result = os.system(f"docker exec -ti {source} {command}")
-    print("command ran to self with result ", result)
+    return result
+
 
 # %%
-def cyber_move(player, command):
+def cyber_move(player, command, verbose):
     if player == 1:
-        run_command_to_target(attack, defense, command)
+        result = run_command_to_target(attack, defense, command)
+        if verbose:
+            print("command ran to target complete ", result)
     elif player == 2:
-        run_command_to_self(attack, command)
+        result = run_command_to_self(defense, command)
+        if verbose:
+            print("command ran to self with result ", result)
+
+# %%
+def start_game_docker():
+    check_process = os.system("docker ps -a")
+    if attack in check_process and defense in check_process:
+        print("stopping all running containers")
+        # stop_process = os.system("docker ps -q | xargs docker stop")
+    print("start process...")
+    # start_process = os.system(f"docker start {attack} {defense}")

@@ -360,7 +360,7 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
 
     # running command in docker image
     if docker == 1:
-        cyber_move(player, move_outcome)
+        cyber_move(player, move_outcome, verbose)
 
     if generate_data:
         fname = os.getenv("RANDOM_FOREST_3x3") if len_board == 3 else os.getenv("RANDOM_FOREST_5x5")
