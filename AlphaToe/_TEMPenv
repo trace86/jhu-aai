@@ -2,7 +2,9 @@
 PORTSCAN_XML="nmap/portscan_out.xml"
 ATTACK_PORTS_PK = "attack_ports/attack_ports.pickle"
 COMMANDS_CSV="vulnerability_execute/commands2.csv"
-VULNERABILITY_SCRIPTS_DIR = "vulnerability_scripts"#ROOT_PATH = "/opt/capstone/jhu-aai/AlphaToe/io"
+VULNERABILITY_SCRIPTS_DIR = "vulnerability_scripts"
+ROOT_PATH = "/Users/safr/School/AdversarialAI/jhu-aai/jhu-aai/AlphaToe/io"
+#ROOT_PATH = "/opt/capstone/jhu-aai/AlphaToe/io"
 RANDOM_FOREST_5x5 = "random_forest/rf_5x5.csv"
 RANDOM_FOREST_3x3 = "random_forest/rf_3x3.csv"
 # Game Parameters
@@ -13,7 +15,11 @@ AI_VS_HUMAN=0 # python-dotenv does not parse boolean, so 1 == True and 0 == Fals
 HUMAN_PLAYS=2 # 1 == ATTACK(X), 2 == DEFENSE(O)
 NUMBER_OF_GAMES=3
 LENGTH_OF_BOARD=3
+# Chaos Agent
+ATTACKER_SKILL_LEVEL=3 # ranges from 0 (state backed hacker) to 5
+DEFENDER_SKILL_LEVEL=3
+# Docker
 ATTACK="kali-everything"
 DEFENSE="metasploitable2"
-DOCKER=1
+DOCKER=0 # python-dotenv does not parse boolean, so 1 == True and 0 == False
 

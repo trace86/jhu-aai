@@ -14,6 +14,7 @@ from keras.utils.np_utils import to_categorical
 import helpers
 from game_eval import eval_move
 from docker_move import run_command_to_target, run_command_to_self
+import chaos_agent
 
 attack = os.getenv('ATTACK')
 defense = os.getenv('DEFENSE')
@@ -342,7 +343,7 @@ def get_human_player_move(player, len_board):
 
 
 def get_player_move(model, rnd, board, len_board, player, verbose, generate_data, human, exploit_tracker,
-                    launcher, docker):
+                    launcher, docker, attacker_skill, defender_skill):
   
     previous_state = copy.deepcopy(board)
     if human:
@@ -352,11 +353,18 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
         move = bestMove(board=board, model=model, player=player, rnd=rnd)
         print(f"AI player {player}'s move: {move}")
 
-    board[move[0]][move[1]] = int(player)
-    current_state = copy.deepcopy(board)
+    if chaos_agent.is_time_for_chaos(player=player, attacker_skill_level=attacker_skill,
+                                     defender_skill_level= defender_skill):
+        chaos_board = chaos_agent.implement_chaos(player, copy.deepcopy(board), move, attacker_skill, defender_skill)
+        print(f"⚠ Chaos Agent initiated for player {player}. Board changed to {chaos_board} ⚠")
+        current_state = copy.deepcopy(chaos_board)
+        move_outcome = []
+    else:
+        board[move[0]][move[1]] = int(player)
+        current_state = copy.deepcopy(board)
 
-    move_outcome = eval_move(prev_state=previous_state, current_state=current_state, exploit_tracker=exploit_tracker,
-                             launcher=launcher, debug=verbose)
+        move_outcome = eval_move(prev_state=previous_state, current_state=current_state, exploit_tracker=exploit_tracker,
+                                 launcher=launcher, debug=verbose)
 
     # running command in docker image
     if docker == 1:
@@ -388,7 +396,8 @@ Outputs: winner - integer to indicate the winner (1 or 2) or a tie (0)
 """
 
 
-def ai_vs_ai(model, rnd1, rnd2, len_board, verbose, delay, generate_data, exploit_tracker, launcher, docker):
+def ai_vs_ai(model, rnd1, rnd2, len_board, verbose, delay, generate_data, exploit_tracker, launcher, docker,
+             attacker_skill, defender_skill):
     # initialize board, winner variable, and numpy array of board
     board = initBoard(len_board)
     winner = getWinner(board)
@@ -397,13 +406,15 @@ def ai_vs_ai(model, rnd1, rnd2, len_board, verbose, delay, generate_data, exploi
     while winner == -1:
         winner, board = get_player_move(model, rnd1, board=board, len_board=len_board, player=1, verbose=verbose,
                                         generate_data=generate_data, human=False, exploit_tracker=exploit_tracker,
-                                        launcher=launcher, docker=docker)
+                                        launcher=launcher, docker=docker, attacker_skill=attacker_skill,
+                                        defender_skill=defender_skill)
         if delay: time.sleep(3)
         # if no winner or tie, player 2's turn
         if winner == -1:
             winner, board = get_player_move(model, rnd2, board=board, len_board=len_board, player=2, verbose=verbose,
                                             generate_data=generate_data, human=False, exploit_tracker=exploit_tracker,
-                                            launcher=launcher, docker=docker)
+                                            launcher=launcher, docker=docker, attacker_skill=attacker_skill,
+                                            defender_skill=defender_skill)
             if delay: time.sleep(3)
         else:
             # if there is a winner or player 1 has tied the game, return data
@@ -411,8 +422,8 @@ def ai_vs_ai(model, rnd1, rnd2, len_board, verbose, delay, generate_data, exploi
     return winner, np.array(board)
 
 
-
-def ai_vs_human(model, rnd1, rnd2, len_board, verbose, delay, generate_data, human_plays, exploit_tracker, launcher, docker):
+def ai_vs_human(model, rnd1, rnd2, len_board, verbose, delay, generate_data, human_plays, exploit_tracker, launcher,
+                docker, attacker_skill, defender_skill):
     # initialize board, winner variable, and numpy array of board
     board = initBoard(len_board)
     winner = getWinner(board)
@@ -421,7 +432,8 @@ def ai_vs_human(model, rnd1, rnd2, len_board, verbose, delay, generate_data, hum
     while winner == -1:
         winner, board = get_player_move(model, rnd1, board=board, len_board=len_board, player=1, verbose=verbose,
                                         generate_data=generate_data, human=True if human_plays == 1 else False,
-                                        exploit_tracker=exploit_tracker, launcher=launcher, docker=docker)
+                                        exploit_tracker=exploit_tracker, launcher=launcher, docker=docker,
+                                        attacker_skill=attacker_skill, defender_skill=defender_skill)
 
         if delay: time.sleep(3)
         # if no winner or tie, player 2's turn
@@ -429,7 +441,8 @@ def ai_vs_human(model, rnd1, rnd2, len_board, verbose, delay, generate_data, hum
             winner, board = get_player_move(model, rnd2, board=board, len_board=len_board, player=2,
                                             verbose=verbose, generate_data=generate_data,
                                             human=True if human_plays == 2 else False, exploit_tracker=exploit_tracker,
-                                            launcher=launcher, docker=docker)
+                                            launcher=launcher, docker=docker, attacker_skill=attacker_skill,
+                                            defender_skill=defender_skill)
             if delay: time.sleep(3)
         else:
             # if there is a winner or player 1 has tied the game, return data
