@@ -19,8 +19,8 @@ ATTACK_PORTS_PK = "attack_ports/attack_ports.pickle"
 COMMANDS_CSV="vulnerability_execute/commands2.csv"
 VULNERABILITY_SCRIPTS_DIR = "vulnerability_scripts"
 ROOT_PATH = "/opt/capstone/jhu-aai/aTac/io"
-RANDOM_FOREST_5x5 = "random_forest/rf_5x5.csv"
-RANDOM_FOREST_3x3 = "random_forest/rf_3x3.csv"
+GAMEPLAY_5x5 = "gameplay/output_5x5.csv"
+GAMEPLAY_3x3 = "gameplay/output_3x3.csv"
 # Game Parameters
 OUTPUT_DELAY=1  # python-dotenv does not parse boolean, so 1 == True and 0 == False
 GENERATE_DATA=0 # python-dotenv does not parse boolean, so 1 == True and 0 == False
