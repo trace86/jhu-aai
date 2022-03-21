@@ -364,7 +364,7 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
         current_state = copy.deepcopy(board)
 
         move_outcome = eval_move(prev_state=previous_state, current_state=current_state, exploit_tracker=exploit_tracker,
-                                 launcher=launcher, debug=verbose)
+                                 launcher=launcher, defender_skill_level=defender_skill, debug=verbose)
 
     # running command in docker image
     if docker == 1:

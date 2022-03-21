@@ -126,7 +126,14 @@ class ScriptLauncher:
             elif c == 5:
                 print("Kill daemon")
 
-    def launch_script(self, command):
+    def launch_script(self, command, defender_skill_level):
+        num_ports_open = {
+            5: random.randint(0, 3),
+            4: 3,
+            3: 7,
+            2: 11,
+            1: 13
+        }
         print("\nLaunch script process commenced:")
         # scan command
         if command == 0:
@@ -147,6 +154,9 @@ class ScriptLauncher:
             # shuffle open, common ports
             # this is done so that the attacker picks a random port to attack when starting out
             random.shuffle(common_ports)
+            # number of ports to return based on the defender skill level
+            common_ports = common_ports[: num_ports_open[defender_skill_level]]
+            print(f"{len(common_ports)} open ports on target system: {common_ports}")
 
             # write open common ports to pickle file
             with open(f"{root_path}/{attack_ports_pk}", "wb") as f:
