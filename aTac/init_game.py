@@ -1,4 +1,5 @@
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import sys
 import keras
 import game_play as gp
@@ -6,6 +7,7 @@ from dotenv import load_dotenv
 import random
 from datetime import datetime
 from script_launcher import ScriptLauncher
+from docker_move import start_game_docker, end_game_docker
 
 sys.path.insert(1, os.getcwd())
 
@@ -79,3 +81,4 @@ def play_games(len_board=3, num_games=3):
 
 
 play_games(num_games=num_games, len_board=len_board)
+end_game_docker()
