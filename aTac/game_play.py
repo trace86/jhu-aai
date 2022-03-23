@@ -345,6 +345,7 @@ def get_human_player_move(player, len_board):
 
 def get_player_move(model, rnd, board, len_board, player, verbose, generate_data, human, exploit_tracker,
                     launcher, docker, attack, defense, attacker_skill, defender_skill):
+
   
     previous_state = copy.deepcopy(board)
     if human:
@@ -412,6 +413,7 @@ def ai_vs_ai(model, rnd1, rnd2, len_board, verbose, delay, generate_data, exploi
                                         generate_data=generate_data, human=False, exploit_tracker=exploit_tracker,
                                         launcher=launcher, docker=docker, attack=attack, defense=defense,
                                         attacker_skill=attacker_skill, defender_skill=defender_skill)
+
         if delay: time.sleep(3)
         # if no winner or tie, player 2's turn
         if winner == -1:
@@ -419,6 +421,7 @@ def ai_vs_ai(model, rnd1, rnd2, len_board, verbose, delay, generate_data, exploi
                                             generate_data=generate_data, human=False, exploit_tracker=exploit_tracker,
                                             launcher=launcher, docker=docker, attack=attack, defense=defense,
                                             attacker_skill=attacker_skill, defender_skill=defender_skill)
+
             if delay: time.sleep(3)
         else:
             # if there is a winner or player 1 has tied the game, return data
