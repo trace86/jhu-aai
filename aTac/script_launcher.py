@@ -129,10 +129,11 @@ class ScriptLauncher:
     def launch_script(self, command, defender_skill_level):
         num_ports_open = {
             5: random.randint(0, 3),
-            4: 3,
+            4: 4,
             3: 7,
             2: 11,
-            1: 13
+            1: 12,
+            0: 13
         }
         print("\nLaunch script process commenced:")
         # scan command
