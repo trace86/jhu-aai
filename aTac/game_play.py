@@ -402,7 +402,7 @@ def ai_vs_ai(model, rnd1, rnd2, len_board, verbose, delay, generate_data, exploi
              attacker_skill, defender_skill):
     # initialize board, winner variable, and numpy array of board
 
-    attack, defense = start_game_docker()
+    attack, defense = start_game_docker(docker)
 
     board = initBoard(len_board)
     winner = getWinner(board)
@@ -433,7 +433,8 @@ def ai_vs_human(model, rnd1, rnd2, len_board, verbose, delay, generate_data, hum
                 docker, attacker_skill, defender_skill):
     # initialize board, winner variable, and numpy array of board
 
-    attack, defense = start_game_docker()
+    if docker == 1:
+        attack, defense = start_game_docker()
 
     board = initBoard(len_board)
     winner = getWinner(board)

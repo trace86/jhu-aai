@@ -71,7 +71,9 @@ def cyber_move(player, command, attack, defense, verbose):
             print("command ran to self with result ", result)
 
 # %%
-def start_game_docker():
+def start_game_docker(docker):
+    if docker != 1:
+        return "attack", "defense"
     print("stopping existing containers...")
     for container in client.containers.list():
         container.stop()
