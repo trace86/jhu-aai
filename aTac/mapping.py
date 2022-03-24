@@ -707,11 +707,18 @@ def eval_attacker_5x5(i: int, j: int, matrix: List[List[int]], exploit_tracker: 
     if eval_player_move(i, j, matrix, num_neighbors=3, symbol=symbol) or check_move_made_inbetween_three_moves(i, j,
                                                                                                                matrix,
                                                                                                                symbol):
-        if exploit_tracker["set_initiated"]:
+        if exploit_tracker["exploit_initiated"] and exploit_tracker["set_initiated"]:
             if debug: print("run exploit -- game over, attacker wins!")
             return [3]
-        if debug: print("set parameters, run exploit -- game over, attacker wins!")
-        return [2, 3]
+        if exploit_tracker["exploit_initiated"] and not exploit_tracker["set_initiated"]:
+            exploit_tracker["set_parameters"] = True
+            if debug: print("set parameters, run exploit -- game over, attacker wins!")
+            return [2, 3]
+        if not exploit_tracker["exploit_initiated"] and not exploit_tracker["set_initiated"]:
+            exploit_tracker["exploit_initiated"] = True
+            exploit_tracker["set_initiated"] = True
+            if debug: print("use exploit, set parameters, run exploit -- game over, attacker wins!")
+            return [1, 2, 3]
     if eval_player_move(i, j, matrix, num_neighbors=2, symbol=symbol) or check_move_made_inbetween_two_moves(i, j,
                                                                                                              matrix,
                                                                                                              symbol):
