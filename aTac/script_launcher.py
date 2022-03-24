@@ -11,6 +11,8 @@ commands_file = os.getenv("COMMANDS_CSV")
 vulnerability_scripts_dir = os.getenv("VULNERABILITY_SCRIPTS_DIR")
 portscan_xml_file = os.getenv("PORTSCAN_XML")
 attack_ports_pk = os.getenv("ATTACK_PORTS_PK")
+attacker = os.getenv("ATTACK")
+defender = os.getenv("DEFENSE")
 
 port_mapping = {21: "ftp",
                 22: "ssh",
@@ -96,6 +98,7 @@ class ScriptLauncher:
             # use os or subprocess library to launch scripts?
             print("Port scan on target machine using Nmap...")
             print("./nmap.sh")
+            print(f"nmap -v -A -sV {defender}")
 
         else:
             if self.current_attack_id < 10:
