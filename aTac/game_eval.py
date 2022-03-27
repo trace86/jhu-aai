@@ -69,13 +69,12 @@ def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: Lis
 
 def eval_move(prev_state: List[List[int]], current_state: List[List[int]],
               exploit_tracker: Dict[str, bool], launcher: ScriptLauncher,
-              defender_skill_level: int, debug: bool = False)-> List[str]:
+              defender_skill_level: int, attack_container, defense_container, docker: int, debug: bool = False, )-> List[str]:
     command = get_state_mapping_evaluation(prev_state, current_state, exploit_tracker, debug)
     for c in command:
         try:
-            launcher.launch_script(command=c, defender_skill_level=defender_skill_level)
+            launcher.launch_script(command=c, defender_skill_level=defender_skill_level, attack=attack_container, defense=defense_container, docker=docker, verbose=debug)
         except IndexError:  # popping from an empty list, i.e. no open ports
-            launcher.launch_script(command=0, defender_skill_level=defender_skill_level)
+            launcher.launch_script(command=0, defender_skill_level=defender_skill_level, attack=attack_container, defense=defense_container, docker=docker, verbose=debug)
             return[metasploit[0]]
     return [metasploit[c] for c in command]
-
