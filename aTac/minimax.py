@@ -4,7 +4,7 @@ from math import inf
 import game_play
 from game_play import getWinner, getMoves
 
-
+# based on: https://github.com/Cledersonbc/tic-tac-toe-minimax
 def minimax(board, depth, player, is_maximizing_player, initial_player):
     if is_maximizing_player:
         best_move = [-1, -1, -inf]
