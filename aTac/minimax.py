@@ -45,7 +45,7 @@ board_5x5 = [
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0]
 ]
-m = minimax(board_5x5, 5, player=1, is_maximizing_player=True, initial_player=1)
+m = minimax(board_5x5, 3, player=1, is_maximizing_player=True, initial_player=1)
 print(m)
 
 b = board_5x5
