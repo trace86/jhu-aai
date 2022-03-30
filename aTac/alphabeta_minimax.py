@@ -41,8 +41,6 @@ def ab_minimax(board, depth, player, is_maximizing_player, initial_player, alpha
             board[i][j] = 0
             score[0], score[1] = i, j
             best_val = score if score[2] < best_val[2] else best_val
-            if best_val[2] < beta[2]:
-                beta = best_val
             beta = best_val if best_val[2] < beta[2] else beta
             if beta[2] <= alpha[2]:
                 break
