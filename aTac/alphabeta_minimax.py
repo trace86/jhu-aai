@@ -1,12 +1,11 @@
 from copy import deepcopy
 from math import inf
 
-import game_play
-from game_play import getWinner, getMoves
+import game_play as gp
 
 
 def ab_minimax(board, depth, player, is_maximizing_player, initial_player, alpha, beta):
-    who_won = getWinner(board)
+    who_won = gp.getWinner(board)
     if depth == 0 or who_won != -1:
         if (who_won == 1 or who_won == 2) and who_won == initial_player:
             score = 10 + depth
@@ -18,7 +17,7 @@ def ab_minimax(board, depth, player, is_maximizing_player, initial_player, alpha
 
     if is_maximizing_player:
         best_val = [-1, -1, -inf]
-        for cell in getMoves(board):
+        for cell in gp.getMoves(board):
             i, j = cell[0], cell[1]
             board[i][j] = player
             score = ab_minimax(deepcopy(board), deepcopy(depth)-1, 2 if deepcopy(player) == 1 else 1, False,
@@ -33,7 +32,7 @@ def ab_minimax(board, depth, player, is_maximizing_player, initial_player, alpha
 
     else:
         best_val = [-1, -1, inf]
-        for cell in getMoves(board):
+        for cell in gp.getMoves(board):
             i, j = cell[0], cell[1]
             board[i][j] = player
             score = ab_minimax(deepcopy(board), deepcopy(depth)-1, 2 if deepcopy(player) == 1 else 1, True,
@@ -45,19 +44,3 @@ def ab_minimax(board, depth, player, is_maximizing_player, initial_player, alpha
             if beta[2] <= alpha[2]:
                 break
         return best_val
-
-
-board_5x5 = [
-    [1, 2, 0, 0, 0],
-    [1, 2, 0, 0, 0],
-    [0, 2, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0]
-]
-m = ab_minimax(board_5x5, 6, player=1, is_maximizing_player=True, initial_player=1,
-               alpha=[-1, -1, -inf], beta=[-1, -1, inf])
-print(m)
-
-b = board_5x5
-b[m[0]][m[1]] = 1
-game_play.printBoard(b)

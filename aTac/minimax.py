@@ -36,18 +36,3 @@ def minimax(board, depth, player, is_maximizing_player, initial_player):
                 best_move = score
 
     return best_move
-
-
-board_5x5 = [
-    [1, 2, 0, 0, 0],
-    [1, 2, 0, 0, 0],
-    [0, 2, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0]
-]
-m = minimax(board_5x5, 3, player=1, is_maximizing_player=True, initial_player=1)
-print(m)
-
-b = board_5x5
-b[m[0]][m[1]] = 1
-game_play.printBoard(b)

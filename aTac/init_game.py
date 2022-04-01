@@ -22,6 +22,9 @@ human = True if int(os.getenv("AI_VS_HUMAN")) == 1 else False
 human_player = int(os.getenv("HUMAN_PLAYS"))
 attacker_skill_level = int(os.getenv("ATTACKER_SKILL_LEVEL"))
 defender_skill_level = int(os.getenv("DEFENDER_SKILL_LEVEL"))
+player1_algo = str(os.getenv("PLAYER_1_ALGO"))
+player2_algo = str(os.getenv("PLAYER_2_ALGO"))
+
 
 
 def play_games(len_board=3, num_games=3):
@@ -53,7 +56,8 @@ def play_games(len_board=3, num_games=3):
                 winner, board = gp.ai_vs_ai(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
                                             delay=delay_output, generate_data=generate_date,
                                             exploit_tracker=exploit_tracker, launcher=launcher, docker=docker,
-                                            attacker_skill=attacker_skill_level, defender_skill=defender_skill_level)
+                                            attacker_skill=attacker_skill_level, defender_skill=defender_skill_level,
+                                            player1_algo=player1_algo, player2_algo=player2_algo)
 
             gp.printWinner(winner)
 
@@ -70,7 +74,8 @@ def play_games(len_board=3, num_games=3):
                 winner, board = gp.ai_vs_ai(model_5x5, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
                                             delay=delay_output, generate_data=generate_date,
                                             exploit_tracker=exploit_tracker, launcher=launcher, docker=docker,
-                                            attacker_skill=attacker_skill_level, defender_skill=defender_skill_level)
+                                            attacker_skill=attacker_skill_level, defender_skill=defender_skill_level,
+                                            player1_algo=player1_algo, player2_algo=player2_algo)
                 
             gp.printWinner(winner)
 

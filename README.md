@@ -27,11 +27,14 @@ GENERATE_DATA=0 # python-dotenv does not parse boolean, so 1 == True and 0 == Fa
 VERBOSE_OUTPUT=1 # python-dotenv does not parse boolean, so 1 == True and 0 == False
 AI_VS_HUMAN=0 # python-dotenv does not parse boolean, so 1 == True and 0 == False
 HUMAN_PLAYS=2 # 1 == ATTACK(X), 2 == DEFENSE(O)
-NUMBER_OF_GAMES=3
-LENGTH_OF_BOARD=3
+NUMBER_OF_GAMES=1
+LENGTH_OF_BOARD=5
 # Chaos Agent
-ATTACKER_SKILL_LEVEL=3 # ranges from 0 (state backed hacker) to 5
-DEFENDER_SKILL_LEVEL=3
+ATTACKER_SKILL_LEVEL=5 # ranges from 0 (low-skilled) to 5 (high-skilled)
+DEFENDER_SKILL_LEVEL=5 # ranges from 0 (low-skilled) to 5 (high-skilled)
+# Gameplay Models
+PLAYER_1_ALGO=minimax   # choice of dnn, minimax
+PLAYER_2_ALGO=minimax   # choice of dnn, minimax
 # Docker
 ATTACK="kali-everything"
 DEFENSE="metasploitable2"
