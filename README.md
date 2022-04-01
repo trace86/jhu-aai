@@ -51,11 +51,3 @@ To run code in Docker
 * Run `docker-compose up`
 * Run `docker exec -it $container_name` and `cd` to `/opt/capstone/jhu-aai/aTac` directory and run `python init_game.py`
 
-## Changelog
-3/11/2022: SK refactored code to run everything with `init_game`
-3/6/2022: added Samra's mapping into the 3x3 tic tac toe.
-
-1) All the files herein should be in the same directory.
-2) The intended vulnerability/exploit is specified in the 3x3_play.py script. Simply change the attack_id variable to the ID of the intended/vulnerability exploit (from commands.csv). Note that the commands.csv file is loaded into mapping.py and does not need to be loaded elsewhere.
-3) In mapping.py, the IP address of the target machine can be changed in the parse() function. Currently it is set to the IP address of Nawal's Metasploitable 2 image.
-4) Run 3x3_play.py

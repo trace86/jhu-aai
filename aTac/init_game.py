@@ -1,4 +1,5 @@
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import sys
 import keras
 import game_play as gp
@@ -6,6 +7,7 @@ from dotenv import load_dotenv
 import random
 from datetime import datetime
 from script_launcher import ScriptLauncher
+from docker_move import start_game_docker, end_game_docker
 
 sys.path.insert(1, os.getcwd())
 
@@ -50,7 +52,8 @@ def play_games(len_board=3, num_games=3):
                                                verbose=verbose_output, delay=delay_output, generate_data=generate_date,
                                                human_plays=human_player, exploit_tracker=exploit_tracker,
                                                launcher=launcher, docker=docker, attacker_skill=attacker_skill_level,
-                                               defender_skill=defender_skill_level)
+                                               defender_skill=defender_skill_level, player1_algo=player1_algo,
+                                               player2_algo=player2_algo)
             else:
                 print("Running AI vs AI 3x3 game play")
                 winner, board = gp.ai_vs_ai(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
@@ -68,7 +71,8 @@ def play_games(len_board=3, num_games=3):
                                                verbose=verbose_output, delay=delay_output, generate_data=generate_date,
                                                human_plays=human_player, exploit_tracker=exploit_tracker,
                                                launcher=launcher, docker=docker, attacker_skill=attacker_skill_level,
-                                               defender_skill=defender_skill_level)
+                                               defender_skill=defender_skill_level, player1_algo=player1_algo,
+                                               player2_algo=player2_algo)
             else:
                 print("Running AI vs AI 5x5 game play")
                 winner, board = gp.ai_vs_ai(model_5x5, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
@@ -84,3 +88,4 @@ def play_games(len_board=3, num_games=3):
 
 
 play_games(num_games=num_games, len_board=len_board)
+end_game_docker()

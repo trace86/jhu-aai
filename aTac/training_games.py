@@ -82,9 +82,7 @@ def gamesToWinLossData(games, len_board):
 def sim_games(num_games):
     games = []
     for i in range(num_games):
-        print(f"processing game: {i}")
         games.append(simulateGame(algo="minimax_chaos"))
-        print(f"game {i} complete")
         if i % 100000 == 0:
             print(f"simulated games: {i} at {datetime.now()}")
     return games
