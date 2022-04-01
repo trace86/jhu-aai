@@ -15,10 +15,10 @@ import helpers
 from game_eval import eval_move
 from docker_move import cyber_move, start_game_docker
 
+load_dotenv()
 attack = os.getenv('ATTACK')
 defense = os.getenv('DEFENSE')
-
-load_dotenv()
+is_docker = os.getenv("DOCKER")
 
 """
 This function initializes the empty board into a nxn list of lists of zeroes.
@@ -391,7 +391,10 @@ Outputs: winner - integer to indicate the winner (1 or 2) or a tie (0)
 def ai_vs_ai(model, rnd1, rnd2, len_board, verbose, delay, generate_data, exploit_tracker, launcher, docker):
     # initialize board, winner variable, and numpy array of board
 
-    attack, defense = start_game_docker()
+    if is_docker == 1:
+        attack, defense = start_game_docker()
+    else:
+        attack, defense = None, None
 
     board = initBoard(len_board)
     winner = getWinner(board)

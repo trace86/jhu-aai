@@ -19,7 +19,9 @@ load_dotenv()
 attack = os.getenv('ATTACK')
 defense = os.getenv('DEFENSE')
 network_name = "adversarial"
-client = docker.from_env()
+is_docker = os.getenv("DOCKER")
+if is_docker == 1:
+    client = docker.from_env()
 
 
 # In[1]:
