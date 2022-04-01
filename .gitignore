@@ -135,4 +135,4 @@ dmypy.json
 .pyre/
 
 # state mapping i/o
-AlphaToe/io/*.txt
+aTac/io/*.txt

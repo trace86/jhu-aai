@@ -1,7 +1,7 @@
 import os
 import subprocess
 import docker
-from time import sleep 
+from time import sleep
 
 from dotenv import load_dotenv
 
@@ -19,7 +19,7 @@ load_dotenv()
 attack = os.getenv('ATTACK')
 defense = os.getenv('DEFENSE')
 network_name = "adversarial"
-is_docker = os.getenv("DOCKER")
+is_docker = int(os.getenv("DOCKER"))
 if is_docker == 1:
     client = docker.from_env()
 
@@ -50,7 +50,6 @@ def run_command_to_target(source: str, target: str, command: str):
     result = source.exec_run( f"/0000.sh", stdin=True)
     result = source.exec_run( f"cat /log.txt", stdin=True)
     return result
-    
 
 # %%
 
@@ -89,6 +88,7 @@ def start_game_docker():
  
 # %%
 def end_game_docker():
+    if is_docker == 0:
+        return None
     client.containers.prune()
 
-# %%
