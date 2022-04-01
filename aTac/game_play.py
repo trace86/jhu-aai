@@ -226,8 +226,8 @@ def bestMove(board, model, player, rnd):
 
 
 # Reconstruct the board from the move list
-def movesToBoard(moves):
-    board = initBoard()
+def movesToBoard(moves, len_board):
+    board = initBoard(len_board)
     for move in moves:
         player = move[0]
         coords = move[1]
@@ -245,14 +245,14 @@ Output: print to console of W/L/D statistics
 """
 
 
-def gameStats(games, player=1):
+def gameStats(games, len_board, player=1):
     # initialize dictionary
     stats = {"win": 0, "loss": 0, "draw": 0}
 
     # iterate through each game
     for game in games:
         # get the result of the game
-        result = getWinner(movesToBoard(game))
+        result = getWinner(movesToBoard(game, len_board))
 
         # increment counters for W/L/D
         if result == -1:
