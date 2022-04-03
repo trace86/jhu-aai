@@ -391,7 +391,7 @@ Outputs: winner - integer to indicate the winner (1 or 2) or a tie (0)
 def ai_vs_ai(model, rnd1, rnd2, len_board, verbose, delay, generate_data, exploit_tracker, launcher, docker):
     # initialize board, winner variable, and numpy array of board
 
-    if is_docker == 1:
+    if docker == 1:
         attack, defense = start_game_docker()
     else:
         attack, defense = None, None
