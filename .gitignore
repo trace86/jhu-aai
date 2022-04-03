@@ -8,6 +8,9 @@ tictactoe_*
 #pickle files
 *.pickle
 
+#namp xml files
+io/nmap/*.xml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
