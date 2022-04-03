@@ -14,6 +14,7 @@ def is_time_for_chaos(player, attacker_skill_level, defender_skill_level):
     skill_level = attacker_skill_level if player == 1 else defender_skill_level
     chaos_probability = chaos_thresholds[skill_level]
     if rand >= chaos_probability:
+        print(f"random value [{rand}] >= chaos probability [{chaos_probability}]")
         return True
     return False
 

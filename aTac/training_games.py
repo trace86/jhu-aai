@@ -43,13 +43,12 @@ def simulateGame(p1=None, p2=None, rnd=0, algo="minimax", len_board=5):
             # Add the move to the history
             history.append((playerToMove, move))
         elif algo == "minimax_chaos":
-            if chaos_agent.is_time_for_chaos(playerToMove, attacker_skill_level=4, defender_skill_level=4):
+            if chaos_agent.is_time_for_chaos(playerToMove, attacker_skill_level=3, defender_skill_level=3):
                 pass
             else:
-                m = alphabeta_minimax.ab_minimax(board, 5 if len(board) == 3 else 6, playerToMove, True, playerToMove,
+                m = alphabeta_minimax.ab_minimax(board, 9 if len(board) == 3 else 6, playerToMove, True, playerToMove,
                                                  [-1, -1, -inf], [-1, -1, inf])
                 move = (m[0], m[1])
-                print(move)
                 # Make the move
                 board[move[0]][move[1]] = playerToMove
                 # Add the move to the history
@@ -82,8 +81,8 @@ def gamesToWinLossData(games, len_board):
 def sim_games(num_games):
     games = []
     for i in range(num_games):
-        games.append(simulateGame(algo="minimax_chaos"))
-        if i % 100000 == 0:
+        games.append(simulateGame(algo="minimax_chaos", len_board=3))
+        if i % 50 == 0:
             print(f"simulated games: {i} at {datetime.now()}")
     return games
 
@@ -92,9 +91,9 @@ def create_files(num_files, num_games, start):
     for j in range(start, start+num_files):
         print(f"\ncreating file num {j}\n")
         games = sim_games(num_games)
-        with open(f"io/training_5x5/5x5_60k_random_{j}.pickle", "wb") as f:
+        with open(f"io/training_3x3/3x3_skill_3_{j}.pickle", "wb") as f:
             pickle.dump(games, f)
-        gp.gameStats(games, len_board=5, player=1)
+        gp.gameStats(games, len_board=3, player=1)
 
 
-create_files(num_files=1, num_games=2, start=1)
+create_files(num_files=20, num_games=100, start=1)
