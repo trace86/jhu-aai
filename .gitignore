@@ -4,6 +4,13 @@ tictactoe/__pycache__/
 tictactoe/tictactoe_*
 
 tictactoe_*
+
+#pickle files
+*.pickle
+
+#namp xml files
+io/nmap/*.xml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -137,6 +144,15 @@ dmypy.json
 # state mapping i/o
 aTac/io/*.txt
 
+# pickle file
+aTac/io/attack_ports/*
+
+# nmpa
+aTac/io/nmap/*
+
 # training files
 aTac/io/training_3x3/*
 aTac/io/training_5x5/*
+
+# log files
+aTac/io/container_moves/*

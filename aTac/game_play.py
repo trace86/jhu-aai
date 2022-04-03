@@ -15,9 +15,11 @@ from math import inf
 import helpers
 import alphabeta_minimax
 from game_eval import eval_move
-from docker_move import cyber_move, start_game_docker
 from docker_move import run_command_to_target, run_command_to_self
 import chaos_agent
+from docker_move import cyber_move, start_game_docker
+import logging
+
 
 load_dotenv()
 attack = os.getenv('ATTACK')
@@ -368,6 +370,7 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
                                      defender_skill_level= defender_skill):
         chaos_board = chaos_agent.implement_chaos(player, copy.deepcopy(board), move, attacker_skill, defender_skill)
         print(f"⚠ Chaos Agent initiated for player {player}. Board changed to {chaos_board} ⚠")
+        logging.info(f"⚠ Chaos Agent initiated for player {player}. Board changed to {chaos_board} ⚠")
         current_state = copy.deepcopy(chaos_board)
         move_outcome = []
     else:
@@ -375,7 +378,9 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
         current_state = copy.deepcopy(board)
 
         move_outcome = eval_move(prev_state=previous_state, current_state=current_state, exploit_tracker=exploit_tracker,
-                                 launcher=launcher, defender_skill_level=defender_skill, debug=verbose)
+                                 launcher=launcher, defender_skill_level=defender_skill, attack_container=attack, defense_container=defense, docker=docker, debug=verbose)
+
+        print(move_outcome)
 
     if generate_data:
         fname = os.getenv("GAMEPLAY_3x3") if len_board == 3 else os.getenv("GAMEPLAY_5x5")
@@ -385,10 +390,6 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
     if verbose:
         printBoard(board)
         print(f"\nplayer {player} move complete...\n")
-
-    # running command in docker image
-    if docker == 1:
-        cyber_move(player, move_outcome, attack, defense, verbose)
 
     winner = getWinner(board)
     return winner, board
@@ -411,10 +412,7 @@ def ai_vs_ai(model, rnd1, rnd2, len_board, verbose, delay, generate_data, exploi
              attacker_skill, defender_skill, player1_algo, player2_algo):
     # initialize board, winner variable, and numpy array of board
 
-    if is_docker == 1:
-        attack, defense = start_game_docker()
-    else:
-        attack, defense = None, None
+    attack, defense = start_game_docker(docker)
 
     board = initBoard(len_board)
     winner = getWinner(board)
@@ -446,6 +444,7 @@ def ai_vs_human(model, rnd1, rnd2, len_board, verbose, delay, generate_data, hum
                 docker, attacker_skill, defender_skill, player1_algo, player2_algo):
     # initialize board, winner variable, and numpy array of board
 
+
     if is_docker == 1:
         attack, defense = start_game_docker()
     else:
@@ -472,6 +471,7 @@ def ai_vs_human(model, rnd1, rnd2, len_board, verbose, delay, generate_data, hum
                                             launcher=launcher, docker=docker, attack=attack, defense=defense,
                                             attacker_skill=attacker_skill, defender_skill=defender_skill,
                                             player1_algo=player1_algo, player2_algo=player2_algo)
+
             if delay: time.sleep(3)
         else:
             # if there is a winner or player 1 has tied the game, return data

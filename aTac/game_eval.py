@@ -6,6 +6,7 @@ import os
 import pandas as pd
 from pprint import pprint
 from script_launcher import ScriptLauncher
+import logging
 
 sys.path.insert(1, os.getcwd())
 
@@ -40,13 +41,13 @@ def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: Lis
     i = move[0]
     j = move[1]
     if current_state[i][j] == 1:  # attacker
-        if debug: print("attacker move")
+        if debug: logging.info("attacker move")
         if len(current_state) == 3:
             command = mp.eval_attacker_3x3(i, j, current_state, exploit_tracker, debug)
         if len(current_state) == 5:
             command = mp.eval_attacker_5x5(i, j, current_state, exploit_tracker, debug)
     elif current_state[i][j] == 2:  # defender
-        if debug: print("defender move")
+        if debug: logging.info("defender move")
         if len(current_state) == 3:
             command = mp.eval_defender_3x3(i, j, current_state, exploit_tracker, debug)
         if len(current_state) == 5:
@@ -69,13 +70,12 @@ def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: Lis
 
 def eval_move(prev_state: List[List[int]], current_state: List[List[int]],
               exploit_tracker: Dict[str, bool], launcher: ScriptLauncher,
-              defender_skill_level: int, debug: bool = False)-> List[str]:
+              defender_skill_level: int, attack_container, defense_container, docker: int, debug: bool = False, )-> List[str]:
     command = get_state_mapping_evaluation(prev_state, current_state, exploit_tracker, debug)
     for c in command:
         try:
-            launcher.launch_script(command=c, defender_skill_level=defender_skill_level)
+            launcher.launch_script(command=c, defender_skill_level=defender_skill_level, attack=attack_container, defense=defense_container, docker=docker, verbose=debug)
         except IndexError:  # popping from an empty list, i.e. no open ports
-            launcher.launch_script(command=0, defender_skill_level=defender_skill_level)
+            launcher.launch_script(command=0, defender_skill_level=defender_skill_level, attack=attack_container, defense=defense_container, docker=docker, verbose=debug)
             return[metasploit[0]]
     return [metasploit[c] for c in command]
-
