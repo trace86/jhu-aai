@@ -6,6 +6,7 @@ import os
 import docker_move
 from dotenv import load_dotenv
 import logging
+import validator
 
 load_dotenv()
 root_path = os.getenv("ROOT_PATH")
@@ -116,25 +117,26 @@ class ScriptLauncher:
                 if docker == 0:
                     self.get_rc(c, script_id, "use")
                 else:
-                    docker_move.cyber_move(player=1, command=command, attack=attack, defense=defense, verbose=verbose)
+                    result = docker_move.cyber_move(player=1, command=command, attack=attack, defense=defense, verbose=verbose)
 
             elif c == 2:
                 # use os or subprocess library to launch scripts?
-                command = f"msfconsole --quiet -r /{script_dir}/{script_id}_use.rc"
+                command = f"msfconsole --quiet -r /{script_dir}/{script_id}_use+set.rc"
                 logging.info(command)
                 if docker == 0:
                     self.get_rc(c, script_id, "set")
                 else:
-                    docker_move.cyber_move(player=1, command=command, attack=attack, defense=defense, verbose=verbose)
+                    result = docker_move.cyber_move(player=1, command=command, attack=attack, defense=defense, verbose=verbose)
 
             elif c == 3:
                 # use os or subprocess library to launch scripts?
-                command = f"msfconsole --quiet -r /{script_dir}/{script_id}_use.rc"
+                command = f"msfconsole --quiet -r /{script_dir}/{script_id}.rc"
                 logging.info(command)
                 if docker == 0:
                     self.get_rc(c, script_id, "exploit")
                 else:
-                    docker_move.cyber_move(player=1, command=command, attack=attack, defense=defense, verbose=verbose)
+                    result = docker_move.cyber_move(player=1, command=command, attack=attack, defense=defense, verbose=verbose)
+                    validator.validate_exploit(result, self.current_attack_id)
                     
             elif c == 4:
                 port = self.attack_port
@@ -142,7 +144,8 @@ class ScriptLauncher:
                 command = f'fuser -k {port}/tcp'
                 logging.info("Kill process *{0}* on port *{1}*".format(process, port))
                 if docker == 1:
-                    docker_move.cyber_move(player=2, command=command, attack=attack, defense=defense, verbose=verbose)
+                    result = docker_move.cyber_move(player=2, command=command, attack=attack, defense=defense, verbose=verbose)
+                    validator.validate_port(result, port)
 
             elif c == 5:
                 logging.info("Kill daemon")

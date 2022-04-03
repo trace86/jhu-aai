@@ -6,15 +6,6 @@ import logging
 from datetime import datetime
 from dotenv import load_dotenv
 
-# ## run_command
-#
-# Runs a command in docker
-#
-# * **source**: Source docker instance name.
-# * **target**: Target docker instance name.
-# * **command**: command to operate from source to target
-#
-# **returns**: None.
 
 load_dotenv()
 attack = os.getenv('ATTACK')
@@ -26,7 +17,8 @@ client = docker.from_env()
 
 def run_command_to_target(source: str, target: str, command: str):
     logging.info(f"operating container: {source.name}")
-    result = source.exec_run( f"bash -c '{command}; sleep 10 ; exit'", stdout=True)
+    #need stdin and tty to execute commands simutaneously
+    result = source.exec_run( f"bash -c '{command}; sleep 10; exit'")
     logging.info(f"operation_result: {result}")
     return result
     
@@ -36,9 +28,10 @@ def run_command_to_target(source: str, target: str, command: str):
 
 def run_command_to_self(source: str, command: str):
     logging.info(f"operating container: {source.name}")
-    result = source.exec_run( f"{command}", stdout=True)
+    #need stdin and tty to execute commands simutaneously
+    result = source.exec_run( f"{command}")
     logging.info(f"kill_process_result: {result}")
-    result = source.exec_run( f"netstat -tulnp | grep LISTEN", stdout=True)
+    result = source.exec_run( f"netstat -tulnp | grep LISTEN")
     logging.info(f"validation_result: {result}")
     return result
 
@@ -47,8 +40,9 @@ def run_command_to_self(source: str, command: str):
 def cyber_move(player, command, attack, defense, verbose):
     if player == 1:
         result = run_command_to_target(attack, defense, command)
-    elif player == 2:
+    else:
         result = run_command_to_self(defense, command)
+    return result
 
 # %%
 def start_game_docker(docker):
