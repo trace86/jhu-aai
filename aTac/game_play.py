@@ -361,7 +361,8 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
             m = alphabeta_minimax.ab_minimax(board=board, depth=depth, player=player, is_maximizing_player=True,
                                              initial_player=player, alpha=[-1, -1, -inf], beta=[-1, -1, inf])
             move = (m[0], m[1])
-        print(f"AI player {player}'s move [{move}] with {algo_to_use}")
+        print(f"AI player {player}'s move [{move}] with {algo_to_use}. "
+              f"{'Attacker'if player == 1 else 'Defender'} skill level set to {attacker_skill if player == 1 else defender_skill}.")
 
     if chaos_agent.is_time_for_chaos(player=player, attacker_skill_level=attacker_skill,
                                      defender_skill_level= defender_skill):
