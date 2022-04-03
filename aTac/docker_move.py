@@ -13,7 +13,30 @@ defense = os.getenv('DEFENSE')
 root_path = os.getenv('ROOT_PATH')
 portscan_full_path = os.getenv('PORTSCAN_XML')
 network_name = "adversarial"
-client = docker.from_env()
+is_docker = int(os.getenv("DOCKER"))
+if is_docker == 1:
+    client = docker.from_env()
+
+
+# In[1]:
+
+def wait_for_container_to_start(container):
+    
+    timeout = 120
+    stop_time = 3
+    elapsed_time = 0
+
+    while container.status != 'running' and elapsed_time < timeout:
+        print(container.status)
+        sleep(stop_time)
+        elapsed_time += stop_time
+        print("waiting...", container.name)
+        continue
+    
+    if elapsed_time >= timeout:
+        return False
+    
+    return True
 
 def run_command_to_target(source: str, target: str, command: str):
     logging.info(f"operating container: {source.name}")
@@ -21,7 +44,6 @@ def run_command_to_target(source: str, target: str, command: str):
     result = source.exec_run( f"bash -c '{command}; sleep 10; exit'")
     logging.info(f"operation_result: {result}")
     return result
-    
 
 # %%
 
@@ -63,6 +85,8 @@ def start_game_docker(docker):
  
 # %%
 def end_game_docker():
+    if is_docker == 0:
+        return None
     client.containers.prune()
 
 # %%

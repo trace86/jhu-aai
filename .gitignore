@@ -143,3 +143,16 @@ dmypy.json
 
 # state mapping i/o
 aTac/io/*.txt
+
+# pickle file
+aTac/io/attack_ports/*
+
+# nmpa
+aTac/io/nmap/*
+
+# training files
+aTac/io/training_3x3/*
+aTac/io/training_5x5/*
+
+# log files
+aTac/io/container_moves/*
