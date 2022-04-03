@@ -3,6 +3,7 @@ import pickle
 import pandas as pd
 import random
 import os
+import docker_move
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -11,6 +12,9 @@ commands_file = os.getenv("COMMANDS_CSV")
 vulnerability_scripts_dir = os.getenv("VULNERABILITY_SCRIPTS_DIR")
 portscan_xml_file = os.getenv("PORTSCAN_XML")
 attack_ports_pk = os.getenv("ATTACK_PORTS_PK")
+attacker = os.getenv("ATTACK")
+defender = os.getenv("DEFENSE")
+script_dir = os.getenv("VULNERABILITY_SCRIPTS_DIR")
 
 port_mapping = {21: "ftp",
                 22: "ssh",
@@ -87,15 +91,16 @@ class ScriptLauncher:
 
     # currently prints the file contents, can be repurposed to run them through msfconsole
     def get_rc(self, c, script_id, step):
-        file = open(f"{root_path}/{vulnerability_scripts_dir}/{script_id}/{script_id}_{step}.rc", "r")
+        file = open(f"{root_path}/{vulnerability_scripts_dir}/{script_id}_{step}.rc", "r")
         print(file.read().splitlines())
 
-    def get_command(self, c):
+    def get_command(self, c, attack, defense, docker, verbose):
 
         if c == 0:
             # use os or subprocess library to launch scripts?
             print("Port scan on target machine using Nmap...")
-            print("./nmap.sh")
+            if docker == 1:
+                docker_move.get_nmap(attack)
 
         else:
             if self.current_attack_id < 10:
@@ -105,33 +110,59 @@ class ScriptLauncher:
 
             if c == 1:
                 # use os or subprocess library to launch scripts?
-                print("msfconsole -r {0}_use.rc".format(script_id))
-                self.get_rc(c, script_id, "use")
+                command = f"msfconsole -r /{script_dir}/{script_id}_use.rc"
+                print(command)
+                if docker == 0:
+                    self.get_rc(c, script_id, "use")
+                else:
+                    docker_move.cyber_move(player=1, command=command, attack=attack, defense=defense, verbose=verbose)
 
             elif c == 2:
                 # use os or subprocess library to launch scripts?
-                print("msfconsole -r {0}_set.rc".format(script_id))
-                self.get_rc(c, script_id, "set")
+                command = f"msfconsole -r /{script_dir}/{script_id}_use.rc"
+                print(command)
+                if docker == 0:
+                    self.get_rc(c, script_id, "set")
+                else:
+                    docker_move.cyber_move(player=1, command=command, attack=attack, defense=defense, verbose=verbose)
 
             elif c == 3:
                 # use os or subprocess library to launch scripts?
-                print("msfconsole -r {0}_exploit.rc".format(script_id))
-                self.get_rc(c, script_id, "exploit")
-
+                command = f"msfconsole -r /{script_dir}/{script_id}_use.rc"
+                print(command)
+                if docker == 0:
+                    self.get_rc(c, script_id, "exploit")
+                else:
+                    docker_move.cyber_move(player=1, command=command, attack=attack, defense=defense, verbose=verbose)
+                    
             elif c == 4:
                 port = self.attack_port
                 process = self.attacked_process
+                command = f'fuser -k {port}/tcp'
                 print("Kill process *{0}* on port *{1}*".format(process, port))
+                if docker == 1:
+                    docker_move.cyber_move(player=2, command=command, attack=attack, defense=defense, verbose=verbose)
 
             elif c == 5:
                 print("Kill daemon")
 
-    def launch_script(self, command):
+    def launch_script(self, command, defender_skill_level, attack, defense, docker, verbose):
+        #debug mode on
+        verbose=True
+        
+        num_ports_open = {
+            5: random.randint(0, 3),
+            4: 4,
+            3: 7,
+            2: 11,
+            1: 12,
+            0: 13
+        }
         print("\nLaunch script process commenced:")
         # scan command
         if command == 0:
 
-            self.get_command(command)
+            self.get_command(c=command, attack=attack, defense=defense, docker=docker, verbose=verbose)
 
             # parse nmap xml output
             parsed = self.parse_nmaprun_xml(f"{root_path}/{portscan_xml_file}")
@@ -147,6 +178,9 @@ class ScriptLauncher:
             # shuffle open, common ports
             # this is done so that the attacker picks a random port to attack when starting out
             random.shuffle(common_ports)
+            # number of ports to return based on the defender skill level
+            common_ports = common_ports[: num_ports_open[defender_skill_level]]
+            print(f"{len(common_ports)} open ports on target system: {common_ports}")
 
             # write open common ports to pickle file
             with open(f"{root_path}/{attack_ports_pk}", "wb") as f:
@@ -177,7 +211,7 @@ class ScriptLauncher:
                                                                                   self.attacked_process,
                                                                                   self.attack_port))
 
-            self.get_command(command)
+            self.get_command(c=command, attack=attack, defense=defense, docker=docker, verbose=verbose)
 
         else:
             '''
@@ -186,4 +220,4 @@ class ScriptLauncher:
             c == [4] --> kill process command
             c == [5] --> kill daemon command
             '''
-            self.get_command(command)
+            self.get_command(c=command, attack=attack, defense=defense, docker=docker, verbose=verbose)
