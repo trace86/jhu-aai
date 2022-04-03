@@ -136,3 +136,7 @@ dmypy.json
 
 # state mapping i/o
 aTac/io/*.txt
+
+# training files
+aTac/io/training_3x3/*
+aTac/io/training_5x5/*
