@@ -1,8 +1,7 @@
 import logging
 
 def validate_port(result, port):
-    port_text = ":" + port
-    print(port_text)
+    port_text = ":" + str(port)
     if port_text in result:
         message = f"VALIDATOR: FAILED: port {port} is still open"
         logging.info(message)
@@ -14,6 +13,8 @@ def validate_port(result, port):
 
 def validate_exploit(result, exploit_number):
     success_result = options[exploit_number]
+    print("RESULT", result)
+    print("SUCCESS", success_result)
     if success_result in result:
         message = f"VALIDATOR: SUCCESS: exploit {exploit_number} is successful"
         logging.info(message)

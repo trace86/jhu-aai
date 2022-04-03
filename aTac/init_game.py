@@ -9,6 +9,7 @@ from datetime import datetime
 from script_launcher import ScriptLauncher
 from docker_move import start_game_docker, end_game_docker
 import logging
+import uuid
 root_logger = logging.getLogger()
 root_logger.setLevel(logging.DEBUG)
 
@@ -29,8 +30,6 @@ attacker_skill_level = int(os.getenv("ATTACKER_SKILL_LEVEL"))
 defender_skill_level = int(os.getenv("DEFENDER_SKILL_LEVEL"))
 player1_algo = str(os.getenv("PLAYER_1_ALGO"))
 player2_algo = str(os.getenv("PLAYER_2_ALGO"))
-
-
 
 #disable urllib3 messages
 urllib3_logger = logging.getLogger('urllib3')
@@ -54,7 +53,11 @@ def play_games(len_board=3, num_games=3):
     logging.info("Loaded Keras models.")
 
     for i in range(1, num_games + 1):
+        #generate uuid
+        game_id = uuid.uuid4()
+        logging.info(f"------------------------------------------------------------------------")
         logging.info(f"playing game {i} of {num_games}...")
+        logging.info(f"game id: {game_id}")
         # start with clean slate
         random.seed(datetime.now())
         rnd1, rnd2 = random.uniform(0, 1), random.uniform(0, 1)
@@ -67,41 +70,44 @@ def play_games(len_board=3, num_games=3):
         if len_board == 3:
             if human:
                 logging.info("Running AI vs Human 3x3 game play")
-                winner, board = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
+                winner, board, chaos_count = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
                                                verbose=verbose_output, delay=delay_output, generate_data=generate_date,
                                                human_plays=human_player, exploit_tracker=exploit_tracker,
                                                launcher=launcher, docker=docker, attacker_skill=attacker_skill_level,
                                                defender_skill=defender_skill_level, player1_algo=player1_algo,
-                                               player2_algo=player2_algo)
+                                               player2_algo=player2_algo, game_id=game_id)
             else:
                 logging.info("Running AI vs AI 3x3 game play")
-                winner, board = gp.ai_vs_ai(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
+                winner, board, chaos_count = gp.ai_vs_ai(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
                                             delay=delay_output, generate_data=generate_date,
                                             exploit_tracker=exploit_tracker, launcher=launcher, docker=docker,
                                             attacker_skill=attacker_skill_level, defender_skill=defender_skill_level,
-                                            player1_algo=player1_algo, player2_algo=player2_algo)
+                                            player1_algo=player1_algo, player2_algo=player2_algo, game_id=game_id)
 
             gp.printWinner(winner)
+            logging.info(f"Winner: {winner} | Attack Skill Level: {attacker_skill_level} | Defense Skill Level: {defender_skill_level}")
+            logging.info(f"Chaos Occured: | {chaos_count[0]} | {chaos_count[1]}")
 
         elif len_board == 5:
             if human:
                 logging.info("Running AI vs Human 5x5 game play")
-                winner, board = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
+                winner, board, chaos_count = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
                                                verbose=verbose_output, delay=delay_output, generate_data=generate_date,
                                                human_plays=human_player, exploit_tracker=exploit_tracker,
                                                launcher=launcher, docker=docker, attacker_skill=attacker_skill_level,
                                                defender_skill=defender_skill_level, player1_algo=player1_algo,
-                                               player2_algo=player2_algo)
+                                               player2_algo=player2_algo, game_id=game_id)
             else:
                 logging.info("Running AI vs AI 5x5 game play")
-                winner, board = gp.ai_vs_ai(model_5x5, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
+                winner, board, chaos_count = gp.ai_vs_ai(model_5x5, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
                                             delay=delay_output, generate_data=generate_date,
                                             exploit_tracker=exploit_tracker, launcher=launcher, docker=docker,
                                             attacker_skill=attacker_skill_level, defender_skill=defender_skill_level,
-                                            player1_algo=player1_algo, player2_algo=player2_algo)
+                                            player1_algo=player1_algo, player2_algo=player2_algo, game_id=game_id)
                 
             gp.printWinner(winner)
-
+            logging.info(f"Winner: {winner} | Attack Skill Level: {attacker_skill_level} | Defense Skill Level: {defender_skill_level}")
+            logging.info(f"Chaos Occured: | {chaos_count[0]} | {chaos_count[1]}")
         else:
             raise ValueError(f"We can't run a {len_board}x{len_board} game")
 
