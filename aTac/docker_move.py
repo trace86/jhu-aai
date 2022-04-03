@@ -18,8 +18,9 @@ from dotenv import load_dotenv
 load_dotenv()
 attack = os.getenv('ATTACK')
 defense = os.getenv('DEFENSE')
+root_path = os.getenv('ROOT_PATH')
+portscan_full_path = os.getenv('PORTSCAN_XML')
 network_name = "adversarial"
-is_docker = os.getenv("DOCKER")
 client = docker.from_env()
 
 
@@ -46,8 +47,8 @@ def wait_for_container_to_start(container):
 
 def run_command_to_target(source: str, target: str, command: str):
     print(source.name)
-    result = source.exec_run( f"/0000.sh", stdin=True)
-    result = source.exec_run( f"cat /log.txt", stdin=True)
+    result = source.exec_run( f"bash -c '{command}; sleep 10 ; exit'", stdout=True)
+    print(result)
     return result
     
 
@@ -56,7 +57,9 @@ def run_command_to_target(source: str, target: str, command: str):
 
 def run_command_to_self(source: str, command: str):
     print(source.name)
-    result = source.exec_run( f"ps -ef", stdin=True)
+    result = source.exec_run( f"{command}", stdout=True)
+    result = source.exec_run( f"netstat -tulnp | grep LISTEN", stdout=True)
+    print(result)
     return result
 
 
@@ -72,7 +75,9 @@ def cyber_move(player, command, attack, defense, verbose):
             print("command ran to self with result ", result)
 
 # %%
-def start_game_docker():
+def start_game_docker(docker):
+    if docker != 1:
+        return "attack", "defense"
     print("stopping existing containers...")
     for container in client.containers.list():
         container.stop()
@@ -81,7 +86,7 @@ def start_game_docker():
     print("start process...")
     docker_network = client.networks.create(network_name)
     attack_container = client.containers.run(attack, detach=True, auto_remove=True, network=docker_network.id, stdin_open=True, name=attack)
-    defense_container = client.containers.run(defense, detach=True, auto_remove=True, network=docker_network.id, stdin_open=True, name=defense)
+    defense_container = client.containers.run(defense, detach=True, auto_remove=True, network=docker_network.id, stdin_open=True, name=defense, cap_add=["SYS_PTRACE"], security_opt=["apparmor:unconfined"])
     print("setup done")
 
     return attack_container, defense_container
@@ -91,3 +96,9 @@ def end_game_docker():
     client.containers.prune()
 
 # %%
+def get_nmap(attack_container):
+    container_name = attack_container.name
+    portscan_path = portscan_full_path.split('/')[0]
+    portscan_file_name = portscan_full_path.split('/')[1]
+    attack_container.exec_run( f"nmap -oX {portscan_file_name} {defense}")
+    os.system(f'docker cp {container_name}:/{portscan_file_name} {root_path}/{portscan_path}')
