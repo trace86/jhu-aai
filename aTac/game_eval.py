@@ -6,6 +6,7 @@ import os
 import pandas as pd
 from pprint import pprint
 from script_launcher import ScriptLauncher
+import logging
 
 sys.path.insert(1, os.getcwd())
 
@@ -40,13 +41,13 @@ def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: Lis
     i = move[0]
     j = move[1]
     if current_state[i][j] == 1:  # attacker
-        if debug: print("attacker move")
+        if debug: logging.info("attacker move")
         if len(current_state) == 3:
             command = mp.eval_attacker_3x3(i, j, current_state, exploit_tracker, debug)
         if len(current_state) == 5:
             command = mp.eval_attacker_5x5(i, j, current_state, exploit_tracker, debug)
     elif current_state[i][j] == 2:  # defender
-        if debug: print("defender move")
+        if debug: logging.info("defender move")
         if len(current_state) == 3:
             command = mp.eval_defender_3x3(i, j, current_state, exploit_tracker, debug)
         if len(current_state) == 5:

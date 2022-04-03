@@ -4,6 +4,10 @@ tictactoe/__pycache__/
 tictactoe/tictactoe_*
 
 tictactoe_*
+
+#pickle files
+*.pickle
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
