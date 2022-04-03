@@ -16,6 +16,7 @@ from game_eval import eval_move
 from docker_move import run_command_to_target, run_command_to_self
 import chaos_agent
 from docker_move import cyber_move, start_game_docker
+import logging
 
 load_dotenv()
 attack = os.getenv('ATTACK')
@@ -359,6 +360,7 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
                                      defender_skill_level= defender_skill):
         chaos_board = chaos_agent.implement_chaos(player, copy.deepcopy(board), move, attacker_skill, defender_skill)
         print(f"⚠ Chaos Agent initiated for player {player}. Board changed to {chaos_board} ⚠")
+        logging.info(f"⚠ Chaos Agent initiated for player {player}. Board changed to {chaos_board} ⚠")
         current_state = copy.deepcopy(chaos_board)
         move_outcome = []
     else:

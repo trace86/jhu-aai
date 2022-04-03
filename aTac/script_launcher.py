@@ -5,6 +5,7 @@ import random
 import os
 import docker_move
 from dotenv import load_dotenv
+import logging
 
 load_dotenv()
 root_path = os.getenv("ROOT_PATH")
@@ -110,8 +111,8 @@ class ScriptLauncher:
 
             if c == 1:
                 # use os or subprocess library to launch scripts?
-                command = f"msfconsole -r /{script_dir}/{script_id}_use.rc"
-                print(command)
+                command = f"msfconsole --quiet -r /{script_dir}/{script_id}_use.rc"
+                logging.info(command)
                 if docker == 0:
                     self.get_rc(c, script_id, "use")
                 else:
@@ -119,8 +120,8 @@ class ScriptLauncher:
 
             elif c == 2:
                 # use os or subprocess library to launch scripts?
-                command = f"msfconsole -r /{script_dir}/{script_id}_use.rc"
-                print(command)
+                command = f"msfconsole --quiet -r /{script_dir}/{script_id}_use.rc"
+                logging.info(command)
                 if docker == 0:
                     self.get_rc(c, script_id, "set")
                 else:
@@ -128,8 +129,8 @@ class ScriptLauncher:
 
             elif c == 3:
                 # use os or subprocess library to launch scripts?
-                command = f"msfconsole -r /{script_dir}/{script_id}_use.rc"
-                print(command)
+                command = f"msfconsole --quiet -r /{script_dir}/{script_id}_use.rc"
+                logging.info(command)
                 if docker == 0:
                     self.get_rc(c, script_id, "exploit")
                 else:
@@ -139,12 +140,12 @@ class ScriptLauncher:
                 port = self.attack_port
                 process = self.attacked_process
                 command = f'fuser -k {port}/tcp'
-                print("Kill process *{0}* on port *{1}*".format(process, port))
+                logging.info("Kill process *{0}* on port *{1}*".format(process, port))
                 if docker == 1:
                     docker_move.cyber_move(player=2, command=command, attack=attack, defense=defense, verbose=verbose)
 
             elif c == 5:
-                print("Kill daemon")
+                logging.info("Kill daemon")
 
     def launch_script(self, command, defender_skill_level, attack, defense, docker, verbose):
         #debug mode on
@@ -158,7 +159,7 @@ class ScriptLauncher:
             1: 12,
             0: 13
         }
-        print("\nLaunch script process commenced:")
+        logging.info("Launch script process commenced:")
         # scan command
         if command == 0:
 
@@ -180,7 +181,7 @@ class ScriptLauncher:
             random.shuffle(common_ports)
             # number of ports to return based on the defender skill level
             common_ports = common_ports[: num_ports_open[defender_skill_level]]
-            print(f"{len(common_ports)} open ports on target system: {common_ports}")
+            logging.info(f"{len(common_ports)} open ports on target system: {common_ports}")
 
             # write open common ports to pickle file
             with open(f"{root_path}/{attack_ports_pk}", "wb") as f:
@@ -207,7 +208,7 @@ class ScriptLauncher:
             self.current_attack_id = attacks_for_current_port.sample(n=1)["attack_id"].to_list()[0]
             self.attacked_process = port_mapping[self.attack_port]
 
-            print("Attack ID *{0}*, attacking service *{1}* on port *{2}*".format(self.current_attack_id,
+            logging.info("Attack ID *{0}*, attacking service *{1}* on port *{2}*".format(self.current_attack_id,
                                                                                   self.attacked_process,
                                                                                   self.attack_port))
 

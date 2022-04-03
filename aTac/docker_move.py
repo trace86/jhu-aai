@@ -47,12 +47,8 @@ def run_command_to_self(source: str, command: str):
 def cyber_move(player, command, attack, defense, verbose):
     if player == 1:
         result = run_command_to_target(attack, defense, command)
-        if verbose:
-            logging.info(f"command ran to target complete {result}")
     elif player == 2:
         result = run_command_to_self(defense, command)
-        if verbose:
-            logging.info(f"command ran to self with result {result}")
 
 # %%
 def start_game_docker(docker):

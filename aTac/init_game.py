@@ -41,7 +41,7 @@ urllib3_logger.setLevel(logging.CRITICAL)
 filename = datetime.now().strftime('%Y%m%d%H%M_container_log_file.log')
 filepath = f'{root_path}/container_moves/{filename}'
 handler = logging.FileHandler(filepath, 'w', 'utf-8')
-formatter = logging.Formatter('%(name)s %(message)s') # or whatever
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s', datefmt='%H:%M:%S') # or whatever
 handler.setFormatter(formatter) # Pass handler as a parameter, not assign
 root_logger.addHandler(handler)
 
@@ -51,7 +51,7 @@ def play_games(len_board=3, num_games=3):
     logging.info("Loaded Keras models.")
 
     for i in range(1, num_games + 1):
-        logging.info(f"\nplaying game {i} of {num_games}...")
+        logging.info(f"playing game {i} of {num_games}...")
         # start with clean slate
         random.seed(datetime.now())
         rnd1, rnd2 = random.uniform(0, 1), random.uniform(0, 1)
