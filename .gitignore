@@ -145,14 +145,14 @@ dmypy.json
 aTac/io/*.txt
 
 # pickle file
-aTac/io/attack_ports/*
+aTac/io/attack_ports/*.pickle
 
-# nmpa
-aTac/io/nmap/*
+# nmap
+aTac/io/nmap/*.xml
 
 # training files
-aTac/io/training_3x3/*
-aTac/io/training_5x5/*
+aTac/io/training_3x3/*.pickle
+aTac/io/training_5x5/*.pickle
 
 # log files
-aTac/io/container_moves/*
+aTac/io/container_moves/*.log
