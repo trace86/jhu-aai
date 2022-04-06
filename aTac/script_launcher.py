@@ -130,7 +130,7 @@ class ScriptLauncher:
 
             elif c == 3:
                 # use os or subprocess library to launch scripts?
-                command = f"msfconsole --quiet -r /{script_dir}/{script_id}.rc"
+                command = f"msfconsole --quiet -r /{script_dir}/{script_id}.sh"
                 logging.info(command)
                 if docker == 0:
                     self.get_rc(c, script_id, "exploit")
