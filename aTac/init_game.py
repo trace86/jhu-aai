@@ -139,10 +139,9 @@ def experiment(len_board, num_games):
     for algo in algorithms:
         attacker_algo = algo[0]
         defender_algo = algo[1]
-        print(attacker_algo)
         for attacker_skill_level in attacker_skills:
             for defender_skill_level in defender_skills:
-                outfile = f"gameplay/{len_board}x{len_board}game_p1_{attacker_algo}{attacker_skill_level}_p2{defender_algo}{defender_skill_level}.csv"
+                outfile = f"gameplay/{len_board}x{len_board}game_p1{attacker_algo}{attacker_skill_level}_p2{defender_algo}{defender_skill_level}_{datetime.now().strftime('%Y_%m_%d-%I_%M_%S_%p')}.csv"
                 print(f"generating file {outfile}")
                 play_games(
                     len_board=len_board,
@@ -156,6 +155,7 @@ def experiment(len_board, num_games):
                     delay_output=False,
                     have_env=False
                 )
+
 
 if run_experiments:
     experiment(len_board=3, num_games=1)
