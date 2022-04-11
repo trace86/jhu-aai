@@ -18,18 +18,20 @@ sys.path.insert(1, os.getcwd())
 load_dotenv()
 # load vales from .env
 root_path = os.getenv('ROOT_PATH')
-len_board = int(os.getenv("LENGTH_OF_BOARD"))
-num_games = int(os.getenv("NUMBER_OF_GAMES"))
+# len_board = int(os.getenv("LENGTH_OF_BOARD"))
+# num_games = int(os.getenv("NUMBER_OF_GAMES"))
 docker = int(os.getenv("DOCKER"))
-delay_output = True if int(os.getenv("OUTPUT_DELAY")) == 1 else False
-generate_date = True if int(os.getenv("GENERATE_DATA")) == 1 else False
+# delay_output = True if int(os.getenv("OUTPUT_DELAY")) == 1 else False
+# generate_data = True if int(os.getenv("GENERATE_DATA")) == 1 else False
 verbose_output = True if int(os.getenv("VERBOSE_OUTPUT")) == 1 else False
 human = True if int(os.getenv("AI_VS_HUMAN")) == 1 else False
 human_player = int(os.getenv("HUMAN_PLAYS"))
-attacker_skill_level = int(os.getenv("ATTACKER_SKILL_LEVEL"))
-defender_skill_level = int(os.getenv("DEFENDER_SKILL_LEVEL"))
-player1_algo = str(os.getenv("PLAYER_1_ALGO"))
-player2_algo = str(os.getenv("PLAYER_2_ALGO"))
+# attacker_skill_level = int(os.getenv("ATTACKER_SKILL_LEVEL"))
+# defender_skill_level = int(os.getenv("DEFENDER_SKILL_LEVEL"))
+# player1_algo = str(os.getenv("PLAYER_1_ALGO"))
+# player2_algo = str(os.getenv("PLAYER_2_ALGO"))
+# gameplay_outcsv = os.getenv("GAMEPLAY_3x3") if len_board == 3 else os.getenv("GAMEPLAY_5x5")
+run_experiments = True if int(os.getenv("RUN_EXPERIMENTS")) == 1 else False
 
 #disable urllib3 messages
 urllib3_logger = logging.getLogger('urllib3')
@@ -47,7 +49,30 @@ formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s', datefmt='
 handler.setFormatter(formatter) # Pass handler as a parameter, not assign
 root_logger.addHandler(handler)
 
-def play_games(len_board=3, num_games=3):
+
+def play_games(len_board=None, num_games=None, attacker_skill_level=None, defender_skill_level=None, player1_algo=None,
+               player2_algo=None, gameplay_outcsv=None, generate_data=None, delay_output=None, have_env=True):
+    if not have_env:
+        len_board = len_board
+        num_games = num_games
+        attacker_skill_level = attacker_skill_level
+        defender_skill_level = defender_skill_level
+        player1_algo = player1_algo
+        player2_algo = player2_algo
+        gameplay_outcsv = gameplay_outcsv
+        generate_data = True
+        delay_output = False
+    else:
+        len_board = int(os.getenv("LENGTH_OF_BOARD"))
+        num_games = int(os.getenv("NUMBER_OF_GAMES"))
+        attacker_skill_level = int(os.getenv("ATTACKER_SKILL_LEVEL"))
+        defender_skill_level = int(os.getenv("DEFENDER_SKILL_LEVEL"))
+        player1_algo = str(os.getenv("PLAYER_1_ALGO"))
+        player2_algo = str(os.getenv("PLAYER_2_ALGO"))
+        gameplay_outcsv = os.getenv("GAMEPLAY_3x3") if len_board == 3 else os.getenv("GAMEPLAY_5x5")
+        delay_output = True if int(os.getenv("OUTPUT_DELAY")) == 1 else False
+        generate_data = True if int(os.getenv("GENERATE_DATA")) == 1 else False
+
     model_3x3 = keras.models.load_model("AlphaToe3")
     model_5x5 = keras.models.load_model("AlphaToe5")
     logging.info("Loaded Keras models.")
@@ -71,18 +96,20 @@ def play_games(len_board=3, num_games=3):
             if human:
                 logging.info("Running AI vs Human 3x3 game play")
                 winner, board, chaos_count = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
-                                               verbose=verbose_output, delay=delay_output, generate_data=generate_date,
+                                               verbose=verbose_output, delay=delay_output, generate_data=generate_data,
                                                human_plays=human_player, exploit_tracker=exploit_tracker,
                                                launcher=launcher, docker=docker, attacker_skill=attacker_skill_level,
                                                defender_skill=defender_skill_level, player1_algo=player1_algo,
-                                               player2_algo=player2_algo, game_id=game_id)
+                                               player2_algo=player2_algo, game_id=game_id,
+                                               gameplay_outcsv=gameplay_outcsv)
             else:
                 logging.info("Running AI vs AI 3x3 game play")
                 winner, board, chaos_count = gp.ai_vs_ai(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
-                                            delay=delay_output, generate_data=generate_date,
+                                            delay=delay_output, generate_data=generate_data,
                                             exploit_tracker=exploit_tracker, launcher=launcher, docker=docker,
                                             attacker_skill=attacker_skill_level, defender_skill=defender_skill_level,
-                                            player1_algo=player1_algo, player2_algo=player2_algo, game_id=game_id)
+                                            player1_algo=player1_algo, player2_algo=player2_algo, game_id=game_id,
+                                            gameplay_outcsv=gameplay_outcsv)
 
             gp.printWinner(winner)
             logging.info(f"Winner: {winner} | Attack Skill Level: {attacker_skill_level} | Defense Skill Level: {defender_skill_level}")
@@ -92,18 +119,19 @@ def play_games(len_board=3, num_games=3):
             if human:
                 logging.info("Running AI vs Human 5x5 game play")
                 winner, board, chaos_count = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
-                                               verbose=verbose_output, delay=delay_output, generate_data=generate_date,
+                                               verbose=verbose_output, delay=delay_output, generate_data=generate_data,
                                                human_plays=human_player, exploit_tracker=exploit_tracker,
                                                launcher=launcher, docker=docker, attacker_skill=attacker_skill_level,
                                                defender_skill=defender_skill_level, player1_algo=player1_algo,
-                                               player2_algo=player2_algo, game_id=game_id)
+                                               player2_algo=player2_algo, game_id=game_id, gameplay_outcsv=gameplay_outcsv)
             else:
                 logging.info("Running AI vs AI 5x5 game play")
                 winner, board, chaos_count = gp.ai_vs_ai(model_5x5, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
-                                            delay=delay_output, generate_data=generate_date,
+                                            delay=delay_output, generate_data=generate_data,
                                             exploit_tracker=exploit_tracker, launcher=launcher, docker=docker,
                                             attacker_skill=attacker_skill_level, defender_skill=defender_skill_level,
-                                            player1_algo=player1_algo, player2_algo=player2_algo, game_id=game_id)
+                                            player1_algo=player1_algo, player2_algo=player2_algo, game_id=game_id,
+                                            gameplay_outcsv=gameplay_outcsv)
                 
             gp.printWinner(winner)
             logging.info(f"Winner: {winner} | Attack Skill Level: {attacker_skill_level} | Defense Skill Level: {defender_skill_level}")
@@ -112,6 +140,35 @@ def play_games(len_board=3, num_games=3):
             raise ValueError(f"We can't run a {len_board}x{len_board} game")
 
 
-play_games(num_games=num_games, len_board=len_board)
-if docker == 1:
+def experiment(len_board, num_games):
+    algorithms = [["minimax", "minimax"], ["dnn", "dnn"], ["minimax", "dnn"], ["dnn", "minimax"]]
+    attacker_skills = [5, 4, 3, 2, 1, 0]
+    defender_skills = [5, 4, 3, 2, 1, 0]
+    for algo in algorithms:
+        attacker_algo = algo[0]
+        defender_algo = algo[1]
+        print(attacker_algo)
+        for attacker_skill_level in attacker_skills:
+            for defender_skill_level in defender_skills:
+                outfile = f"gameplay/{len_board}x{len_board}game_p1_{attacker_algo}{attacker_skill_level}_p2{defender_algo}{defender_skill_level}.csv"
+                print(f"generating file {outfile}")
+                play_games(
+                    len_board=len_board,
+                    num_games=num_games,
+                    attacker_skill_level=attacker_skill_level,
+                    defender_skill_level=defender_skill_level,
+                    player1_algo=attacker_algo,
+                    player2_algo=defender_algo,
+                    gameplay_outcsv=outfile,
+                    generate_data=True,
+                    delay_output=False,
+                    have_env=False
+                )
+
+if run_experiments:
+    experiment(len_board=3, num_games=1)
     end_game_docker()
+else:
+    play_games(have_env=True)
+    if docker == 1:
+        end_game_docker()
