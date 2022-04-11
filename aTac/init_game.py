@@ -22,6 +22,8 @@ docker = int(os.getenv("DOCKER"))
 human = True if int(os.getenv("AI_VS_HUMAN")) == 1 else False
 human_player = int(os.getenv("HUMAN_PLAYS"))
 run_experiments = True if int(os.getenv("RUN_EXPERIMENTS")) == 1 else False
+experiment_board_len = int(os.getenv("EXPERIMENT_BOARD_LEN"))
+experiment_num_games = int(os.getenv("EXPERIMENT_NUM_GAMES"))
 
 #disable urllib3 messages
 urllib3_logger = logging.getLogger('urllib3')
@@ -158,7 +160,7 @@ def experiment(len_board, num_games):
 
 
 if run_experiments:
-    experiment(len_board=3, num_games=1)
+    experiment(len_board=experiment_board_len, num_games=experiment_num_games)
     end_game_docker()
 else:
     play_games(have_env=True)

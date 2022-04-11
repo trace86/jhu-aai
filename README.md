@@ -41,6 +41,8 @@ DEFENSE="metasploitable2"
 DOCKER=0 # python-dotenv does not parse boolean, so 1 == True and 0 == False
 # EXPERIMENTATION
 RUN_EXPERIMENTS=0 # python-dotenv does not parse boolean, so 1 == True and 0 == False
+EXPERIMENT_BOARD_LEN=3
+EXPERIMENT_NUM_GAMES=1
 ```
 * Update `NUMBER_OF_GAMES` and `LENGTH_OF_BOARD` variables as necessary
 * Run `init_game.py`
