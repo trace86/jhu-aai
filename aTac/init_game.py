@@ -18,19 +18,9 @@ sys.path.insert(1, os.getcwd())
 load_dotenv()
 # load vales from .env
 root_path = os.getenv('ROOT_PATH')
-# len_board = int(os.getenv("LENGTH_OF_BOARD"))
-# num_games = int(os.getenv("NUMBER_OF_GAMES"))
 docker = int(os.getenv("DOCKER"))
-# delay_output = True if int(os.getenv("OUTPUT_DELAY")) == 1 else False
-# generate_data = True if int(os.getenv("GENERATE_DATA")) == 1 else False
-verbose_output = True if int(os.getenv("VERBOSE_OUTPUT")) == 1 else False
 human = True if int(os.getenv("AI_VS_HUMAN")) == 1 else False
 human_player = int(os.getenv("HUMAN_PLAYS"))
-# attacker_skill_level = int(os.getenv("ATTACKER_SKILL_LEVEL"))
-# defender_skill_level = int(os.getenv("DEFENDER_SKILL_LEVEL"))
-# player1_algo = str(os.getenv("PLAYER_1_ALGO"))
-# player2_algo = str(os.getenv("PLAYER_2_ALGO"))
-# gameplay_outcsv = os.getenv("GAMEPLAY_3x3") if len_board == 3 else os.getenv("GAMEPLAY_5x5")
 run_experiments = True if int(os.getenv("RUN_EXPERIMENTS")) == 1 else False
 
 #disable urllib3 messages
@@ -62,6 +52,7 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
         gameplay_outcsv = gameplay_outcsv
         generate_data = True
         delay_output = False
+        verbose_output = False
     else:
         len_board = int(os.getenv("LENGTH_OF_BOARD"))
         num_games = int(os.getenv("NUMBER_OF_GAMES"))
@@ -72,6 +63,7 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
         gameplay_outcsv = os.getenv("GAMEPLAY_3x3") if len_board == 3 else os.getenv("GAMEPLAY_5x5")
         delay_output = True if int(os.getenv("OUTPUT_DELAY")) == 1 else False
         generate_data = True if int(os.getenv("GENERATE_DATA")) == 1 else False
+        verbose_output = True if int(os.getenv("VERBOSE_OUTPUT")) == 1 else False
 
     model_3x3 = keras.models.load_model("AlphaToe3")
     model_5x5 = keras.models.load_model("AlphaToe5")
