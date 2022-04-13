@@ -465,7 +465,7 @@ def ai_vs_human(model, rnd1, rnd2, len_board, verbose, delay, generate_data, hum
                                                      attack=attack, defense=defense, attacker_skill=attacker_skill,
                                                      defender_skill=defender_skill, player1_algo=player1_algo,
                                                      player2_algo=player2_algo, game_id=game_id,
-                                                     chaos_count=chaos_count,gameplay_outcsv=gameplay_outsv)
+                                                     chaos_count=chaos_count,gameplay_outcsv=gameplay_outcsv)
 
         if delay: time.sleep(3)
         # if no winner or tie, player 2's turn
