@@ -135,8 +135,7 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
 
 
 def experiment(len_board, num_games):
-    # algorithms = [["minimax", "minimax"], ["dnn", "dnn"], ["minimax", "dnn"], ["dnn", "minimax"]]
-    algorithms = [["minimax", "minimax"]]
+    algorithms = [["minimax", "minimax"], ["dnn", "dnn"], ["minimax", "dnn"], ["dnn", "minimax"]]
     attacker_skills = [5, 4, 3, 2, 1, 0]
     defender_skills = [5, 4, 3, 2, 1, 0]
     for algo in algorithms:
