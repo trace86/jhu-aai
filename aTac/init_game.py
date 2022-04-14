@@ -112,7 +112,7 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
         elif len_board == 5:
             if human:
                 logging.info("Running AI vs Human 5x5 game play")
-                winner, board, chaos_count = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
+                winner, board, chaos_count = gp.ai_vs_human(model_5x5, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
                                                verbose=verbose_output, delay=delay_output, generate_data=generate_data,
                                                human_plays=human_player, exploit_tracker=exploit_tracker,
                                                launcher=launcher, docker=docker, attacker_skill=attacker_skill_level,
