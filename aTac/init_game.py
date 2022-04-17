@@ -26,6 +26,7 @@ human_player = int(os.getenv("HUMAN_PLAYS"))
 run_experiments = True if int(os.getenv("RUN_EXPERIMENTS")) == 1 else False
 experiment_board_len = int(os.getenv("EXPERIMENT_BOARD_LEN"))
 experiment_num_games = int(os.getenv("EXPERIMENT_NUM_GAMES"))
+gameplay_board = int(os.getenv("LENGTH_OF_BOARD"))
 gameplay_3_log = os.getenv("GAMEPLAY_3x3")
 gameplay_5_log = os.getenv("GAMEPLAY_5x5")
 
@@ -168,15 +169,32 @@ def experiment(len_board, num_games):
 
 def upload_results():
     print('uploading...')
-    gameplay_3_log_path = root_path + '/' + gameplay_3_log
-    gameplay_5_log_path = root_path + '/' + gameplay_5_log
-    upload_file_list = [filepath, gameplay_3_log_path, gameplay_5_log_path]
+
+    #Create Folder
+    folder_name = datetime.now().strftime('%Y%m%d%H%M')
+    file_metadata = {
+    'title': folder_name,
+    'parents': [{'id': '1dgQp8GawoICEwj1Uh4U8OJQNsLIiZZzs'}],
+    'mimeType': 'application/vnd.google-apps.folder'
+    }
+    folder = drive.CreateFile(file_metadata)
+    folder.Upload()
+
+    #get files to upload
+    if gameplay_board == 3:
+        gameplay_log_path = root_path + '/' + gameplay_3_log
+    else:
+        gameplay_log_path = root_path + '/' + gameplay_5_log
+    upload_file_list = [filepath, gameplay_log_path]
+
+    #upload files to google drive
     for upload_file in upload_file_list:
-        print(upload_file)
-        gfile = drive.CreateFile({'parents': [{'id': '1dgQp8GawoICEwj1Uh4U8OJQNsLIiZZzs'}]})
+        gfile = drive.CreateFile({'parents': [{'id': folder['id']}]})
         # Read file and set it as the content of this instance.
         gfile.SetContentFile(upload_file)
         gfile.Upload() # Upload the file.
+    
+    print('upload done...')
 
 if run_experiments:
     experiment(len_board=experiment_board_len, num_games=experiment_num_games)
