@@ -371,7 +371,7 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
                                      defender_skill_level= defender_skill):
         chaos_board = chaos_agent.implement_chaos(player, copy.deepcopy(board), move, attacker_skill, defender_skill)
         print(f"⚠ Chaos Agent initiated for player {player}. Board changed to {chaos_board} ⚠")
-        logging.info(f"⚠ Chaos Agent initiated for player {player}. Board changed to {chaos_board} ⚠")
+        logging.debug(f"⚠ Chaos Agent initiated for player {player}. Board changed to {chaos_board} ⚠")
         chaos_count[player-1] += 1
         current_state = copy.deepcopy(chaos_board)
         move_outcome = []

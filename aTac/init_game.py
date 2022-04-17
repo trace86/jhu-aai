@@ -78,7 +78,7 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
 
     model_3x3 = keras.models.load_model("AlphaToe3")
     model_5x5 = keras.models.load_model("AlphaToe5")
-    logging.info("Loaded Keras models.")
+    print("Loaded Keras models.")
 
     for i in range(1, num_games + 1):
         #generate uuid
@@ -97,7 +97,7 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
         
         if len_board == 3:
             if human:
-                logging.info("Running AI vs Human 3x3 game play")
+                print("Running AI vs Human 3x3 game play")
                 winner, board, chaos_count = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
                                                verbose=verbose_output, delay=delay_output, generate_data=generate_data,
                                                human_plays=human_player, exploit_tracker=exploit_tracker,
@@ -106,7 +106,7 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
                                                player2_algo=player2_algo, game_id=game_id,
                                                gameplay_outcsv=gameplay_outcsv)
             else:
-                logging.info("Running AI vs AI 3x3 game play")
+                print("Running AI vs AI 3x3 game play")
                 winner, board, chaos_count = gp.ai_vs_ai(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
                                             delay=delay_output, generate_data=generate_data,
                                             exploit_tracker=exploit_tracker, launcher=launcher, docker=docker,
@@ -120,7 +120,7 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
 
         elif len_board == 5:
             if human:
-                logging.info("Running AI vs Human 5x5 game play")
+                print("Running AI vs Human 5x5 game play")
                 winner, board, chaos_count = gp.ai_vs_human(model_5x5, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
                                                verbose=verbose_output, delay=delay_output, generate_data=generate_data,
                                                human_plays=human_player, exploit_tracker=exploit_tracker,
@@ -128,7 +128,7 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
                                                defender_skill=defender_skill_level, player1_algo=player1_algo,
                                                player2_algo=player2_algo, game_id=game_id, gameplay_outcsv=gameplay_outcsv)
             else:
-                logging.info("Running AI vs AI 5x5 game play")
+                print("Running AI vs AI 5x5 game play")
                 winner, board, chaos_count = gp.ai_vs_ai(model_5x5, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
                                             delay=delay_output, generate_data=generate_data,
                                             exploit_tracker=exploit_tracker, launcher=launcher, docker=docker,

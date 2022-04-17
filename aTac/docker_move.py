@@ -39,22 +39,24 @@ def wait_for_container_to_start(container):
     return True
 
 def run_command_to_target(source: str, target: str, command: str):
-    logging.info(f"operating container: {source.name}")
+    logging.debug(f"operating container: {source.name}")
     #need stdin and tty to execute commands simutaneously
+    result = target.exec_run(f"netstat -tulnp | grep LISTEN")
+    logging.debug(f"target opened port: {result}")
     result = source.exec_run( f"bash -c '{command}; sleep 10; exit'")
-    logging.info(f"operation_result: {result}")
+    logging.debug(f"operation_result: {result}")
     return result
 
 # %%
 
 
 def run_command_to_self(source: str, command: str):
-    logging.info(f"operating container: {source.name}")
+    logging.debug(f"operating container: {source.name}")
     #need stdin and tty to execute commands simutaneously
     result = source.exec_run( f"{command}")
-    logging.info(f"kill_process_result: {result}")
+    logging.debug(f"kill_process_result: {result}")
     result = source.exec_run( f"netstat -tulnp | grep LISTEN")
-    logging.info(f"validation_result: {result}")
+    logging.debug(f"validation_result: {result}")
     return result
 
 
@@ -70,16 +72,16 @@ def cyber_move(player, command, attack, defense, verbose):
 def start_game_docker(docker):
     if docker != 1:
         return "attack", "defense"
-    logging.info("stopping existing containers...")
+    print("stopping existing containers...")
     for container in client.containers.list():
         container.stop()
     client.containers.prune()
     client.networks.prune()
-    logging.info("start process...")
+    print("start process...")
     docker_network = client.networks.create(network_name)
     attack_container = client.containers.run(attack, detach=True, auto_remove=True, network=docker_network.id, stdin_open=True, name=attack)
     defense_container = client.containers.run(defense, detach=True, auto_remove=True, network=docker_network.id, stdin_open=True, name=defense, cap_add=["SYS_PTRACE"], security_opt=["apparmor:unconfined"])
-    logging.info("setup done")
+    print("setup done")
 
     return attack_container, defense_container
  
