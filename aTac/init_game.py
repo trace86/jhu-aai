@@ -10,6 +10,8 @@ from script_launcher import ScriptLauncher
 from docker_move import start_game_docker, end_game_docker
 import logging
 import uuid
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
 root_logger = logging.getLogger()
 root_logger.setLevel(logging.DEBUG)
 
@@ -24,6 +26,9 @@ human_player = int(os.getenv("HUMAN_PLAYS"))
 run_experiments = True if int(os.getenv("RUN_EXPERIMENTS")) == 1 else False
 experiment_board_len = int(os.getenv("EXPERIMENT_BOARD_LEN"))
 experiment_num_games = int(os.getenv("EXPERIMENT_NUM_GAMES"))
+gameplay_board = int(os.getenv("LENGTH_OF_BOARD"))
+gameplay_3_log = os.getenv("GAMEPLAY_3x3")
+gameplay_5_log = os.getenv("GAMEPLAY_5x5")
 
 #disable urllib3 messages
 urllib3_logger = logging.getLogger('urllib3')
@@ -32,6 +37,10 @@ urllib3_logger.setLevel(logging.CRITICAL)
 #disable tensorflow messages
 urllib3_logger = logging.getLogger('tensorflow')
 urllib3_logger.setLevel(logging.CRITICAL)
+
+#configure google drive
+gauth = GoogleAuth()
+drive = GoogleDrive(gauth)  
 
 #configuring logger
 filename = datetime.now().strftime('%Y%m%d%H%M_container_log_file.log')
@@ -62,14 +71,14 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
         defender_skill_level = int(os.getenv("DEFENDER_SKILL_LEVEL"))
         player1_algo = str(os.getenv("PLAYER_1_ALGO"))
         player2_algo = str(os.getenv("PLAYER_2_ALGO"))
-        gameplay_outcsv = os.getenv("GAMEPLAY_3x3") if len_board == 3 else os.getenv("GAMEPLAY_5x5")
+        gameplay_outcsv = f"{os.getenv('GAMEPLAY_3x3')}_{datetime.now().strftime('%Y%m%d%H%M')}.csv" if len_board == 3 else f"{os.getenv('GAMEPLAY_5x5')}_{datetime.now().strftime('%Y%m%d%H%M')}.csv"
         delay_output = True if int(os.getenv("OUTPUT_DELAY")) == 1 else False
         generate_data = True if int(os.getenv("GENERATE_DATA")) == 1 else False
         verbose_output = True if int(os.getenv("VERBOSE_OUTPUT")) == 1 else False
 
     model_3x3 = keras.models.load_model("AlphaToe3")
     model_5x5 = keras.models.load_model("AlphaToe5")
-    logging.info("Loaded Keras models.")
+    print("Loaded Keras models.")
 
     for i in range(1, num_games + 1):
         #generate uuid
@@ -88,7 +97,7 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
         
         if len_board == 3:
             if human:
-                logging.info("Running AI vs Human 3x3 game play")
+                print("Running AI vs Human 3x3 game play")
                 winner, board, chaos_count = gp.ai_vs_human(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
                                                verbose=verbose_output, delay=delay_output, generate_data=generate_data,
                                                human_plays=human_player, exploit_tracker=exploit_tracker,
@@ -97,7 +106,7 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
                                                player2_algo=player2_algo, game_id=game_id,
                                                gameplay_outcsv=gameplay_outcsv)
             else:
-                logging.info("Running AI vs AI 3x3 game play")
+                print("Running AI vs AI 3x3 game play")
                 winner, board, chaos_count = gp.ai_vs_ai(model_3x3, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
                                             delay=delay_output, generate_data=generate_data,
                                             exploit_tracker=exploit_tracker, launcher=launcher, docker=docker,
@@ -111,7 +120,7 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
 
         elif len_board == 5:
             if human:
-                logging.info("Running AI vs Human 5x5 game play")
+                print("Running AI vs Human 5x5 game play")
                 winner, board, chaos_count = gp.ai_vs_human(model_5x5, rnd1=rnd1, rnd2=rnd2, len_board=len_board,
                                                verbose=verbose_output, delay=delay_output, generate_data=generate_data,
                                                human_plays=human_player, exploit_tracker=exploit_tracker,
@@ -119,7 +128,7 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
                                                defender_skill=defender_skill_level, player1_algo=player1_algo,
                                                player2_algo=player2_algo, game_id=game_id, gameplay_outcsv=gameplay_outcsv)
             else:
-                logging.info("Running AI vs AI 5x5 game play")
+                print("Running AI vs AI 5x5 game play")
                 winner, board, chaos_count = gp.ai_vs_ai(model_5x5, rnd1=rnd1, rnd2=rnd2, len_board=len_board, verbose=verbose_output,
                                             delay=delay_output, generate_data=generate_data,
                                             exploit_tracker=exploit_tracker, launcher=launcher, docker=docker,
@@ -158,11 +167,41 @@ def experiment(len_board, num_games):
                     have_env=False
                 )
 
+def upload_results():
+    print('uploading...')
+
+    #Create Folder
+    folder_name = datetime.now().strftime('%Y%m%d%H%M')
+    file_metadata = {
+    'title': folder_name,
+    'parents': [{'id': '1dgQp8GawoICEwj1Uh4U8OJQNsLIiZZzs'}],
+    'mimeType': 'application/vnd.google-apps.folder'
+    }
+    folder = drive.CreateFile(file_metadata)
+    folder.Upload()
+
+    #get files to upload
+    if gameplay_board == 3:
+        gameplay_log_path = root_path + '/' + gameplay_3_log
+    else:
+        gameplay_log_path = root_path + '/' + gameplay_5_log
+    upload_file_list = [filepath, gameplay_log_path]
+
+    #upload files to google drive
+    for upload_file in upload_file_list:
+        gfile = drive.CreateFile({'parents': [{'id': folder['id']}]})
+        # Read file and set it as the content of this instance.
+        gfile.SetContentFile(upload_file)
+        gfile.Upload() # Upload the file.
+    
+    print('upload done...')
 
 if run_experiments:
     experiment(len_board=experiment_board_len, num_games=experiment_num_games)
+    upload_results()
     end_game_docker()
 else:
     play_games(have_env=True)
+    upload_results()
     if docker == 1:
         end_game_docker()
