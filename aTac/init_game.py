@@ -86,6 +86,8 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
         logging.info(f"------------------------------------------------------------------------")
         logging.info(f"playing game {i} of {num_games}...")
         logging.info(f"game id: {game_id}")
+        print(f"playing game {i} of {num_games}...")
+        print(f"game id: {game_id}")
         # start with clean slate
         random.seed(datetime.now())
         rnd1, rnd2 = random.uniform(0, 1), random.uniform(0, 1)
