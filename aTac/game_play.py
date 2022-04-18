@@ -64,6 +64,7 @@ Outputs: ASCII tic tac toe board to console
 
 
 def printBoard(board):
+    boardstr = ""
     for i in range(len(board)):
         for j in range(len(board[i])):
             mark = ' '
@@ -72,14 +73,15 @@ def printBoard(board):
             elif board[i][j] == 2:
                 mark = 'O'
             if (j == len(board[i]) - 1):
-                print(mark)
+                boardstr += mark
             else:
-                print(str(mark) + "|", end='')
+                boardstr += f"{str(mark)}|"
         if (i < len(board) - 1):
             if len(board) == 3:
-                print("-----")
+                boardstr+=("\n-----\n")
             else:
-                print("----------")
+                boardstr +=("\n----------\n")
+    return boardstr
 
 
 """
@@ -355,6 +357,7 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
     if human:
         move = get_human_player_move(player, len_board)
         print(f"Human player {player}'s move: {move}")
+        logging.info(f"Human player {player}'s move: {move}")
     else:
         algo_to_use = player1_algo if player == 1 else player2_algo
         if algo_to_use == "dnn":
@@ -366,12 +369,14 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
             move = (m[0], m[1])
         print(f"AI player {player}'s move [{move}] with {algo_to_use}. "
               f"{'Attacker'if player == 1 else 'Defender'} skill level set to {attacker_skill if player == 1 else defender_skill}.")
+        logging.info(f"AI player {player}'s move [{move}] with {algo_to_use}. "
+              f"{'Attacker'if player == 1 else 'Defender'} skill level set to {attacker_skill if player == 1 else defender_skill}.")
 
     if chaos_agent.is_time_for_chaos(player=player, attacker_skill_level=attacker_skill,
                                      defender_skill_level= defender_skill):
         chaos_board = chaos_agent.implement_chaos(player, copy.deepcopy(board), move, attacker_skill, defender_skill)
         print(f"⚠ Chaos Agent initiated for player {player}. Board changed to {chaos_board} ⚠")
-        logging.debug(f"⚠ Chaos Agent initiated for player {player}. Board changed to {chaos_board} ⚠")
+        logging.info(f"⚠ Chaos Agent initiated for player {player}. Board changed to {chaos_board} ⚠")
         chaos_count[player-1] += 1
         current_state = copy.deepcopy(chaos_board)
         move_outcome = []
@@ -382,14 +387,16 @@ def get_player_move(model, rnd, board, len_board, player, verbose, generate_data
         move_outcome = eval_move(prev_state=previous_state, current_state=current_state, exploit_tracker=exploit_tracker,
                                  launcher=launcher, defender_skill_level=defender_skill, attack_container=attack, defense_container=defense, docker=docker, debug=verbose)
 
-        print(move_outcome)
+        print(f"cyber move made: {move_outcome}")
+        logging.info(f"cyber move made: {move_outcome}")
 
     if generate_data:
         helpers.write_csv(filename=gameplay_outcsv, row=[previous_state, current_state, player, move_outcome, game_id])
 
     # print board to console if verbose = true
     if verbose:
-        printBoard(board)
+        print(printBoard(board))
+        logging.info(f"\n{printBoard(board)}\n")
         print(f"\nplayer {player} move complete...\n")
 
     winner = getWinner(board)
@@ -517,5 +524,7 @@ def current_milli_time():
 def printWinner(winner):
     if winner > 0:
         print("Player {0} Wins!".format(winner))
+        logging.info("Player {0} Wins!".format(winner))
     else:
         print("Tie!")
+        logging.info("Tie!")

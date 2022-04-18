@@ -43,6 +43,7 @@ def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: Lis
     if current_state[i][j] == 1:  # attacker
         if debug:
             print("attacker move")
+            logging.info("attacker move")
         if len(current_state) == 3:
             command = mp.eval_attacker_3x3(
                 i, j, current_state, exploit_tracker, debug)
@@ -52,6 +53,7 @@ def get_state_mapping_evaluation(prev_state: List[List[int]], current_state: Lis
     elif current_state[i][j] == 2:  # defender
         if debug:
             print("defender move")
+            logging.info("defender move")
         if len(current_state) == 3:
             command = mp.eval_defender_3x3(
                 i, j, current_state, exploit_tracker, debug)

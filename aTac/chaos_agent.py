@@ -1,4 +1,5 @@
 import random
+import logging
 
 
 def is_time_for_chaos(player, attacker_skill_level, defender_skill_level):
@@ -15,6 +16,7 @@ def is_time_for_chaos(player, attacker_skill_level, defender_skill_level):
     chaos_probability = chaos_thresholds[skill_level]
     if rand >= chaos_probability:
         print(f"random value [{rand}] >= chaos probability [{chaos_probability}]")
+        logging.info(f"random value [{rand}] >= chaos probability [{chaos_probability}]")
         return True
     return False
 
