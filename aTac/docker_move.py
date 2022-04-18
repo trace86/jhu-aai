@@ -28,9 +28,11 @@ def wait_for_container_to_start(container):
 
     while container.status != 'running' and elapsed_time < timeout:
         print(container.status)
+        logging.info(container.status)
         sleep(stop_time)
         elapsed_time += stop_time
         print("waiting...", container.name)
+        logging.info(f"waiting...{container.name}")
         continue
     
     if elapsed_time >= timeout:
@@ -73,6 +75,7 @@ def start_game_docker(docker):
     if docker != 1:
         return "attack", "defense"
     print("stopping existing containers...")
+    logging.info("stopping existing containers...")
     for container in client.containers.list():
         container.stop()
     client.containers.prune()
