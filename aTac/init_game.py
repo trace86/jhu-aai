@@ -71,7 +71,7 @@ def play_games(len_board=None, num_games=None, attacker_skill_level=None, defend
         defender_skill_level = int(os.getenv("DEFENDER_SKILL_LEVEL"))
         player1_algo = str(os.getenv("PLAYER_1_ALGO"))
         player2_algo = str(os.getenv("PLAYER_2_ALGO"))
-        gameplay_outcsv = os.getenv("GAMEPLAY_3x3") if len_board == 3 else os.getenv("GAMEPLAY_5x5")
+        gameplay_outcsv = f"{os.getenv('GAMEPLAY_3x3')}_{datetime.now().strftime('%Y%m%d%H%M')}.csv" if len_board == 3 else f"{os.getenv('GAMEPLAY_5x5')}_{datetime.now().strftime('%Y%m%d%H%M')}.csv"
         delay_output = True if int(os.getenv("OUTPUT_DELAY")) == 1 else False
         generate_data = True if int(os.getenv("GENERATE_DATA")) == 1 else False
         verbose_output = True if int(os.getenv("VERBOSE_OUTPUT")) == 1 else False
